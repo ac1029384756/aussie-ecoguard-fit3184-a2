@@ -1,0 +1,15 @@
+{
+  "recordType": "synthetic-head-errors-from-official-cli2381-formatter-isolation",
+  "nativeAttemptStderrIncluded": false,
+  "nativeAttemptHTTPStatusKnown": false,
+  "sourceVersion": "2.38.1",
+  "primarySources": [
+    "https://raw.githubusercontent.com/aws/aws-cli/2.38.1/awscli/errorhandler.py",
+    "https://raw.githubusercontent.com/aws/aws-cli/2.38.1/awscli/errorformat.py",
+    "https://raw.githubusercontent.com/aws/aws-cli/2.38.1/awscli/formatter.py"
+  ],
+  "generation": "Original AST-selected ClientErrorHandler/JSONFormatter with a synthetic ClientError; no CLI, SDK or cloud execution. Error JSON excludes HTTP ResponseMetadata.",
+  "upstreamLocalProofReceiptSHA256": "fbf2d694af5fb961c357f2115c695f02f5f95c1b064463114b3d3f197e93c206",
+  "json404": "{\n    \"Code\": \"404\",\n    \"Message\": \"Not Found\"\n}\n",
+  "legacy404": "\naws: [ERROR]: An error occurred (404) when calling the HeadObject operation: Not Found\n"
+}

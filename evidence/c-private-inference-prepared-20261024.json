@@ -1,0 +1,63 @@
+{
+  "recordType": "local-source-preparation-only",
+  "date": "2026-10-24",
+  "observedAtUtc": "2026-10-23T14:28:59.721150+00:00",
+  "deployedGcpManagedResources": 7,
+  "deployedAwsManagedResources": 55,
+  "deployedAwsRuntimeEnabled": false,
+  "defaultStage": "identity",
+  "forwardIncrements": [
+    {
+      "stage": "registry",
+      "prior": 7,
+      "creates": 2,
+      "updates": 0,
+      "deletes": 0,
+      "total": 9
+    },
+    {
+      "stage": "private-inference",
+      "prior": 9,
+      "creates": 4,
+      "updates": 0,
+      "deletes": 0,
+      "total": 13
+    }
+  ],
+  "terraformValidation": {
+    "terraformVersion": "1.17.0",
+    "terraformArchiveSha256": "c168cab7c637a8769fdb90089ddd19de701bc6ff8aca64dc2e2185fe46f59f67",
+    "googleProviderVersion": "7.46.1",
+    "googleArchiveSha256": "e406cc8194485420bee42af19e3a545272a5ce45bc9ce7d5ac4438fb1a3f6fc6",
+    "platform": "linux/amd64",
+    "network": "none",
+    "source": "uncommitted reviewed personal runtime increment",
+    "exitCode": 0,
+    "cloudVerified": false,
+    "applyExecuted": false,
+    "valid": true,
+    "errors": 0,
+    "warnings": 0
+  },
+  "offlineGcpTests": {
+    "passed": 38,
+    "newRuntimeTests": 23,
+    "plansAreSynthetic": true
+  },
+  "filesSha256": {
+    "infra/gcp/main.tf": "2ac0b36e209cadd4b925b38356e63714c19680a294a748ef3264a9dea1d8cfa6",
+    "infra/gcp/variables.tf": "95553a40f39d4f58c86826bbfe1dcbbf11dec51da7b665f69d267be1082456c1",
+    "infra/gcp/environments/personal/main.tf": "64ff4743c8958ac13d5caebca47434fd2218808d1568242aa6eb7df949e79abc",
+    "infra/gcp/environments/personal/variables.tf": "276e90f6dffdd66e62a1f4bbdad249aca45c914a872d9098087df024b19193f7",
+    "infra/gcp/environments/personal/check_runtime_plan.py": "ff9a0993cce58b6980dde514a671c2d58a5c84314166059a3c02411accb0695f",
+    "infra/gcp/tests/test_personal_runtime_plan.py": "48ba72cdc9a3bed8268e6f6382af3d7a1e9bbc71e39d3227e07b860b6ebdef99"
+  },
+  "cloudIncrementPlanned": false,
+  "cloudIncrementApplied": false,
+  "registryImagePublished": false,
+  "newRuntimeIamGranted": false,
+  "cloudInferenceVerified": false,
+  "fullAssignmentAcceptanceVerified": false,
+  "additionalOutOfPocketBudgetAUD": 0,
+  "cloudUiBlocker": "Mac locked; manual unlock required; local work remains available"
+}

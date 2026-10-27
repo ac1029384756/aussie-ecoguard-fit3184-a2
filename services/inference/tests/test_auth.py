@@ -72,6 +72,37 @@ def test_local_service_mode_forbidden_in_cloud_run(settings, keys, token_factory
         assert client.post("/v1/query-authorizations", json={"requestId": "q1", "purpose": "file"}, headers=headers).status_code == 401
 
 
+def test_probe_aliases_preserve_model_readiness_without_authorizing_work(settings):
+    class StatusWorker:
+        ready = False
+
+        def status(self):
+            return {"configured": True, "manifestVersion": "probe-fixture", "ready": self.ready,
+                    "loadedModels": ["detector", "embedding"] if self.ready else []}
+
+        def run(self, *args):
+            raise AssertionError("Probe requests and unauthorized warmup must not execute model work")
+
+        def close(self):
+            pass
+
+    worker = StatusWorker()
+    with TestClient(create_app(settings, worker=worker)) as client:
+        for ready in (False, True):
+            worker.ready = ready
+            health, legacy_health = client.get("/health"), client.get("/healthz")
+            assert health.status_code == legacy_health.status_code == 200
+            assert health.json() == legacy_health.json() == {"status": "alive", "schemaVersion": "1", "models": worker.status()}
+            readiness, legacy_readiness = client.get("/ready"), client.get("/readyz")
+            assert readiness.status_code == legacy_readiness.status_code == (200 if ready else 503)
+            assert readiness.json() == legacy_readiness.json() == {"schemaVersion": "1", **worker.status()}
+            assert client.post("/v1/warmup").status_code == 401
+        assert "torch" not in sys.modules
+        assert "transformers" not in sys.modules
+        for path in ("/docs", "/redoc", "/openapi.json"):
+            assert client.get(path).status_code == 404
+
+
 def test_authorization_deadline_is_bounded(settings):
     class SlowVerifier:
         async def verify(self, token):

@@ -1,0 +1,93 @@
+{
+  "recordType": "actual-private-image-publication-and-registry-verification",
+  "status": "private-inference-image-published-and-verified",
+  "date": "2026-10-24",
+  "timezone": "Australia/Melbourne",
+  "observedAtUtc": "2026-10-23T22:43:02.671410+00:00",
+  "helperExitCode": 0,
+  "target": "us-central1-docker.pkg.dev/ecoguard-fit3184-a2-2026/ecoguard/inference:c-20261024-1",
+  "imageUri": "us-central1-docker.pkg.dev/ecoguard-fit3184-a2-2026/ecoguard/inference@sha256:7e481399309c8a90276c864e9765545657e44c00e9061ee668b4e56db4f22fdb",
+  "registryDigest": "sha256:7e481399309c8a90276c864e9765545657e44c00e9061ee668b4e56db4f22fdb",
+  "configDigest": "sha256:3633f5354e5af61775e661925c9fc39ef96a243f1b23aa712e6fdd210c858643",
+  "pushReturnedSuccess": true,
+  "globalPushAttempt": 3,
+  "priorFailedPushAttempts": 2,
+  "automaticPushCommandRetry": false,
+  "remoteManifestAndConfigBytesMatch": true,
+  "remoteCompressedLayersMatchArchive": true,
+  "artifact": {
+    "archive": "inference-amd64-20261024-1.tar.gz",
+    "archiveBytes": 373265304,
+    "archiveSHA256": "41ef8c5f4e1c0d0b9b6d3e8d1d814a0e7c5d1889082f1ab77882a122db6d94aa",
+    "uploadedSizeAndHashVerifiedAtUtc": "2026-10-23T22:23:34.261099+00:00",
+    "platform": "linux/amd64",
+    "modelCacheIncluded": false,
+    "hostCredentialsIncluded": false,
+    "offlineOciExtractionVerified": true,
+    "ociBlobs": 12,
+    "ociFiles": 14,
+    "ociExtractedBytes": 375657811
+  },
+  "publisher": {
+    "path": "scripts/publish_personal_gcp_inference_oci.py",
+    "sourceRevision": "3d1cc6b454a7b623c6251c6b410733367fc66b48",
+    "sha256": "831ec0ce94798ecf259f096b548c19836070cf0062be30a3ca04cdfc1110f8b2",
+    "client": "crane",
+    "version": "v0.22.1",
+    "officialRelease": "https://github.com/google/go-containerregistry/releases/tag/v0.22.1",
+    "asset": "go-containerregistry_Linux_x86_64.tar.gz",
+    "assetSHA256": "0ab7a1d6932a213aed964ce97666c3077fe691c8606413674a8b3e0b9ec4cda0",
+    "checksumsFileSHA256": "889e6996ef939c12d613f4cae657cc2ecce822e69ea74a58a453a95d723a857d",
+    "toolBinarySHA256": "8e75c326adb43b053cfd78b9b987663f8f4fe4557f4d3915905643f25c730992",
+    "normalTlsUsed": true,
+    "existingGcloudCredentialHelperUsed": true,
+    "dockerInvoked": false
+  },
+  "priorFailedAttempts": [
+    {
+      "attempt": 1,
+      "client": "Docker",
+      "observedAtUtc": "2026-10-23T22:26:31.323618+00:00",
+      "failure": "Registry blob HEAD connection refused before TLS/authentication",
+      "successfulLayerLines": 0,
+      "pushReturnedSuccess": false,
+      "privateEvidenceRetained": true
+    },
+    {
+      "attempt": 2,
+      "client": "Docker manual recovery",
+      "observedAtUtc": "2026-10-23T22:31:46.668320+00:00",
+      "failure": "Registry blob HEAD connection refused before TLS/authentication",
+      "successfulLayerLines": 0,
+      "pushReturnedSuccess": false,
+      "privateEvidenceRetained": true
+    }
+  ],
+  "postPublicationGuards": {
+    "sourceRevision": "00d58e0e8c65321cc759d575eafaba801c1e8253",
+    "sourceUnchanged": true,
+    "stateFileUnchanged": true,
+    "savedPlanUnchanged": true,
+    "privateIamUnchanged": true,
+    "priorEvidenceUnchanged": true,
+    "gcpManagedResources": 9
+  },
+  "awsFoundation": {
+    "managedResources": 55,
+    "modifiedByPublication": false,
+    "runtimeActivated": false
+  },
+  "runtimeActivated": false,
+  "iamModified": false,
+  "apisModified": false,
+  "cloudInferenceVerified": false,
+  "crossCloudTokenExchangeVerified": false,
+  "fullAssignmentAcceptanceVerified": false,
+  "fundingBoundary": {
+    "additionalOutOfPocketBudgetAUD": 0,
+    "creditExpiry": "2026-10-28",
+    "cleanupDeadlineMelbourne": "2026-10-27",
+    "balanceBillingIdentifierOrCredentialPublished": false,
+    "zeroFutureBillGuaranteed": false
+  }
+}

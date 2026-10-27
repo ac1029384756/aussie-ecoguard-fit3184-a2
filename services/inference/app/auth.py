@@ -1,8 +1,9 @@
 """Service authentication for Cloud Run or an independently hosted Oracle service.
 
-Cloud Run strips the service token signature after validating the
-X-Serverless-Authorization token. Never pretend an unverified decode authenticates
-that token. Cloud Run deployment MUST deny unauthenticated invocation in IAM.
+Private Cloud Run IAM authenticates the service request before the container.
+Its platform token can be consumed or modified before forwarding; do not treat
+header presence or an unverified decode as authentication. Cloud Run deployment
+MUST deny unauthenticated invocation in IAM and expose no bypass to its container.
 Oracle has no such IAM proxy: it verifies the complete Google token itself.
 """
 import asyncio
@@ -28,6 +29,13 @@ def bearer(value: str | None) -> str:
 
 
 async def require_service(request: Request, settings: Settings, oracle_verifier=None) -> None:
+    if settings.service_auth_mode == "cloud-run":
+        if not settings.cloud_run_service:
+            raise ServiceError("SERVICE_AUTH_NOT_CONFIGURED", "Private Cloud Run authentication is not configured.", 503)
+        # Only for a private, IAM-authenticated Cloud Run deployment. The ingress
+        # already checks the token and invoker permission; it can consume/modify
+        # X-Serverless-Authorization. A forwarded header is not identity proof.
+        return
     token = bearer(request.headers.get("x-serverless-authorization"))
     if settings.service_auth_mode == "oracle":
         if oracle_verifier is None:
@@ -35,12 +43,6 @@ async def require_service(request: Request, settings: Settings, oracle_verifier=
         # Never use K_SERVICE or mere header presence to authorize this branch.
         # Oracle receives the ORIGINAL signed token, not Cloud Run's stripped one.
         await oracle_verifier.verify("Bearer " + token)
-        return
-    if settings.service_auth_mode == "cloud-run":
-        if not settings.cloud_run_service:
-            raise ServiceError("SERVICE_AUTH_NOT_CONFIGURED", "Private Cloud Run authentication is not configured.", 503)
-        # The IAM layer already validated this token and its invoker permission.
-        # Header presence is a deployment guard, not a signature verification.
         return
     if settings.service_auth_mode == "local" and not settings.cloud_run_service:
         if len(settings.local_service_token) >= 32 and hmac.compare_digest(token, settings.local_service_token):

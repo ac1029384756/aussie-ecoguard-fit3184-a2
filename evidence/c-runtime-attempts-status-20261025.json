@@ -1,0 +1,452 @@
+{
+  "recordType": "selected-nonsecret-member-C-runtime-status",
+  "date": "2026-10-25",
+  "scope": "personal AWS+GCP deployment; not whole-team acceptance",
+  "preparedForPrivateCheckpoint": 52,
+  "cloudActionsPerformedByThisRecord": false,
+  "currentDeployedResourceCounts": {
+    "AWS": 60,
+    "GCP": 13
+  },
+  "actualSuccessfulMediaImages": 0,
+  "automaticLambdaWIFModelSuccessVerified": false,
+  "currentAWSNativeState": {
+    "serial": 95,
+    "sha256": "5de33593233eed3023b35a6f359238f17a3b56cfd349ea64291581b939cf7fc5",
+    "managedResources": 60,
+    "savedOutputsDescribeActivePlanNotCurrentAPIControls": true,
+    "declarativeConvergenceVerified": false,
+    "old85StateMayBeRestoredOverCurrentState": false,
+    "currentRawFileLocallyHashVerified": true,
+    "stateOnlyReconciliationAppliedOnce": true,
+    "resourceActionsDuringStateReconciliation": 0,
+    "previous94StateMayBeRestoredOverCurrentState": false
+  },
+  "attempt1": {
+    "savedPlanAppliedOnce": true,
+    "savedPlanExitCode": 0,
+    "postActivationProfileValidationPassed": false,
+    "imageOrFixtureSubmitted": false,
+    "original600SecondFullPauseTargetMet": false,
+    "eventualIndependentAllEightPausedObservedAtUtc": "2026-10-25T03:09:48.489042+00:00",
+    "independentAllEightPausedSummarySHA256": "77b108c8610223d477f2fdff558781d10c2b2575f3e85d3a3d06c19b39db1b9d",
+    "approvalConsumed": true
+  },
+  "attempt2": {
+    "newSingleImageApprovalObtained": true,
+    "approvalConsumed": true,
+    "stopReason": "heartbeat",
+    "writerRecordedErrorType": "ValueError",
+    "preciseFailingAssertionKnown": false,
+    "durableIntents": {
+      "total": 17,
+      "childSpawn": 2,
+      "SDKBoundaryRead": 15,
+      "activation": 0,
+      "externalActivationCall": 0,
+      "fixtureSeedOrSourcePut": 0
+    },
+    "savedPlanApplied": false,
+    "imageOrFixtureSubmitted": false,
+    "allEightPauseReadbackOffsetSeconds": 68.76573351299976,
+    "pauseReceiptDeadlineMissed": false,
+    "inputClosed": true,
+    "writerQuiesced": true,
+    "drain": {
+      "status": "drain-not-proven",
+      "observations": 14,
+      "requiredTailSeconds": 540,
+      "observedTailSeconds": 570.0389648380005,
+      "continuousSafeObservations": true,
+      "supervisionTimingGaps": [],
+      "allRoundsControlsPaused": true,
+      "allRoundsQuotaAndFundingGatesValid": true,
+      "allFiveTablesEmptyEveryRound": true,
+      "fixtureSpecificConditionsSatisfied": false,
+      "applicationDrained": false,
+      "GCPIdleProved": false,
+      "inFlightCancellationProved": false,
+      "terraformConverged": false,
+      "limitation": "The fixture was never seeded; empty tables do not prove its required terminal/lease state. Funding-gate continuity is not a new balance check or a zero-cost guarantee."
+    },
+    "processCloseout": {
+      "observedAtUtc": "2026-10-25T06:07:15.313845+00:00",
+      "bothRegisteredIncarnationsState": "Z",
+      "liveExactNonceProcessCount": 0,
+      "signalsInvoked": false
+    },
+    "forensicStartupFinding": "One initial writer heartbeat; first watchdog ACK at T0+5.915597s after the five-second wait. Startup race is strongly consistent with timing, but the generic log does not prove the exact failed assertion.",
+    "nativeStateObserved": {
+      "serial": 85,
+      "sha256": "7b4d5aed8ce5fd253fceac940637c67554ec0dadea61ca5a352e44a03b455204",
+      "unchangedByAttempt2": true,
+      "newRawStateBodyInAttempt2Archive": false
+    }
+  },
+  "V13LocalCandidate": {
+    "status": "nine-injected-stub-tests-and-upstream-independent-static-review-PASS",
+    "upstreamDriverSHA256": "2af12a878542915f64c7d0bec0b041d4dcc5039aad17fe2d0dfe6b58a409ebef",
+    "upstreamTestMethodsPassed": 9,
+    "upstreamIndependentReviewResult": "PASS",
+    "independentReviewScope": "static original V13 candidate only; no execution or review of repository test packaging",
+    "realThreadOrProcessOrCLIOrSDKOrSignalOrCloudExecutedByLocalTests": false,
+    "armReviewed": false,
+    "actualPinsPendingCount": 60,
+    "preparerPin": null,
+    "cloudReleaseIncluded": false,
+    "cloudAcceptanceClaimed": false,
+    "repositorySnapshot": "tools/c-runtime-controller/SNAPSHOT.json",
+    "packagingOnlyTestPort": "portable optional-empty-field AST representation and a separately pinned Head JSON fixture dependency; historical V12 ast.dump hashes retained",
+    "packagedTests": {
+      "commandFromSnapshotDirectory": "python3 -B -m unittest discover -s tests -v",
+      "passed": 17,
+      "failed": 0,
+      "exitCode": 0,
+      "claim": "9 lifecycle and8 Head JSON fixture transport tests; offline deterministic stubs only"
+    }
+  },
+  "GCP12": {
+    "status": "actual-native-metadata-result-downloaded-and-hash-verified",
+    "observedAtUtc": "2026-10-25T07:31:49.884593+00:00",
+    "metadataReadsPassed": 41,
+    "HTTPInferenceRequests": 0,
+    "readerSourceSHA256": "039cac3ef72be89146398aa2f85299f30769defe788c0549b90cb35632153626",
+    "nativeResultExportedLocally": true,
+    "nativeResultSummarySHA256": "5a0b6812b57399df2942ec6dc26cd348ee55ff50631612e3b5d49720af52917f",
+    "observationProvidedBy": "root cloud-console operator",
+    "nativeObservationSHA256": "0d7f267cbef3619aa02ac06e528af26182cab1feaa83f095dcd539d59e90b3e0",
+    "nativeArchiveSHA256": "604c51f3226f605dd911cdc7d3e6ae4edc99550c9664dd8de0019488651fbe0e",
+    "nativePayloadFilesIndividuallyVerified": 92
+  },
+  "fundingBoundary": {
+    "additionalOutOfPocketBudgetAUD": 0,
+    "billingUpgradeAuthorized": false,
+    "pausedCostGuaranteedZero": false,
+    "GCPExistingCreditExpiryLastObserved": "2026-10-28",
+    "retainedResourceReviewBy": "2026-10-27",
+    "Week15AvailabilityAndFundingPlanComplete": false
+  },
+  "privateArtifactsExcluded": [
+    "credentials",
+    "ARMTrue RELEASE",
+    "consumed authority/binding objects",
+    "native raw logs",
+    "Terraform state/plans",
+    "screenshots",
+    "model/image payloads"
+  ],
+  "references": [
+    {
+      "kind": "attempt2-originals-archive",
+      "localWorkReference": "work/c-personal/c-pause-native-originals-20261025-1.tar.gz",
+      "sha256": "7cac5658e60ec6099c2dc07144cceae8617e64c4d7495d4d36b09563f1bc9bae",
+      "rawFileIncludedInGit": false
+    },
+    {
+      "kind": "attempt2-native-drain-result",
+      "localWorkReference": "work/c-personal/pause-native-originals-20261025-1/processing-bounded-private/run-3035bb679dcf83d2ca2ca548e04caffb6c5929d31ab7614a51cdd111ca1d874a/drain-result.json",
+      "sha256": "0053842341a98eb1d2ebfbdd7acad05f559c4b3a5078398a815d50633542e457",
+      "rawFileIncludedInGit": false
+    },
+    {
+      "kind": "attempt2-native-process-closeout",
+      "localWorkReference": "work/c-personal/pause-native-originals-20261025-1/pause-save-closeout-20261025-1/readonly-local-process-and-attempt-closeout.json",
+      "sha256": "c4ea1f40683f6c51fd4733daefbc1f081dce01d125f66ed57f3d69128fa5f03f",
+      "rawFileIncludedInGit": false
+    },
+    {
+      "kind": "independent-local-forensic-review",
+      "localWorkReference": "work/c-personal/resume-attempt2-forensic-20261025-1/forensic-review-private.json",
+      "sha256": "09ddb7536ec2035f8121c28e6daafd546486252ea1cc88206dbc4f6f5be68fd3",
+      "rawFileIncludedInGit": false
+    },
+    {
+      "kind": "V13-original-injected-stub-test-receipt",
+      "localWorkReference": "work/c-personal/processing-controller-live-adapter-lowquota-DRAFT-20261025-13/PURE-TEST-RECEIPT.json",
+      "sha256": "890cf4e4fbcf0b4f5ebd1cf3276368f09b8079d7de6a98ddf5f8b940a3c1a743",
+      "rawFileIncludedInGit": false
+    },
+    {
+      "kind": "V13-original-independent-static-review",
+      "localWorkReference": "work/c-personal/processing-controller-live-adapter-lowquota-DRAFT-20261025-13/INDEPENDENT-STATIC-REVIEW.json",
+      "sha256": "84dc9a88b3471c625f9320319953e242c1e81f4b62a9f9b8859ccc5a36044d1f",
+      "rawFileIncludedInGit": false
+    },
+    {
+      "kind": "GCP12-metadata-reader-source-only",
+      "localWorkReference": "work/c-personal/resumeGCP12-20261025-1/capture_gcp_processing_fresh_readonly_20261025_12_DRAFT.py",
+      "sha256": "039cac3ef72be89146398aa2f85299f30769defe788c0549b90cb35632153626",
+      "rawFileIncludedInGit": false
+    },
+    {
+      "kind": "GCP12-native-metadata-originals",
+      "localWorkReference": "work/c-personal/c-resume-gcp12-originals-20261025-1.tar.gz",
+      "sha256": "604c51f3226f605dd911cdc7d3e6ae4edc99550c9664dd8de0019488651fbe0e",
+      "rawFileIncludedInGit": false
+    },
+    {
+      "kind": "attempt3-activation-result",
+      "sha256": "d4535797e7a1ee316f5ff779c4358dabf6c5af6542c421d8de961a3bf86265b6",
+      "rawFileIncludedInGit": false
+    },
+    {
+      "kind": "attempt3-initial-pause",
+      "sha256": "0e03a9254789571ee83afcec5d48fc8b9bb0c200bec2610f33119dea41a0bce5",
+      "rawFileIncludedInGit": false
+    },
+    {
+      "kind": "attempt3-final-drain",
+      "sha256": "278ede24fd0f7bf17dc10062705daa3213543d1362defefeb3fad6efb542390d",
+      "rawFileIncludedInGit": false
+    },
+    {
+      "kind": "attempt3-final-fallback",
+      "sha256": "76a98bf91373f1a3ce00772faef0821a261bd9850677bce970b1a3c2b23ca690",
+      "rawFileIncludedInGit": false
+    },
+    {
+      "kind": "attempt3-final-originals-archive",
+      "sha256": "ea0215caae07f1d6dd8695ca5d5c047f00304b6860ffe36493510c865c988cd1",
+      "payloadFiles": 1952,
+      "rawFileIncludedInGit": false
+    }
+  ],
+  "remainingAcceptance": [
+    "Bind current API/supervisor/GCP/funding/operator proofs and a new action-time authority to inert V15 and unused a927; consumed94c never replayed",
+    "one actual automatic AWS-role WIF/image/model READY chain",
+    "active-work pause and fixture-specific continuous drain plus Terraform convergence",
+    "joint final-origin CORS/TLS and auth/isolation evidence; cloud video cadence with A/D",
+    "honest final report and private team/staff repository access; assessment-week funding/availability"
+  ],
+  "recordPreparedBeforeCommit": true,
+  "attempt3": {
+    "newSingleImageApprovalObtained": true,
+    "approvalConsumed": true,
+    "savedPlanSHA256": "94c62df2f06a545e8c1d7c48ed1ce18b8c96e19109fc36c777ae29878c494ebc",
+    "savedPlanAppliedOnce": true,
+    "savedPlanExitCode": 0,
+    "activeVerified": true,
+    "savedPlanConsumed": true,
+    "stopReason": "verification",
+    "fixtureOutcomes": {
+      "total": 54,
+      "DynamoDBScan": 45,
+      "SQSAttributes": 8,
+      "sourceHeadObject": 1,
+      "headExitCode": 254,
+      "headAbsenceVerified": false,
+      "sourceHeadRequestSHA256": "55c85e003948eb36a4c5b2fef40e0a17e284e9329143559c54c64b8364763a4c",
+      "seedOrSourcePutIntents": 0,
+      "externalFixtureWriteIntents": 0,
+      "seedOrSourcePutCalls": 0,
+      "historicalStderrRetained": false,
+      "historicalHTTPStatusKnown": false,
+      "countsScope": "complete final1952-file archive including later drain scans",
+      "interim959FileArchiveCounts": {
+        "total": 19,
+        "DynamoDBScan": 10,
+        "SQSAttributes": 8,
+        "sourceHeadObject": 1
+      }
+    },
+    "imageOrFixtureSubmitted": false,
+    "initialAllEightPauseOffsetSeconds": 262.01894530000027,
+    "initialPauseDeadlineMissed": false,
+    "inputClosed": true,
+    "writerQuiesced": true,
+    "drain": {
+      "status": "drain-not-proven",
+      "observations": 10,
+      "observedTailSeconds": 547.9887940669996,
+      "requiredTailSeconds": 540,
+      "continuousSafeObservations": false,
+      "watchdogIndependentlyRemainedThroughTail": false,
+      "supervisionTimingGaps": [],
+      "failedReadRounds": [
+        5,
+        10
+      ],
+      "unverifiedS3CLIReads": 11,
+      "fixtureSpecificConditionsSatisfied": false,
+      "applicationDrained": false,
+      "allTenQuotaRawProfilesMatch10_10_8": true,
+      "GCPIdleProved": false,
+      "inFlightCancellationProved": false,
+      "terraformConverged": false,
+      "limitation": "Unseeded fixture conditions and failed S3 control reads are distinct failures. An elapsed548s/no timing-gap list does not establish continuous safety.",
+      "allProducerTablesEmptyInCompleteSnapshots": true,
+      "completeProducerSnapshots": 8,
+      "unverifiedProducerRounds": [
+        5,
+        10
+      ]
+    },
+    "finalFallback": {
+      "status": "emergency-controls-paused",
+      "allEightFinalReadbacksVerified": true,
+      "boundariesVerified": true,
+      "newMutationAttempts": 0,
+      "deadlineMissed": true,
+      "limitation": "Later repeat readback occurred after T0+600; initial pause was already verified on time. Neither rewrites the failed continuous tail."
+    },
+    "formatCompatibilityFinding": {
+      "officialPinnedCLI2381SyntheticFormatterReproductionPassed": true,
+      "legacyAlsoAddsAwsErrorPrefix": true,
+      "historicalFailureProvedToBe404": false,
+      "currentFixCloudTested": false
+    },
+    "finalDurableIntentCount": 34
+  },
+  "fixtureJSONErrorFix": {
+    "sourceSHA256": "8aa156b52a5a0979a08544d770809d7e069dc1d82aba8f283118cc566329ccf1",
+    "onlyHeadObjectArgvAdds": [
+      "--cli-error-format",
+      "json"
+    ],
+    "exactErrorObject": {
+      "Code": "404",
+      "Message": "Not Found"
+    },
+    "directHTTPMetadataClaimed": false,
+    "strictEmptyStdout": true,
+    "maximumErrorBodyBytes": 16384,
+    "success200AndAllOtherCallArgumentsUnchanged": true,
+    "requestAndOnceAndAllExistingGuardsUnchanged": true,
+    "failedOutputLogging": "fixed category/type/length/SHA only; no raw error or environment bodies",
+    "portableInjectedTestsPassed": 8,
+    "noCLIOrSDKOrThreadOrProcessOrCloudInTests": true,
+    "repoDriverArmReviewed": false,
+    "repoActualPinsPending": 60,
+    "packagedTestsTotalPassed": 17
+  },
+  "GCP13": {
+    "status": "actual-native-metadata-result-downloaded-and-hash-verified",
+    "observedAtUtc": "2026-10-25T08:01:43.040569+00:00",
+    "metadataReadsPassed": 41,
+    "HTTPInferenceRequests": 0,
+    "readerSourceSHA256": "d007bac0532ed7faecc8e4e99dec30c6a1a2c1c48e72ce39235f499affa74fda",
+    "nativeObservationSHA256": "53e8efcc85e2da885c4c442a430a0f9bdffbed3a29e1dac1f2ceebfdebae3def",
+    "nativeResultSummarySHA256": "0ae234a0f6cc5236457d6091d63b76d8fde348efd67fef0fdf4e4297ca80c01c",
+    "nativePayloadFilesIndividuallyVerified": 92,
+    "creditsFreshnessEstablishedByReader": false
+  },
+  "V15LocalCandidate": {
+    "status": "five-work-only-provenance-tests-and-independent-static-review-passed-not-cloud-tested",
+    "sourceSHA256": "cabf4cb23e2c9df4ed679bdd40acfab1852dacb61cdbe8257598e722032a6ecd",
+    "testReceiptSHA256": "60be44f97daf1e4acd2881f9f5ae98aa8865e3ce3c88b611cda6ebef779361cb",
+    "independentStaticReviewSHA256": "7bec26e14394e1c83f0a7ed1279ca184d35155fed89440861be6ad9b0779fc50",
+    "workOnlyTestsPassed": 5,
+    "linuxExternalToolHashStubsExplicit": true,
+    "privateOriginalsOrDependentTestsIncluded": false,
+    "changedFromV14": [
+      "review_plan_shape",
+      "review_paused60_chain",
+      "review_independent_receipt",
+      "review_native_activation",
+      "credential_route_reference-path-literal",
+      "exact-dependency-pins"
+    ],
+    "coreLifecycleOnceAuthoritySDKDrainUnchanged": true,
+    "armReviewed": false,
+    "activationPreparerPin": null,
+    "currentPausedAPIReceiptPin": null,
+    "actualPinsPendingCount": 60,
+    "releaseIncluded": false,
+    "repositorySnapshot": "tools/c-runtime-controller/SNAPSHOT.json",
+    "fourthMediaAttemptStarted": false,
+    "packagedExistingTests": {
+      "passed": 17,
+      "failed": 0,
+      "exitCode": 0,
+      "fixtureMethods": 8,
+      "startupMethods": 9,
+      "CLIOrSDKOrProcessOrThreadOrSignalOrCloudUsed": false
+    }
+  },
+  "state95Reconciliation": {
+    "status": "same-reviewed-refresh-only-binary-applied-once",
+    "savedPlanSHA256": "ed51be9f74dcf9d9707ab187c78d7735d53b65b6590b458bcd7308471bcdd62b",
+    "originalBlockedReviewPreserved": true,
+    "nativeJSONUnmodified": true,
+    "applyExitCode": 0,
+    "resourceActions": 0,
+    "reviewedPauseDriftResources": 7,
+    "unchangedResources": 53,
+    "noOpOutputDescriptors": 11,
+    "serial": 95,
+    "rawStateSHA256": "5de33593233eed3023b35a6f359238f17a3b56cfd349ea64291581b939cf7fc5",
+    "summarySHA256": "7de373531995b42d7da65b7882eedc21afb41eac1600cede6a963b61aafb8855",
+    "currentAPIPauseProofClaimed": false,
+    "terraformConfigurationConvergenceClaimed": false,
+    "rawFileIncludedInGit": false
+  },
+  "unusedPaused95NormalPlan": {
+    "status": "paused95-processing60-normal-saved-plan-review-passed",
+    "savedPlanSHA256": "a9271f1599a57f618e57ec1456bc56e4f01cac263a544afb10d7d26b59a77504",
+    "summarySHA256": "ae048a8fdb229fd984dc3e90049a3e7a9c3b62466e12a70b70c82a74cad65114",
+    "strictReviewSHA256": "689321401f207a8c95a080911e4884aca2f554b0c3d2de9626459ef8b9e60066",
+    "inputManifestSHA256": "3f3dd234b8e1c29ef44ff5e5f3a3ae5822512803ddfdcd21d248301721d0c9f4",
+    "nativeOriginalPayloadFilesVerified": 39,
+    "inputManifestEntries": 57,
+    "creates": 0,
+    "updates": 8,
+    "noops": 52,
+    "deletes": 0,
+    "resourceDriftResources": 0,
+    "fullPhysicalPriorEqual": true,
+    "allElevenOutputsUnchanged": true,
+    "applied": false,
+    "runtimeActivated": false,
+    "fixtureSubmitted": false,
+    "sourceAndState95Unchanged": true,
+    "planOrRawEvidenceIncludedInGit": false
+  },
+  "S3TwoWorkerMeasurement": {
+    "status": "three-current-VM-readonly-groups-passed",
+    "liveRuntimeSHA256": "88bd456dce12d44f6a1724a7c6831f0324e0b999aa31adbaf150f57e6e66ef53",
+    "summarySHA256": "018e810c451f98e9870192b6716d191457a5d82b342a1213391bf536f4f7aadc",
+    "managementReadsPerGroup": 6,
+    "groups": [
+      "bucket-policy",
+      "bucket-notifications",
+      "bucket-policy"
+    ],
+    "groupSeconds": [
+      6.375004539,
+      8.129232425,
+      5.359555789
+    ],
+    "sharedAbsoluteDeadlineSeconds": 10,
+    "peakConcurrency": 2,
+    "currentPausedPredicatesPassed": true,
+    "resourceMutations": 0,
+    "futureLatencyGuaranteeClaimed": false,
+    "continuous540SecondTailClaimed": false,
+    "rawProofIncludedInGit": false
+  },
+  "currentProofBinding": {
+    "C14": {
+      "status": "readonly-binding-inputs-collected",
+      "summarySHA256": "1c4406c2de9d282923310ef3d835f45d9a572d104730a23e3d90a78292bf6a3e",
+      "observedAtUtc": "2026-10-25T10:35:33.179514+00:00",
+      "originalsDownloadedAndIndependentlyHashVerified": true,
+      "boundInRepository": false
+    },
+    "supervisor8": {
+      "originalStatus": "blocked",
+      "originalSummarySHA256": "0383eea189af9ebefb028abfc1ccc8472f993c46d3b5b8e323956eea3c00261e",
+      "separateReadonlyCloseoutStatus": "two-child-local-capabilities-and-readonly-closeout-verified",
+      "closeoutSummarySHA256": "5affec9a4c5a19d65cfb7422c46b99fa1f65413ca05ebd7cd24cc3f449f9c91d",
+      "closeoutObservedAtUtc": "2026-10-25T10:37:45.485800+00:00",
+      "originalProbePassClaimed": false,
+      "originalBlockedPreserved": true,
+      "originalsDownloadedAndIndependentlyHashVerified": true,
+      "boundInRepository": false
+    },
+    "currentOriginalArchivePayloadFiles": 331,
+    "rawOriginalsIncludedInGit": false,
+    "GCP14": "console-reported41-read PASS; originals not yet locally verified at preparation",
+    "freshCombinedFundingEstablished": false,
+    "newOperatorAuthorityOrSeedCreated": false
+  }
+}

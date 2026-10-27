@@ -1,0 +1,13 @@
+{
+  "project_id": "ecoguard-fit3184-a2-2026",
+  "identity_only": true,
+  "region": "us-central1",
+  "aws_account_id": "REPLACE_AFTER_VERIFYING_AWS_ACCOUNT",
+  "aws_role_name": "REPLACE_AFTER_VERIFYING_AWS_EXECUTION_ROLE",
+  "aws_region": "us-east-1",
+  "cognito_issuer": "",
+  "cognito_client_id": "",
+  "media_bucket": "",
+  "image": "",
+  "manifest_sha256": "639595e1e9ffe18cb11ead1c7480ffe7a31bf767f6cbaf6b8375829227a569ae"
+}

@@ -1,0 +1,55 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyInsecureTransport",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::ecoguard3184-personal-011154879765-media",
+        "arn:aws:s3:::ecoguard3184-personal-011154879765-media/*"
+      ],
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    },
+    {
+      "Sid": "DenyDataAccessWhileRuntimePaused",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": [
+        "s3:GetObject*",
+        "s3:PutObject*",
+        "s3:DeleteObject*",
+        "s3:RestoreObject",
+        "s3:AbortMultipartUpload",
+        "s3:ListMultipartUploadParts",
+        "s3:ListBucketVersions",
+        "s3:ListBucketMultipartUploads"
+      ],
+      "Resource": [
+        "arn:aws:s3:::ecoguard3184-personal-011154879765-media",
+        "arn:aws:s3:::ecoguard3184-personal-011154879765-media/*"
+      ]
+    },
+    {
+      "Sid": "DenyBucketListingWhileRuntimePaused",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": [
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::ecoguard3184-personal-011154879765-media"
+      ],
+      "Condition": {
+        "ArnNotEquals": {
+          "aws:PrincipalArn": "arn:aws:iam::011154879765:root"
+        }
+      }
+    }
+  ]
+}

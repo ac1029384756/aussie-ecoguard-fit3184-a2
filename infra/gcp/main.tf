@@ -1,5 +1,12 @@
 locals {
-  apis = toset(var.identity_only ? ["iam.googleapis.com", "iamcredentials.googleapis.com", "sts.googleapis.com"] : ["run.googleapis.com", "artifactregistry.googleapis.com", "iam.googleapis.com", "iamcredentials.googleapis.com", "sts.googleapis.com", "storage.googleapis.com"])
+  registry_enabled      = !var.identity_only || var.prepare_registry
+  model_storage_enabled = !var.identity_only && var.model_storage_enabled
+  apis = toset(concat(
+    ["iam.googleapis.com", "iamcredentials.googleapis.com", "sts.googleapis.com"],
+    local.registry_enabled ? ["artifactregistry.googleapis.com"] : [],
+    var.identity_only ? [] : ["run.googleapis.com"],
+    local.model_storage_enabled ? ["storage.googleapis.com"] : [],
+  ))
 }
 resource "google_project_service" "required" {
   for_each           = local.apis
@@ -8,7 +15,7 @@ resource "google_project_service" "required" {
   disable_on_destroy = false
 }
 resource "google_storage_bucket" "models" {
-  count                       = var.identity_only ? 0 : 1
+  count                       = local.model_storage_enabled ? 1 : 0
   name                        = "${var.project_id}-models"
   location                    = var.region
   uniform_bucket_level_access = true
@@ -18,7 +25,7 @@ resource "google_storage_bucket" "models" {
   depends_on = [google_project_service.required]
 }
 resource "google_artifact_registry_repository" "images" {
-  count         = var.identity_only ? 0 : 1
+  count         = local.registry_enabled ? 1 : 0
   location      = var.region
   repository_id = "ecoguard"
   format        = "DOCKER"
@@ -36,7 +43,7 @@ resource "google_service_account" "invoker" {
   depends_on   = [google_project_service.required]
 }
 resource "google_storage_bucket_iam_member" "model_reader" {
-  count  = var.identity_only ? 0 : 1
+  count  = local.model_storage_enabled ? 1 : 0
   bucket = google_storage_bucket.models[0].name
   role   = "roles/storage.objectViewer"
   member = "serviceAccount:${google_service_account.runtime[0].email}"
@@ -57,18 +64,32 @@ resource "google_iam_workload_identity_pool_provider" "aws" {
   aws { account_id = var.aws_account_id }
 }
 resource "google_service_account_iam_member" "aws_invoker" {
-  service_account_id = google_service_account.invoker.name
+  # These canonical strings retain dependencies through configured resource IDs
+  # while making the exact first-plan IAM target/principal reviewable before apply.
+  service_account_id = "projects/${var.project_id}/serviceAccounts/${google_service_account.invoker.account_id}@${var.project_id}.iam.gserviceaccount.com"
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.aws.name}/attribute.aws_role/arn:aws:sts::${var.aws_account_id}:assumed-role/${var.aws_role_name}"
+  member             = "principalSet://iam.googleapis.com/projects/${data.google_project.current.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.aws.workload_identity_pool_id}/attribute.aws_role/arn:aws:sts::${var.aws_account_id}:assumed-role/${var.aws_role_name}"
 }
 resource "google_cloud_run_v2_service" "inference" {
-  count               = !var.identity_only && var.image != "" ? 1 : 0
-  name                = "ecoguard-inference"
-  location            = var.region
-  deletion_protection = true
-  ingress             = "INGRESS_TRAFFIC_ALL"
+  count                = !var.identity_only && var.image != "" ? 1 : 0
+  name                 = "ecoguard-inference"
+  location             = var.region
+  deletion_protection  = var.inference_deletion_protection
+  ingress              = "INGRESS_TRAFFIC_ALL"
+  invoker_iam_disabled = false
+  dynamic "scaling" {
+    for_each = var.inference_service_max_instances == null ? [] : [var.inference_service_max_instances]
+    content {
+      min_instance_count    = 0
+      max_instance_count    = scaling.value
+      scaling_mode          = "AUTOMATIC"
+      manual_instance_count = 0
+    }
+  }
   template {
-    service_account                  = google_service_account.runtime[0].email
+    # The configured ID keeps this exact identity known in a create plan while
+    # retaining the dependency on the dedicated runtime service account.
+    service_account                  = "${google_service_account.runtime[0].account_id}@${var.project_id}.iam.gserviceaccount.com"
     timeout                          = "360s"
     max_instance_request_concurrency = 1
     scaling {
@@ -77,7 +98,10 @@ resource "google_cloud_run_v2_service" "inference" {
     }
     containers {
       image = var.image
-      ports { container_port = 8080 }
+      ports {
+        name           = "http1"
+        container_port = 8080
+      }
       resources {
         limits            = { cpu = "4", memory = "8Gi" }
         cpu_idle          = true
@@ -109,5 +133,5 @@ resource "google_cloud_run_v2_service_iam_member" "invoker" {
   location = var.region
   name     = google_cloud_run_v2_service.inference[0].name
   role     = "roles/run.invoker"
-  member   = "serviceAccount:${google_service_account.invoker.email}"
+  member   = "serviceAccount:${google_service_account.invoker.account_id}@${var.project_id}.iam.gserviceaccount.com"
 }

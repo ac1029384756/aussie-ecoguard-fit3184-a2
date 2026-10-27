@@ -1,0 +1,19 @@
+{
+  "recordType": "actual-private-repository-copy-verification",
+  "defaultBranchRef": {
+    "name": "main"
+  },
+  "isFork": false,
+  "nameWithOwner": "xihan-u/aussie-ecoguard-fit3184-a2-private",
+  "url": "https://github.com/xihan-u/aussie-ecoguard-fit3184-a2-private",
+  "viewerPermission": "ADMIN",
+  "visibility": "PRIVATE",
+  "verifiedHead": "7e8a44086b46850e55d9a6c2b7445b02e6ccd8d5",
+  "individualTaskCommitsPreserved": 27,
+  "bothBranchesMatch": true,
+  "remoteReadmeBlobMatchesLocal": true,
+  "fullHistoryAvailable": true,
+  "gitConnectivityCheckPassed": true,
+  "externalCollaboratorsAdded": false,
+  "oldPublicRepositoriesModified": false
+}

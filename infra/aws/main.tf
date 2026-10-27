@@ -1,6 +1,9 @@
 locals {
-  name          = "${var.prefix}-${var.environment}"
-  bucket_name   = "${local.name}-${data.aws_caller_identity.current.account_id}-media"
+  name              = "${var.prefix}-${var.environment}"
+  media_bucket_name = "${local.name}-${data.aws_caller_identity.current.account_id}-media"
+  # Refer to the configured name, rather than the computed ID, so dependent
+  # settings wait for creation while the first plan still shows the exact name.
+  bucket_name   = var.manage_media_bucket ? aws_s3_bucket.media[0].bucket : local.media_bucket_name
   bucket_arn    = "arn:aws:s3:::${local.bucket_name}"
   queue_timeout = { ingest = 720, infer = 2880, delete = 720, notify = 360 }
   tables = {
@@ -11,10 +14,19 @@ locals {
     outbox        = { hash = "eventId", range = null }
   }
 }
-# Learner Lab explicitly denies GetBucketObjectLockConfiguration, which the
-# aws_s3_bucket resource reads after creation. scripts/bootstrap-aws-bucket.ps1
-# creates/verifies the bucket using only CreateBucket and HeadBucket. This module
-# manages its privacy, TLS, encryption, CORS and event configuration.
+# The default retains the course's externally bootstrapped bucket: Learner Lab
+# denies the provider's Object Lock refresh. A separate personal environment can
+# opt in to managing its own new bucket without changing that course behavior.
+resource "aws_s3_bucket" "media" {
+  count         = var.manage_media_bucket ? 1 : 0
+  bucket        = local.media_bucket_name
+  force_destroy = false
+}
+resource "aws_s3_bucket_ownership_controls" "media" {
+  count  = var.manage_media_bucket ? 1 : 0
+  bucket = aws_s3_bucket.media[0].bucket
+  rule { object_ownership = "BucketOwnerEnforced" }
+}
 resource "aws_s3_bucket_public_access_block" "media" {
   bucket                  = local.bucket_name
   block_public_acls       = true
@@ -40,24 +52,38 @@ resource "aws_s3_bucket_cors_configuration" "media" {
 }
 resource "aws_s3_bucket_policy" "media_tls" {
   bucket = local.bucket_name
+  # Apply privacy and ACL ownership controls before installing bucket policies.
+  depends_on = [aws_s3_bucket_public_access_block.media, aws_s3_bucket_ownership_controls.media]
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = concat([{
       Sid       = "DenyInsecureTransport", Effect = "Deny", Principal = "*", Action = "s3:*"
       Resource  = [local.bucket_arn, "${local.bucket_arn}/*"]
       Condition = { Bool = { "aws:SecureTransport" = "false" } }
-      }], var.runtime_enabled ? [] : [{
+      }], local.media_data_enabled ? [] : [{
       # Reject existing signed URLs as well as fresh data requests. Bucket policy
       # management remains allowed so the administrator can restore this switch.
       Sid       = "DenyDataAccessWhileRuntimePaused"
       Effect    = "Deny"
       Principal = "*"
-      Action = [
+      Action = concat([
         "s3:GetObject*", "s3:PutObject*", "s3:DeleteObject*", "s3:RestoreObject",
-        "s3:AbortMultipartUpload", "s3:ListMultipartUploadParts",
-        "s3:ListBucket", "s3:ListBucketVersions", "s3:ListBucketMultipartUploads"
-      ]
+        "s3:AbortMultipartUpload", "s3:ListMultipartUploadParts"
+        ], var.allow_root_bucket_inventory_while_paused ? [] : ["s3:ListBucket"], [
+        "s3:ListBucketVersions", "s3:ListBucketMultipartUploads"
+      ])
       Resource = [local.bucket_arn, "${local.bucket_arn}/*"]
+      }], local.media_data_enabled || !var.allow_root_bucket_inventory_while_paused ? [] : [{
+      # HeadBucket uses ListBucket permission. This exact-root exception also
+      # permits object-name inventory, while every object operation stays denied.
+      Sid       = "DenyBucketListingWhileRuntimePaused"
+      Effect    = "Deny"
+      Principal = "*"
+      Action    = ["s3:ListBucket"]
+      Resource  = [local.bucket_arn]
+      Condition = {
+        ArnNotEquals = { "aws:PrincipalArn" = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root" }
+      }
     }])
   })
 }
@@ -117,7 +143,7 @@ resource "aws_cognito_user_pool" "users" {
   name                     = "${local.name}-users"
   username_attributes      = ["email"]
   auto_verified_attributes = ["email"]
-  admin_create_user_config { allow_admin_create_user_only = !var.runtime_enabled }
+  admin_create_user_config { allow_admin_create_user_only = !local.public_signup_enabled }
   username_configuration { case_sensitive = false }
   password_policy {
     minimum_length                   = 12

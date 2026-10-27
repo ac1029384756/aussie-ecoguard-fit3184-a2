@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-23",
+  "scope": "named personal deployment prefix only; not an account-wide emptiness claim",
+  "account_id": "011154879765",
+  "region": "us-east-1",
+  "prefix": "ecoguard3184-personal",
+  "identity_verified_via": "AWS STS GetCallerIdentity in the authorized CloudShell session",
+  "global_services": [
+    "IAM roles",
+    "S3 buckets"
+  ],
+  "regional_services": [
+    "Lambda functions",
+    "ECR repositories",
+    "DynamoDB tables",
+    "SQS queues",
+    "SNS topics",
+    "EventBridge rules",
+    "API Gateway HTTP APIs",
+    "Cognito user pools",
+    "CloudWatch Lambda log groups"
+  ],
+  "matching_resources": {
+    "roles": [],
+    "buckets": [],
+    "functions": [],
+    "repositories": [],
+    "tables": [],
+    "queues": [],
+    "topics": [],
+    "schedules": [],
+    "apis": [],
+    "userPools": [],
+    "logGroups": []
+  },
+  "inventory_api_errors": {},
+  "read_only": true,
+  "cloud_resources_changed": false,
+  "deployment_verified": false,
+  "cross_cloud_processing_verified": false
+}

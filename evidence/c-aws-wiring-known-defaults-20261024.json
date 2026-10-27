@@ -1,0 +1,40 @@
+{
+  "recordType": "selected-actual-paused-wiring-plan2-blocked-and-local-defaults-repair",
+  "sourceObservation": "Root-selected facts from the actual official AWS CloudShell result; raw plan and failed review retained privately",
+  "observedAtUtc": "2026-10-24T02:15:21.285211+00:00",
+  "observedStatus": "blocked",
+  "planExecuted": true,
+  "planExitCode": 0,
+  "applyExecuted": false,
+  "stateModified": false,
+  "iamModified": false,
+  "applicationInvoked": false,
+  "sourceRevision": "30ae7066bbc24eb5af243c12c662e976edfb8f35",
+  "stateSHA256": "49ec3ea76e0257068098ddb425156d156c08b3900dab37287ef93bdd8f546b6d",
+  "stateSerial": 61,
+  "resources": 55,
+  "blockReason": "New ingest log group has an unreviewed deletion_protection_enabled unknown; subsequent actual unknown/default catalog reviewed before preparing a new source/plan",
+  "evidenceSHA256": {
+    "savedBinary": "7d41b6888c79a65e42d0dcc46d982bf539fab8d5daae4f1224cf7761c1e6b1b9",
+    "planJSON": "71f2061f1a62ed3af330263363776125d2d6727f8326ecc09e3f1be753f1b536",
+    "blockedReview": "d727b68212b6a9ed9e59dc5e2aa2e3b20868c4a35919a7993ba42f722c81057d",
+    "unknownPaths": "dc5587a3ba7eb42a39d56ef354f754de011f5fe6538091be3ae37d9a97cfc7dc",
+    "localInfrastructureTests": "ba732cec22d1065d18d9054b982a8c9d1afbdc3c0c7d2ded5273c06f5ca4ad09"
+  },
+  "localRepair": {
+    "securityDefaultsExplicit": true,
+    "securityUnknownWhitelistAdded": false,
+    "newResourceOutputCasesIndividuallyReviewed": true,
+    "old55FullValuesRemainExact": true,
+    "infrastructureTestsPassed": 59,
+    "testEnvironment": "Existing locked amd64 AWS image, network disabled, repository read-only, two bounded writable tmpfs mounts",
+    "priorEnvironmentTestFailuresRetained": true,
+    "independentStaticReviewPassed": true,
+    "terraformFmtPassed": true,
+    "diffCheckPassed": true
+  },
+  "newCloudPlanVerified": false,
+  "newIAMPermissionApproved": false,
+  "runtimeActivated": false,
+  "acceptanceLimit": "Local source repair only. A new source transition and independently verified saved plan are required; the blocked plan is never applied."
+}

@@ -21,10 +21,42 @@
         }
       }
     },
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
     "/readyz": {
       "get": {
         "summary": "Ready",
         "operationId": "ready_readyz_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ready": {
+      "get": {
+        "summary": "Ready",
+        "operationId": "ready_ready_get",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -224,7 +256,8 @@
             "type": "string",
             "enum": [
               "aws-rekognition",
-              "grounding-dino"
+              "grounding-dino",
+              "grounding-dino+siglip2"
             ],
             "title": "Source"
           }

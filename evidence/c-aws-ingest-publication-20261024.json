@@ -1,0 +1,46 @@
+{
+  "recordType": "manually-selected-cloud-publication-evidence",
+  "selectionSource": "Actual official AWS CloudShell terminal output; raw records remain in the named private CloudShell result directory",
+  "status": "private-ingest-image-published-and-verified",
+  "completedAtUtc": "2026-10-24T00:51:57.487305+00:00",
+  "account": "011154879765",
+  "region": "us-east-1",
+  "sourceTransactionRevision": "29367645d62d47f16ac64659266dc3ba1540b89d",
+  "archiveBuildCommit": null,
+  "imageUri": "011154879765.dkr.ecr.us-east-1.amazonaws.com/ecoguard3184-personal-worker@sha256:2fca6cdfe47846d8f7ce53723fcc0bf47750141290d8c1bcfe93c07795df3dc6",
+  "configDigest": "sha256:8963bf89ae167a13d8c6559783c0bbdb40be0a34e4993fea87757ce5148cdc58",
+  "archiveSHA256": "c155ad79a993fefd878f9613e6fd1cf68d5b52a17d035b2fb425d59d564ae7d2",
+  "explicitPushCommands": 1,
+  "pushExitCode": 0,
+  "remoteManifestConfigAndAllElevenLayersMatch": true,
+  "pausedChecksBefore": 40,
+  "pausedChecksAfter": 40,
+  "stateManagedResources": 55,
+  "stateSerial": 60,
+  "stateSHA256": "644e48c482187a7f782f65750059c8e84f084c68e5c400567c67c79fe4d4a26d",
+  "runtimeActivated": false,
+  "iamModified": false,
+  "repositoryPolicyModified": false,
+  "tokensPersisted": false,
+  "resourcesCreated": false,
+  "privateEvidence": {
+    "directory": "~/ecoguard-c-personal-20261023/ingest-image-publication-20261024-2",
+    "summarySHA256": "bdbc4b0efdd64175a7e835439a98be501e73a29d40962546e011f0547d29fdf1",
+    "rawRegistryVerificationSHA256": "965416dd68c3bf90f1a3b8fe9fc281bff5d1399762555aae50075abe51704112",
+    "pausedBeforeAndAfterSHA256": "237401c76650dcaa33016cb09d1a001415712f5240ad33506d95ca7c45d05e23",
+    "publisherSHA256": "fdff40df37db491bb24aa6a498720b0b917c6ffd9768d3be0d175357a50a2214",
+    "priorZeroPushDiagnosticSHA256": "851bad499bd5a17a3a4765f1f10693d08e185342d00265a10f1ae4c6fa9a658d"
+  },
+  "preservedHistory": {
+    "firstAttemptPushCommands": 0,
+    "firstAttemptStoppedAt": "AWS CLI local version comparison; CloudShell adds an environment marker",
+    "replacementUsesSameCredentialedAPIEnvironment": true,
+    "temporaryOciAndRemoteBlobsUseExclusiveTmpDirectory": true,
+    "originalArchiveCopiesDeleted": false
+  },
+  "limitations": [
+    "Publication does not prove Lambda execution or cross-cloud processing",
+    "Original archive build commit remains null; transaction source revision is separately verified against nineteen source payloads",
+    "AWS source later transitioned to ac775 without changing its 55-resource paused state"
+  ]
+}

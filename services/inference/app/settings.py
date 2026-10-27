@@ -30,7 +30,9 @@ class Settings:
 
     @classmethod
     def from_env(cls):
-        base = Path(__file__).resolve().parents[3] / "config"
+        # The source tree is deeper than the container's /app/app/settings.py.
+        parents = Path(__file__).resolve().parents
+        base = parents[3] / "config" if len(parents) > 3 else Path("/config")
         return cls(
             service_auth_mode=os.getenv("SERVICE_AUTH_MODE", "cloud-run"),
             local_service_token=os.getenv("LOCAL_SERVICE_TOKEN", ""),

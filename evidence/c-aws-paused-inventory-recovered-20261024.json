@@ -1,0 +1,71 @@
+{
+  "recordType": "selected-actual-approved-s3-root-inventory-recovery",
+  "selectionMethod": "Manually selected from actual official CloudShell/UI observations; not a raw evidence-file copy or independent second live audit",
+  "account": "011154879765",
+  "region": "us-east-1",
+  "bucket": "ecoguard3184-personal-011154879765-media",
+  "planSHA256": "8fc7bba2a41b9c17997853a38e838edc6fb39c0c1f99edfe6b0b73ec955bbbd1",
+  "explicitPerActionUserApprovalReceived": true,
+  "approvalQuoteIncluded": false,
+  "priorCLIParsingFailure": {
+    "exitCode": 252,
+    "summarySHA256": "58d1842c53b5563ebaa69baeec89230ea96ced1f829e4097090babe42ade3302",
+    "originalPolicyStillPresentAfterFailure": true,
+    "serviceWritePreventedBasis": "Inference from documented CLI252, corroborated by the unchanged live policy"
+  },
+  "parserCorrection": {
+    "credentialFreeSkeletonOutputValidationExitCode": 0,
+    "localValidationCloudAPICalls": false,
+    "diagnosticSHA256": "2576d83d5186fef5c36694ccb03a0abc3b77f92282f1a377ea35b5c054edc8d3",
+    "policyAndAuthorizationScopeUnchanged": true
+  },
+  "forwardWrite": {
+    "helperSHA256": "d811c0d506dc234016c2d31d365cfc6e5fbff86c7e2fa0f16dd998350bd11d6a",
+    "exitCode": 0,
+    "successfulForwardCommandCount": 1,
+    "rollbackCommandCount": 0,
+    "strictOriginalPostcheckStatus": "postcheck-failed-policy-drift-manual-review",
+    "strictOriginalSummarySHA256": "dc58d4d4d67ad3cf2b6e95f00adb083bad05882964c33757bea87692cf457fed",
+    "originalSummaryPreserved": true
+  },
+  "independentReadOnlyVerification": {
+    "status": "independent-read-only-s3-policy-verification-passed",
+    "observedAtUtc": "2026-10-24T01:40:18.787886+00:00",
+    "helperSHA256": "5031c88739841e5a972599638e4db24f2c56e4a2328c7a1ee41d5a4a3412c8c7",
+    "summarySHA256": "c43c47ff369acba60c5b53ae225a01a3a02faf7659c112826af8cd6ba340a133",
+    "postcheckSHA256": "d9d98db096a4235dba96d46e9749a5a6cba6b07265e9a4e7e7ee72b3539d8a11",
+    "headBucketHTTPStatus": 200,
+    "bucketPublic": false,
+    "fullPrivacyCorsNotificationMetadataUnchanged": true,
+    "sourceAndStateUnchanged": true,
+    "retainedInputsUnchanged": true,
+    "cloudWritesInvoked": false
+  },
+  "onlyObservedPolicyRepresentationsAccepted": [
+    "Statement[2].Action singleton list to exact s3:ListBucket scalar",
+    "Statement[2].Resource singleton list to exact bucket ARN scalar"
+  ],
+  "policyScope": {
+    "onlyBucketOwnerRootHTTPSListingException": true,
+    "rootCanAlsoListObjectNames": true,
+    "otherPrincipalsListingStillDenied": true,
+    "eightPausedObjectAndOtherListingDeniesRetained": true,
+    "tlsDenialRetained": true,
+    "fourPublicAccessBlocksRetained": true,
+    "ownershipEnforcedRetained": true,
+    "aes256Retained": true,
+    "objectReadWriteTestInvoked": false,
+    "objectOperationsInvokedByRecovery": false
+  },
+  "cloudShellSourceRevision": "ac7757717486b3db2da8c955ebffcc01f6807724",
+  "rawStateSHA256": "644e48c482187a7f782f65750059c8e84f084c68e5c400567c67c79fe4d4a26d",
+  "stateSerial": 60,
+  "managedResources": 55,
+  "statePolicyStillPredatesApprovedRecovery": true,
+  "terraformStateSynchronizationApplied": false,
+  "awsApplicationActivated": false,
+  "wiringPlanApplied": false,
+  "crossCloudVerified": false,
+  "additionalPersonalSpendLimitAUD": 0,
+  "privatePoliciesLogsAuthorizationAndStateExcluded": true
+}

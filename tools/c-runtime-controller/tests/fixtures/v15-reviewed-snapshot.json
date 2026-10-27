@@ -1,0 +1,24 @@
+{
+  "recordType": "independently-reviewed-inert-V15-static-exceptions-from-V12",
+  "driverSHA256": "cabf4cb23e2c9df4ed679bdd40acfab1852dacb61cdbe8257598e722032a6ecd",
+  "dependencyOverrides": {
+    "private_runtime.py": "31168c5ad1871250f1e0fa45abd1170561344d74302e5792108427c1f01094e6",
+    "aws_runtime.py": "88bd456dce12d44f6a1724a7c6831f0324e0b999aa31adbaf150f57e6e66ef53",
+    "credential_route.py": "c742bd1cb2a2cc28989fcc606c540c6a8bd0e2cce574678c95cc1f675e094d35",
+    "fixture_runtime.py": "8aa156b52a5a0979a08544d770809d7e069dc1d82aba8f283118cc566329ccf1",
+    "processing_adopted60_reviewer.py": "880f42268fa66c90285d03a89d8cc10c549a248abb3b9351a2290573bb13f9ba"
+  },
+  "changedFromV12FunctionASTSHA256": {
+    "review_plan_shape": "ddc0692f44a3623206ccb90de8313082ded885e34cdde6dde3698625ebf16c14",
+    "review_paused60_chain": "f6be8df3e38d2fbeadd90f8f9ee95e1877155d8b8fd449d701fee06f5c81cc89",
+    "review_independent_receipt": "b7cc182248a0541c3a2fa36d94b086b3a6c1999bcc320947f89eee1553d2b48c",
+    "review_native_activation": "9fc8a5fc531159c778d1082c029c173990cbbc5c01a2402f8de67a2671b7e274",
+    "credential_route_reference": "fdb0cc3b0f1fc157c217839512566449182d602d76abd7f8c5efc5251b92ec8a",
+    "run_mode": "3934ec769ff6e701567e8d756ac7eede6faf0086f10debab9885e26e35acf007"
+  },
+  "V15IndependentStaticReviewSHA256": "7bec26e14394e1c83f0a7ed1279ca184d35155fed89440861be6ad9b0779fc50",
+  "V15LocalActualFileTestReceiptSHA256": "60be44f97daf1e4acd2881f9f5ae98aa8865e3ce3c88b611cda6ebef779361cb",
+  "rawPrivateProofIncluded": false,
+  "cloudAcceptanceClaimed": false,
+  "note": "The six named structural differences comprise the previously reviewed run_mode lifecycle plus four V15 proof functions and the route-path literal. Every other V12 function remains exact; the new await_watchdog_ready is tested by the original lifecycle suite."
+}

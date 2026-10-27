@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-23",
+  "project_id": "ecoguard-fit3184-a2-2026",
+  "project_number": "995070689587",
+  "lifecycle_state": "ACTIVE",
+  "authenticated_expected_operator_verified": true,
+  "existing_ecoguard_service_accounts": [],
+  "existing_ecoguard_aws_pools": [],
+  "identity_apis_enabled": {
+    "iam.googleapis.com": true,
+    "iamcredentials.googleapis.com": true,
+    "sts.googleapis.com": true
+  },
+  "read_only": true,
+  "iam_resources_created": false,
+  "aws_role_verified": false,
+  "cross_cloud_federation_verified": false
+}

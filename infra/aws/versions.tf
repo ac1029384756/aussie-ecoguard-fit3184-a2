@@ -5,7 +5,8 @@ terraform {
   }
 }
 provider "aws" {
-  region = var.region
+  region              = var.region
+  allowed_account_ids = var.allowed_account_ids
   default_tags { tags = { Project = "FIT3184-A2", Application = "AussieEcoGuard", Environment = var.environment } }
 }
 data "aws_caller_identity" "current" {}

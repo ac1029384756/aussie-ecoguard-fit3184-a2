@@ -3,16 +3,57 @@
 The same service supports private Cloud Run IAM or an Oracle-hosted deployment.
 Choose the explicit production authentication mode for the actual host.
 
-Run Python 3.12. The Docker build context is the repository root:
+Run Python 3.12. The Docker build context is the repository root. The standard-library
+helper prints a `linux/amd64` command, including on Apple Silicon Macs:
 
-```powershell
-docker build -f services/inference/Dockerfile -t ecoguard-inference .
+```sh
+python3 scripts/build_containers.py inference --image ecoguard-inference:20261023-1 --dry-run
 ```
+
+Use `python` instead of `python3` on Windows. The helper prints PowerShell syntax on
+Windows and POSIX shell syntax on macOS/Linux; it resolves the build context from
+the script location, so it also works outside the repository root. Omit `--dry-run`
+for the same print-only behavior. An explicit non-`latest` image tag is required.
+Only add `--build` after reviewing the command and selecting the intended Docker
+engine/builder. This checks for a running Linux engine and Buildx, then builds and
+loads the image without pushing it or starting a container. Building may download
+base images and dependencies; Apple Silicon needs working amd64 emulation in Docker.
+For a release, add `--base-image` with a reviewed official Python 3.12 slim digest.
+Replace the digest placeholder before running this print-only example:
+
+```sh
+python3 scripts/build_containers.py inference --image ecoguard-inference:20261023-1 --base-image 'python:3.12-slim@sha256:REPLACE_WITH_VERIFIED_64_HEX_DIGEST' --dry-run
+```
+
+The helper passes `BASE_IMAGE` to the Dockerfile and accepts only
+`python:3.12-slim@sha256:<64 hex characters>` or
+`python:3.12-slim-bookworm@sha256:<64 hex characters>`. Tags alone are rejected
+when this option is supplied. Omitting it retains the Dockerfile's development
+default; the helper does not resolve or verify a digest or the final image/model
+runtime. Follow the existing deployment and model acceptance gates.
+
+The same helper's AWS ingest target separately requires the explicit committed
+RIC version `--aws-lambda-ric-version 4.2.2`; its hash lock and installation gates
+are documented in [AWS container build preparation](../aws/ENVIRONMENT.md#container-build-preparation).
+
+Keep the PyTorch CPU extra index in `requirements.lock.txt`, immediately after
+its PyPI `--index-url`. pip resets the command-line index list when it reads a
+requirements-file `--index-url`, so a Docker command-line extra index alone
+cannot resolve the locked `torch==2.14.1+cpu`. Preserve both index directives
+when regenerating the lock; the current uv generation header records the
+original command, which omitted the extra index. No package versions changed
+in this repair. See the [local build record](../../docs/c-local-build-20261023.md)
+for the actual validation scope.
 
 Deploy Cloud Run with 4 vCPU, 8 GiB, request concurrency 1, minimum instances 0,
 maximum instances 1 and a 360-second request timeout. These are unbenchmarked
-starting limits. Use `/healthz` for startup/liveness. `/readyz` is 503 until both
-real models have loaded; it does not download weights. An authenticated
+starting limits. Use `/health` for startup/liveness and `/ready` for model
+readiness. `/ready` is 503 until both real models have loaded; it does not
+download weights. `/healthz` and `/readyz` remain compatibility aliases for
+existing local/Oracle callers. For Cloud Run, use the paths without a final `z`:
+Google documents reserved paths ending in `z` that may be intercepted before
+the application. [Cloud Run reserved URL paths](https://docs.cloud.google.com/run/docs/known-issues#reserved-url-paths).
+Cloud Run IAM still protects both probe aliases at the service boundary. An authenticated
 `POST /v1/warmup` can load and verify them before a demo. IAM must reject
 unauthenticated callers; only the dedicated WIF impersonated invoker service
 account receives `roles/run.invoker`. Never grant `allUsers` or
@@ -43,10 +84,21 @@ For local integration only, use `SERVICE_AUTH_MODE=local` and a random
 `K_SERVICE` is present. It still verifies real Cognito JWTs. Never commit that
 local secret. There is no default bypass or mock inference mode.
 
-Cloud Run validates the Google ID token in `X-Serverless-Authorization`, including
-audience and service invoker permission. The platform strips the signature after
-verification; the app does not pretend to reverify that stripped token. The
-`Authorization` header on `/v1/query-authorizations` carries the independent
+`SERVICE_AUTH_MODE=cloud-run` is a trusted adapter for a **private Cloud Run IAM
+endpoint only**. Require platform IAM authentication (`invoker_iam_disabled=false`),
+retain the exact reviewed service invoker policy with no `allUsers` or
+`allAuthenticatedUsers`, and expose no path to the container that bypasses IAM.
+`K_SERVICE` must be present; it selects the platform adapter and is not identity
+proof by itself. Cloud Run validates the Google ID token and invoker permission
+before the request reaches this adapter. The platform can consume or modify
+`X-Serverless-Authorization`, so the app does not require its forwarded presence
+or pretend to reverify a stripped token. A fabricated bearer header was never an
+independent authentication check. Check the actual private IAM configuration as
+part of deployment verification; this adapter is not for a public raw container.
+See Google's [service authentication](https://docs.cloud.google.com/run/docs/authenticating/service-to-service)
+and [header handling](https://docs.cloud.google.com/gemini/enterprise/docs/register-and-manage-an-a2a-agent) documentation.
+
+The `Authorization` header on `/v1/query-authorizations` still carries the independent
 Cognito access token. The app checks its RSA signature, fixed issuer, client_id,
 token_use, expiry, issued-at and subject using Cognito JWKS. This path never
 initializes torch or downloads model weights and has an 8-second deadline.

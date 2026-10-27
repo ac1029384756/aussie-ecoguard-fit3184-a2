@@ -1,0 +1,1 @@
+NOT A LAMBDA ZIP. Opaque bytes used only for mocked shared-module plan hashing. Never deploy this fixture.

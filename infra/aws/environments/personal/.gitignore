@@ -1,0 +1,6 @@
+.terraform/
+state/
+private/
+*.tfplan
+*.tfvars
+*.tfvars.json

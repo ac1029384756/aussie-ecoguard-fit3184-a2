@@ -1,8 +1,34 @@
 variable "project_id" { type = string }
 variable "identity_only" {
   type        = bool
-  description = "Only free IAM/WIF identity resources. No Cloud Run, model storage or registry."
+  description = "IAM/WIF only by default; prepare_registry may explicitly add its registry/API. No inference compute or model storage while true."
   default     = true
+}
+variable "prepare_registry" {
+  type        = bool
+  description = "Opt in to the image registry/API while retaining identity_only=true; no runtime service or invoker grant."
+  default     = false
+}
+variable "model_storage_enabled" {
+  type        = bool
+  description = "Retain the historical runtime model bucket/API/reader by default; disable only when locked artifacts use direct HTTPS."
+  default     = true
+}
+variable "inference_deletion_protection" {
+  type        = bool
+  description = "Protect historical inference services by default; a bounded personal deployment may explicitly allow reviewed cleanup."
+  default     = true
+}
+variable "inference_service_max_instances" {
+  type        = number
+  description = "Optional service-wide automatic scaling cap; null preserves historical revision-only scaling."
+  default     = null
+  validation {
+    condition = var.inference_service_max_instances == null ? true : (
+      var.inference_service_max_instances >= 1 && floor(var.inference_service_max_instances) == var.inference_service_max_instances
+    )
+    error_message = "An explicit service instance cap must be a positive integer."
+  }
 }
 variable "region" {
   type    = string
@@ -35,10 +61,10 @@ variable "media_bucket" {
 }
 variable "manifest_sha256" {
   type    = string
-  default = "6947e779fb740f252e35cff6f4ea90f03a87a3fe07d52d1c924bc8319ab1f2a6"
+  default = "639595e1e9ffe18cb11ead1c7480ffe7a31bf767f6cbaf6b8375829227a569ae"
   validation {
-    condition     = can(regex("^[a-f0-9]{64}$", var.manifest_sha256))
-    error_message = "Manifest hash must be the SHA-256 of the image's locked manifest."
+    condition     = var.manifest_sha256 == filesha256("${path.module}/../../config/model.locked.json")
+    error_message = "Manifest hash must match this checkout's config/model.locked.json. Rebuild the image when the locked manifest changes."
   }
 }
 variable "aws_region" {

@@ -84,10 +84,12 @@ def create_app(settings: Settings | None = None, worker=None, verifier=None, ser
         return JSONResponse({"error": {"code": "INTERNAL_ERROR", "message": "The service could not complete this operation.",
                                        "retryable": True}}, status_code=500)
 
+    @app.get("/health")
     @app.get("/healthz")
     async def health():
         return {"status": "alive", "schemaVersion": "1", "models": worker.status()}
 
+    @app.get("/ready")
     @app.get("/readyz")
     async def ready():
         status = worker.status()

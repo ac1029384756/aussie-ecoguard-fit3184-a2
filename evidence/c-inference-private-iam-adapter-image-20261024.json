@@ -1,0 +1,32 @@
+{
+  "recordType": "actual-local-private-iam-adapter-image",
+  "sourceRevision": "ac7757717486b3db2da8c955ebffcc01f6807724",
+  "imageDigest": "sha256:f0b3dd5289159f84454afd9e0466e6151464fc8e5cb49a063102938437549a17",
+  "configDigest": "sha256:7380118bbf7ee389b5a881ea6bda40a195dbae744e9713fa9483f43d03bb886c",
+  "archiveBytes": 373265221,
+  "archiveSHA256": "602175825fe67f893839d39685a295b42ac96e8cc1050b17ee1d18914055b4f6",
+  "exportMetadataSHA256": "cef5d72a479a476f2c170105e18c30649edfa86a1082f178857389932d1aab75",
+  "platform": "linux/amd64",
+  "imageSizeBytes": 375657380,
+  "baseImage": "python:3.12-slim-bookworm@sha256:57d96f71de145a98e7ceca18ee4ade77bba4103a33a72dfaea026b23625c6bf0",
+  "baseDependencyLayersUnchanged": true,
+  "verifiedLayers": 10,
+  "installedSourceFilesVerified": 20,
+  "buildInputFilesVerified": 22,
+  "buildInputInventorySHA256": "1647a7be803ffc0ef17ee40bbf1faacf2f9a91ad25e7120a39de18a8a9db479b",
+  "actualImageTests": {
+    "applicationSourceOverlays": false,
+    "network": "none",
+    "authUnmodifiedTestsRun": 5,
+    "authTestsPassed": 5,
+    "probeReadinessRegressionPassed": true,
+    "canonicalContractMatchesApp": true,
+    "modelsExecuted": false
+  },
+  "registryPublished": false,
+  "cloudRuntimeUpdated": false,
+  "crossCloudVerified": false,
+  "modelWarmupVerified": false,
+  "hostCredentialPathsFound": [],
+  "modelCacheIncluded": false
+}

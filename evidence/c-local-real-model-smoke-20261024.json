@@ -1,0 +1,195 @@
+{
+  "recordType": "actual-local-offline-real-model-smoke",
+  "date": "2026-10-24",
+  "timezone": "Australia/Melbourne",
+  "createdAtUtc": "2026-10-23T14:19:55.687894+00:00",
+  "imageId": "sha256:7e481399309c8a90276c864e9765545657e44c00e9061ee668b4e56db4f22fdb",
+  "platform": "linux/amd64",
+  "hostEngineArchitecture": "aarch64",
+  "modelManifestSha256": "639595e1e9ffe18cb11ead1c7480ffe7a31bf767f6cbaf6b8375829227a569ae",
+  "taxonomySha256": "d187e81d58d0db3498832e4c33ae61551b56d7afedf4e303824f8cc6e3b6c883",
+  "smokeToolSha256": "9e5fb1870cadc03d93f676a01772437389d812ca300c52935763efe1fa6c0ed6",
+  "verifiedModelFiles": 15,
+  "verifiedModelBytes": 2229943281,
+  "modelsAlreadyCachedBeforeRun": true,
+  "sample": {
+    "name": "coco_sample.png",
+    "bytes": 694498,
+    "sha256": "cf6f3c4befa148732c7453e0de5afab00f682427435fead2d88b07a9615cdac2",
+    "source": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/coco_sample.png"
+  },
+  "controls": {
+    "network": "none",
+    "readOnlyRoot": true,
+    "readOnlyInputMounts": 6,
+    "onlyWritableBind": "public sample output directory",
+    "uid": 10001,
+    "gid": 10001,
+    "droppedCapabilities": "ALL",
+    "noNewPrivileges": true,
+    "cpus": 4,
+    "memoryBytes": 7516192768,
+    "swapBytes": 0,
+    "pids": 256,
+    "timeoutSeconds": 1800
+  },
+  "status": "local-smoke-completed",
+  "seconds": 52.944,
+  "exitCode": 0,
+  "oomKilled": false,
+  "timedOut": false,
+  "runtimeControlsVerified": true,
+  "containerRemoved": true,
+  "memory": {
+    "cgroupPeakBytes": 3234582528,
+    "processPeakBytesLinuxRuMaxrss": 2792882176,
+    "finalObservation": true,
+    "note": "Kernel cgroup high-water mark includes charged cache. Read-only host-bound cache does not reproduce Cloud Run in-memory downloads."
+  },
+  "initialAttempt": {
+    "status": "failed-before-model-load",
+    "reason": "smoke helper imported test-only psutil absent from release image",
+    "containerRemoved": true,
+    "fix": "Linux RSS and peak now read /proc/self/status; no new release dependency"
+  },
+  "result": {
+    "kind": "local-real-model-smoke",
+    "createdAt": "2026-10-23T14:19:57.459895+00:00",
+    "manifestSha256": "639595e1e9ffe18cb11ead1c7480ffe7a31bf767f6cbaf6b8375829227a569ae",
+    "manifestVersion": "ecoguard-models-2026-10-08-v3",
+    "imageSha256": "cf6f3c4befa148732c7453e0de5afab00f682427435fead2d88b07a9615cdac2",
+    "cloudValidated": false,
+    "accuracyBenchmarkPassed": false,
+    "stages": [
+      {
+        "name": "load-detector",
+        "seconds": 5.196,
+        "rssBytes": 600268800,
+        "peakRssBytes": 600268800,
+        "memoryMeasurement": "linux-proc-status"
+      },
+      {
+        "name": "load-embedding",
+        "seconds": 4.084,
+        "rssBytes": 881549312,
+        "peakRssBytes": 881549312,
+        "memoryMeasurement": "linux-proc-status"
+      },
+      {
+        "name": "detect-image",
+        "seconds": 40.488,
+        "rssBytes": 2793316352,
+        "peakRssBytes": 2793316352,
+        "memoryMeasurement": "linux-proc-status"
+      },
+      {
+        "name": "embed-image",
+        "seconds": 0.447,
+        "rssBytes": 2793320448,
+        "peakRssBytes": 2793320448,
+        "memoryMeasurement": "linux-proc-status"
+      },
+      {
+        "name": "embed-text",
+        "seconds": 0.105,
+        "rssBytes": 2793738240,
+        "peakRssBytes": 2793738240,
+        "memoryMeasurement": "linux-proc-status"
+      },
+      {
+        "name": "embed-text",
+        "seconds": 0.104,
+        "rssBytes": 2793803776,
+        "peakRssBytes": 2793803776,
+        "memoryMeasurement": "linux-proc-status"
+      }
+    ],
+    "rawDetections": [
+      {
+        "species": "cat",
+        "confidence": 0.8251379132270813,
+        "source": "grounding-dino+siglip2",
+        "bbox": {
+          "x": 0.01626300811767578,
+          "y": 0.11269989808400473,
+          "width": 0.4788515567779541,
+          "height": 0.875700306892395
+        }
+      },
+      {
+        "species": "cat",
+        "confidence": 0.7794442176818848,
+        "source": "grounding-dino+siglip2",
+        "bbox": {
+          "x": 0.5407604694366455,
+          "y": 0.04960051377614339,
+          "width": 0.45861172676086426,
+          "height": 0.7258809645970663
+        }
+      }
+    ],
+    "detections": [
+      {
+        "species": "cat",
+        "confidence": 0.8251379132270813,
+        "source": "grounding-dino+siglip2",
+        "bbox": {
+          "x": 0.01626300811767578,
+          "y": 0.11269989808400473,
+          "width": 0.4788515567779541,
+          "height": 0.875700306892395
+        }
+      },
+      {
+        "species": "cat",
+        "confidence": 0.7794442176818848,
+        "source": "grounding-dino+siglip2",
+        "bbox": {
+          "x": 0.5407604694366455,
+          "y": 0.04960051377614339,
+          "width": 0.45861172676086426,
+          "height": 0.7258809645970663
+        }
+      }
+    ],
+    "counts": {
+      "cat": 2
+    },
+    "retrieval": [
+      {
+        "text": "a photo of two cats on a couch",
+        "cosine": 0.15584711148899308,
+        "dimensions": 768,
+        "vectorNorm": 1.0
+      },
+      {
+        "text": "a photo of a red car on a road",
+        "cosine": -0.08066695969062009,
+        "dimensions": 768,
+        "vectorNorm": 1.0
+      }
+    ],
+    "imageVectorDimensions": 768,
+    "featureVersion": "siglip2-base-256-animal-crop-v3:3f9f96cb90da5dbc758b01813f2f6f1aee24c1ab:rgb-exif-animal-crop-text64-lowercase-v3",
+    "models": {
+      "manifestVersion": "ecoguard-models-2026-10-08-v3",
+      "loadedModels": [
+        "detector",
+        "embedding"
+      ],
+      "featureVersion": "siglip2-base-256-animal-crop-v3:3f9f96cb90da5dbc758b01813f2f6f1aee24c1ab:rgb-exif-animal-crop-text64-lowercase-v3",
+      "ready": true
+    },
+    "packages": {
+      "torch": "2.14.1+cpu",
+      "transformers": "4.57.6",
+      "safetensors": "0.8.0",
+      "Pillow": "12.3.0"
+    },
+    "status": "smoke-completed"
+  },
+  "cloudValidated": false,
+  "cloudColdDownloadValidated": false,
+  "accuracyBenchmarkPassed": false,
+  "fullAssignmentAcceptanceVerified": false
+}

@@ -1,0 +1,65 @@
+{
+  "recordType": "selected-actual-cloud-apply-and-readonly-followup",
+  "account": "011154879765",
+  "region": "us-east-1",
+  "sourceRevision": "ec151b22a6fb47b21d003f268065b068376f586a",
+  "savedPlanSHA256": "32d2cb7f5f24f1673b72fc3dfa49461e0503c18972122740e15ed4afb02c9a5f",
+  "apply": {
+    "status": "failed-stopped-without-retry",
+    "executed": true,
+    "maximumCommands": 1,
+    "exitCode": 1,
+    "observedAtUtc": "2026-10-24T03:24:13.507494+00:00",
+    "helperSHA256": "aed232dcd9a15a895129dab5d86254801019eeb1510446e99f3bb80f650434fc",
+    "attemptRecordSHA256": "7010b86e8b8b1d15cea79708eadc1544cf05c8112213250af45bb6d00b80a0b7",
+    "summarySHA256": "70d81e976286787f6d34b3f79b99a608d42aec481767a6c988261c24f0293e9f",
+    "logSHA256": "2550a2105d76b9e5bec502f5b618917d2a4229808202e5526a9de7e650370f4f",
+    "failure": {
+      "service": "ECR",
+      "operation": "SetRepositoryPolicy",
+      "httpStatus": 400,
+      "errorCode": "InvalidParameterException",
+      "message": "Invalid parameter at 'PolicyText' failed to satisfy constraint: 'Invalid repository policy provided'"
+    },
+    "stateWritten": true,
+    "completedChanges": [
+      "Created the ingest CloudWatch log group",
+      "Added the single ingest log-stream ARN to the existing runtime role policy",
+      "Updated the two reviewed private inference bindings on the seven ZIP functions"
+    ],
+    "notCreated": ["ECR repository pull policy", "ingest Image Lambda", "ingest event-source mapping"],
+    "automaticRetry": false,
+    "automaticPolicyBroadening": false
+  },
+  "actualCheckpoint": {
+    "managedResources": 56,
+    "serial": 72,
+    "lineage": "58808681-d69a-1fe0-b562-796a24a58fdc",
+    "stateSHA256": "ad411dc4f52a7f510cc19518ff9e60f25948999dccb8b8d363a6ed19da401f95"
+  },
+  "readonlyFollowup": {
+    "status": "partial-wiring56-paused-readonly-verified",
+    "observedAtUtc": "2026-10-24T03:26:06.095649+00:00",
+    "checksPassed": 34,
+    "summarySHA256": "5f93b722cca85be3d1b2597b983912958796be6ad9753fe7a17781b7a084a8da",
+    "pausedSnapshotSHA256": "fe2ae71e063a668775e9e4b29ca7776e8100fc6ea0a336a9c6aecebdbcab1828",
+    "sevenZipFunctionsConcurrencyZero": true,
+    "threeExistingMappingsDisabled": true,
+    "twoSchedulesDisabled": true,
+    "apiEndpointDisabled": true,
+    "publicSignupDisabled": true,
+    "s3DataDeniedNoNotifications": true,
+    "ecrPolicyAbsent": true,
+    "ingestFunctionAbsent": true,
+    "newIngestLogObserved": true,
+    "cloudWrites": false,
+    "applicationInvoked": false
+  },
+  "limits": {
+    "paused59Completed": false,
+    "lambdaFederationVerified": false,
+    "realMediaProcessingVerified": false,
+    "repairApplied": false,
+    "nextAction": "Preserve the failed attempt; prepare and review a new plan from the actual 56-resource checkpoint before requesting repair execution permission."
+  }
+}

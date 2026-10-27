@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-23",
+  "artifact": "aws-personal-lambda-20261023-1.zip",
+  "sha256": "fafb94bf948312f1fef8998b5619567ad3c3471381a34e9e816cec87b034d9f6",
+  "compressed_bytes": 33286409,
+  "unpacked_bytes": 72766834,
+  "files": 3998,
+  "linux_python312_amd64_staged_smoke_passed": true,
+  "archive_crc_passed": true,
+  "deterministic_repack_passed": true,
+  "reviewed_wif_project": "ecoguard-fit3184-a2-2026",
+  "reviewed_wif_project_number": "995070689587",
+  "aws_al2023_execution_verified": false,
+  "cloud_federation_verified": false,
+  "cloud_resources_deployed": false
+}

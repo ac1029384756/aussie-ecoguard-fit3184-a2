@@ -1,0 +1,2 @@
+# Keep this one textual negative-test fixture despite repository-wide *.zip.
+!hash-mismatch.zip

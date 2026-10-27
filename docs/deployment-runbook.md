@@ -1,16 +1,20 @@
 # Deployment and verification
 
+> **24 October personal-account route:** The operational sections below describe the earlier course/Oracle route. The current member-C deployment uses personal AWS account `011154879765 / us-east-1` and Google Cloud project `ecoguard-fit3184-a2-2026 / us-central1`. Spec p2 permits any vendors across at least two clouds, and Rubric p7 explicitly includes AWS + GCP; Oracle is not mandatory. Use the [personal C handover](c-personal-operations-handover-20261024.md) and the timestamped deployment records for that environment. No Oracle deployment or successful media processing is established by this route clarification.
+
 This runbook follows the four-person implementation plan: C owns infrastructure,
 identity and deployment, A owns core/model logic, B owns UI and client auth, and D
 owns Lex/notifications. The user's extra personal spending limit is A$0. Use only
 course allocation or verified existing credits/free coverage. Personal AWS Free
 Tier was verified FREE/ACTIVE with US$100 credit on 8 October; never upgrade its
-plan automatically. The second compute cloud is an existing Oracle server, still
-to be located and verified. GCP is limited to the existing free IAM/WIF setup.
+plan automatically. In this historical course route, the intended second compute
+cloud was an existing Oracle server, never located and verified, while GCP was
+limited to the free IAM/WIF setup. Those vendor restrictions do not apply to the
+current personal AWS + GCP route.
 Planning and local Toolkit access do not authorize starting the student Lab or
 Oracle resources. Check actual account, region, scope and budget before deployment.
 
-## Current paused deployment
+## Historical course-account paused deployment
 
 The existing course resources are retained with runtime/API/S3 data access paused.
 `infra/aws/deployment.auto.tfvars` persists `runtime_enabled=false` and the v3 model

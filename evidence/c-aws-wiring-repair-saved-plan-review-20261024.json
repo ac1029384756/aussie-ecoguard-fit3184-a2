@@ -1,0 +1,128 @@
+{
+  "recordType": "selected-actual-normal-refreshed-paused-wiring-repair-plan-review",
+  "observedAtUtc": "2026-10-24T04:38:56.095063Z",
+  "account": "011154879765",
+  "region": "us-east-1",
+  "stateOwningSourceRevision": "3d2b3e7d64e43bfe0808f94ce06ed693be4ef268",
+  "physicalState": {
+    "managedResources": 56,
+    "serial": 72,
+    "lineage": "58808681-d69a-1fe0-b562-796a24a58fdc",
+    "sha256": "ad411dc4f52a7f510cc19518ff9e60f25948999dccb8b8d363a6ed19da401f95"
+  },
+  "plan": {
+    "savedBinarySHA256": "c9c02a9b2c2c922c7bfa63c4ee373219ea128bca224a9299d3f51090c8575cd6",
+    "jsonSHA256": "a1a89e36a95952b6c75940a110044efadce0bbf3be647aa5f224198d90c3105d",
+    "creates": 3,
+    "updates": 0,
+    "noops": 56,
+    "deletes": 0,
+    "refresh": true,
+    "refreshOnly": false,
+    "targetUsed": false,
+    "existingInputsSHA256": "12f361798590a48a028fef9355d14bd16bbbc29d790fcabf23a064546a439c07"
+  },
+  "originalStrictReview": {
+    "status": "blocked",
+    "sha256": "8186abbeaac4da020ad4bc7898ec8ec543a7580994d0d035c4310bbc13a25102",
+    "preserved": true
+  },
+  "independentReview1": {
+    "status": "blocked",
+    "error": "Only the exact caller identity data resource is allowed",
+    "auditorSHA256": "f649b5d8dc221c18468389db72c692ac498ae1bf95f868f0b829a45d20a025d9",
+    "summarySHA256": "68329fea5f8b50c21e9aff7ef026c715f21ad2f7d5234a81a578c10d3ea1d201",
+    "preserved": true
+  },
+  "independentReview2": {
+    "status": "same-native-paused-wiring56-to59-independently-reviewed",
+    "auditorSHA256": "6fefc0206056d98f33cb57737da683ced04310da63e87219051d49e137ae9aa0",
+    "summarySHA256": "4966e322a1bc17ecb7bdf3becb1ee49e7ceed1ec840de0504ad41faeae58daa8",
+    "inputManifestSHA256": "86252c9c3d65574dd6ca2a52d4d89125c6eb7d1f3e5906ab196f60fca37e6117",
+    "summaryFileMtimeUtc": "2026-10-24T04:38:37.556033Z",
+    "mtimeIsLocalFilesystemMetadata": true,
+    "normalRefreshInvocationVerified": true,
+    "fullPhysicalPriorEqual": false,
+    "reviewedExactProviderObservations": 2,
+    "allOtherPhysical56ValuesExact": true,
+    "old56KnownNoopsAgainstRefreshedPrior": true,
+    "nativePlanRewritten": false,
+    "originalBlockedSummaryPreserved": true,
+    "previousIndependentFailurePreserved": true
+  },
+  "providerReadObservations": [
+    {
+      "resource": "existing ingest CloudWatch log group",
+      "field": "tags",
+      "physical": null,
+      "refreshedPrior": {},
+      "scope": "only null-to-empty-map representation"
+    },
+    {
+      "resource": "existing runtime IAM role",
+      "field": "inline_policy[0].policy",
+      "physicalMirrorSHA256": "9a51fb17cc1f8362bd0e2f1eb725fa07a73264ed1ef4658b42bc42a3b0e854a9",
+      "refreshedMirrorSHA256": "6a0258cf27379d6b96a19aeb7d4ce1b46b4eadf602cd6daaeef59888d1e5dd92",
+      "matchesAlreadyCompletedStandaloneRuntimePolicyExactly": true,
+      "onlyDifference": "previously completed ingest log-stream ARN insertion",
+      "newRuntimeRoleGrantRequested": false
+    }
+  ],
+  "actualCallerDataProfile": {
+    "physical": 1,
+    "prior": 1,
+    "planned": 0,
+    "nonManagedChanges": 0,
+    "identity": "arn:aws:iam::011154879765:root"
+  },
+  "policyRepair": {
+    "attachedRepository": "ecoguard3184-personal-worker",
+    "change": "omit Resource member only",
+    "principal": "lambda.amazonaws.com",
+    "actions": [
+      "ecr:BatchGetImage",
+      "ecr:GetDownloadUrlForLayer"
+    ],
+    "sourceAccount": "011154879765",
+    "sourceFunctionArn": "arn:aws:lambda:us-east-1:011154879765:function:ecoguard3184-personal-ingest"
+  },
+  "preparationProvenance": {
+    "preparerSHA256": "c980d72b353d663c828737436b061945c692ac0ac321acc82372c5a193d066e2",
+    "sourceTransition9ReceiptSHA256": "9b1bdabc1cf2ba1d8832a43637b46cce3363e48ae89f17017dd6f28f9bf58057",
+    "toolRestoration2SummarySHA256": "3e997fe131429038efb140811bc0bbada9e9d8761adec1b4104176fd6558bac3",
+    "backendMetadataUnchanged": true,
+    "physicalStateUnchanged": true
+  },
+  "localValidation": {
+    "infrastructureTestsPassed": 70,
+    "networkDisabled": true,
+    "sameNativeAuditor2FocusedPureTestsPassed": 8,
+    "applyHelper3FocusedOfflineChecksPassed": 7,
+    "applyHelper3SHA256": "cc5e67b07901c25223624772b8fde93400fbc63e3e0cfbee10445dfd17bc661f",
+    "actualApplyHelperMainExecuted": false
+  },
+  "executionBoundary": {
+    "freshActionTimeApprovalRequired": true,
+    "priorSingleAttemptAuthorizationConsumed": true,
+    "maximumSavedPlanApplyCommands": 1,
+    "automaticReplan": false,
+    "automaticRetry": false,
+    "automaticPermissionBroadening": false,
+    "allEightFunctionsReservedZero": true,
+    "allFourQueueMappingsDisabled": true,
+    "bothSchedulesDisabled": true,
+    "apiDisabled": true,
+    "publicSignupRestricted": true,
+    "s3ObjectOperationsDenied": true,
+    "mediaUploadApproved": false,
+    "applicationInvocationApproved": false,
+    "runtimeActivationApproved": false,
+    "additionalOutOfPocketLimitAUD": 0
+  },
+  "cloudResourceWritesDuringReview": false,
+  "applyExecuted": false,
+  "cloudECRPolicyCompatibilityVerified": false,
+  "ingestRuntimeDeployed": false,
+  "lambdaFederationVerified": false,
+  "fullAssignmentAcceptanceEstablished": false
+}

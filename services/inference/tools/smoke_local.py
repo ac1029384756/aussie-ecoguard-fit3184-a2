@@ -8,13 +8,31 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-import psutil
 from PIL import Image, ImageOps
 
 from app.runtime import ModelRuntime
 from app.schemas import EmbedRequest
 from app.settings import Settings
 from app.taxonomy import frame_counts, merge_detections
+
+
+def memory_usage():
+    """Use Linux kernel RSS/high-water values without a test-only dependency."""
+    try:
+        fields = dict(line.split(":", 1) for line in Path("/proc/self/status").read_text().splitlines() if ":" in line)
+        return {"rssBytes": int(fields["VmRSS"].split()[0]) * 1024,
+                "peakRssBytes": int(fields["VmHWM"].split()[0]) * 1024,
+                "memoryMeasurement": "linux-proc-status"}
+    except (OSError, KeyError, ValueError):
+        # psutil is an optional test extra on developer workstations, not part
+        # of the released inference image. Never label current RSS as a peak.
+        try:
+            import psutil
+            memory = psutil.Process().memory_info()
+            return {"rssBytes": memory.rss, "peakRssBytes": getattr(memory, "peak_wset", None),
+                    "memoryMeasurement": "psutil"}
+        except ImportError:
+            return {"rssBytes": None, "peakRssBytes": None, "memoryMeasurement": "unavailable"}
 
 
 def main():
@@ -37,9 +55,7 @@ def main():
         start = time.monotonic()
         print(f"Starting {name}", flush=True)
         result = action()
-        memory = psutil.Process().memory_info()
-        record["stages"].append({"name": name, "seconds": round(time.monotonic() - start, 3),
-                                 "rssBytes": memory.rss, "peakRssBytes": getattr(memory, "peak_wset", memory.rss)})
+        record["stages"].append({"name": name, "seconds": round(time.monotonic() - start, 3), **memory_usage()})
         print(json.dumps(record["stages"][-1]), flush=True)
         return result
     stage("load-detector", lambda: runtime.ensure_model("detector", deadline))

@@ -1,0 +1,50 @@
+{
+  "recordType": "manually-selected-evidence",
+  "selectionSource": "Selected from actual official CloudShell terminal output; private raw evidence remains SHA-bound in the named CloudShell directory",
+  "rootObservedPublicationAtUtc": "2026-10-24T00:02:48Z",
+  "observationPrecision": "seconds; no subsecond timestamp selected",
+  "selectedOutcome": "private-image2-publication-verified",
+  "project": "ecoguard-fit3184-a2-2026",
+  "projectNumber": "995070689587",
+  "region": "us-central1",
+  "sourceRevision": "9b16f12872c067163f41de5c3d29d01e78cebbdd",
+  "imageUri": "us-central1-docker.pkg.dev/ecoguard-fit3184-a2-2026/ecoguard/inference@sha256:0e274acc0dff67b2f233ebd5914235ea328147b8505044de23cfc135217e5c91",
+  "selectedTag": "c-20261024-2",
+  "registryDigest": "sha256:0e274acc0dff67b2f233ebd5914235ea328147b8505044de23cfc135217e5c91",
+  "configDigest": "sha256:dea2da475fc169ca21a1fb637e54f61f29d97b48d0604f49cf5c9735c0af0287",
+  "rootReportedVerification": {
+    "explicitPushInvocations": 1,
+    "manifestAndConfigRawBytesMatch": true,
+    "compressedLayerBytesVerifiedCount": 10,
+    "oldImageAndTagPreserved": true,
+    "terraformStateUnchanged": true,
+    "iamUnchanged": true,
+    "runtimeChangedByPublication": false
+  },
+  "privateEvidence": {
+    "baseDirectory": "~/ecoguard-c-personal-20261023",
+    "publicationSummaryRelativePath": "image-publication-20261024-4/summary.json",
+    "publicationSummarySHA256": "56d2a11852a53ef5953711d01e976ab384ff4e0c23020c011a5c11ca486e69da",
+    "repositoryAfterRelativePath": "image-publication-20261024-4/repository-after-private.json",
+    "repositoryAfterSHA256": "ced1d3f3ff43b75c50dee9f5d00a12d064464f0e5478e6419baa8617358d839a",
+    "repositoryUpdateTime": "2026-10-23T23:58:59.146652Z",
+    "stateSHA256": "f3b6113be12f34b05701da2e095d0df5763a97d8efdcd6a38a7fdbfc0d1d8fad",
+    "stateSerial": 17,
+    "managedResources": 13
+  },
+  "preservedPrepublicationFailure": {
+    "rootReportedPreserved": true,
+    "pushAttempted": false,
+    "reason": "Existing private repository differs",
+    "diagnosis": "Raw API labels contain the provider attribution label; Terraform state.labels remains the configured empty map",
+    "repositoryObservationRelativePath": "image2-publication-preflight-observation-20261024-1/repository-private.json",
+    "repositoryObservationSHA256": "2db97ca7c0e7908207fabb0b0378981f2b868bddb8f7e23d12012daf0e8a0943"
+  },
+  "acceptanceLimits": [
+    "Selected fields above are observations reported by the parent agent, not invented raw-summary keys",
+    "This selection performed no cloud, browser, HTTP, Docker, IAM, plan or apply action",
+    "One explicit push does not assert that the registry client made no internal HTTP retries",
+    "Publication evidence alone does not establish a new Cloud Run revision, HTTP access, model warmup or AWS activation",
+    "The later image-only saved-plan review and apply are separate evidence records"
+  ]
+}

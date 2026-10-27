@@ -1,6 +1,8 @@
 # Cloud configuration snapshot — 2026-10-07, amended 2026-10-08
 
-## Current runtime pause and core handoff
+> **Historical snapshot:** The account, runtime and Oracle statements below describe 7-8 October. The current member-C route uses personal AWS plus private Google Cloud Run; see the [personal operations handover](c-personal-operations-handover-20261024.md) and later actual test records. Spec p2 permits any vendors across at least two clouds, and Rubric p7 explicitly includes AWS + GCP. No Oracle deployment has occurred, but Oracle is not mandatory for that route. Configured resources and read-only checks do not establish successful media processing.
+
+## 8 October runtime pause and core handoff
 
 The [core completion report](core-completion-20261008.md) supersedes the current-status
 claims below: v3, 259 unique checks, 55 local functional checks, bounded semantic

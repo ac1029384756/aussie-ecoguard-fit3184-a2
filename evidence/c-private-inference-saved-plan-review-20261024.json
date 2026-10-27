@@ -1,0 +1,139 @@
+{
+  "recordType": "actual-private-inference-saved-plan-review-before-apply",
+  "status": "private-inference-saved-plan-review-passed",
+  "date": "2026-10-24",
+  "timezone": "Australia/Melbourne",
+  "observedAtUtc": "2026-10-23T23:00:15.360525+00:00",
+  "project": "ecoguard-fit3184-a2-2026",
+  "projectNumber": "995070689587",
+  "region": "us-central1",
+  "sourceRevision": "3dd63c805b625fb3b378ac977d51c6959d599f0c",
+  "savedPlanSHA256": "988d8f63902c705443d70d53b03ebc30440b281f8445d6f78b443e24f64ec518",
+  "creates": 4,
+  "noops": 9,
+  "otherChanges": [],
+  "gateChecksPassed": 13,
+  "gateChecksTotal": 13,
+  "failedChecks": [],
+  "securityUnknownPaths": [],
+  "resourceDriftEntries": 0,
+  "warnings": false,
+  "stateFileUnchanged": true,
+  "sourceUnchanged": true,
+  "imageUri": "us-central1-docker.pkg.dev/ecoguard-fit3184-a2-2026/ecoguard/inference@sha256:7e481399309c8a90276c864e9765545657e44c00e9061ee668b4e56db4f22fdb",
+  "imageProvenanceVerified": true,
+  "registryMetadataRefreshVerified": true,
+  "plannedCreatedAddresses": [
+    "module.ecoguard.google_project_service.required[\"run.googleapis.com\"]",
+    "module.ecoguard.google_service_account.runtime[0]",
+    "module.ecoguard.google_cloud_run_v2_service.inference[0]",
+    "module.ecoguard.google_cloud_run_v2_service_iam_member.invoker[0]"
+  ],
+  "plannedRuntime": {
+    "name": "ecoguard-inference",
+    "serviceAccount": "ecoguard-inference@ecoguard-fit3184-a2-2026.iam.gserviceaccount.com",
+    "invokerIamDisabled": false,
+    "portName": "http1",
+    "containerPort": 8080,
+    "cpu": "4",
+    "memory": "8Gi",
+    "requestConcurrency": 1,
+    "minInstances": 0,
+    "serviceMaxInstances": 1,
+    "revisionMaxInstances": 1,
+    "platformTimeoutSeconds": 360,
+    "applicationDeadlineSeconds": 240,
+    "deletionProtection": false,
+    "soleServiceInvokerMember": "serviceAccount:ecoguard-aws-invoker@ecoguard-fit3184-a2-2026.iam.gserviceaccount.com",
+    "startupCpuBoost": true,
+    "cpuIdle": true
+  },
+  "retainedFirstBlockedPlan": {
+    "savedPlanSHA256": "480db4587f5f8a73708afd4565752f5eb63f09b5f640e0f7508b88c21fecc7b7",
+    "status": "blocked",
+    "gateChecksPassed": 11,
+    "gateChecksTotal": 13,
+    "unknownSecurityField": "template[0].containers[0].ports[0].name",
+    "repositoryComputedMetadataDrift": true,
+    "stateFileUnchanged": true,
+    "applyExecuted": false,
+    "privateArtifactsRetained": true
+  },
+  "actualMetadataCheckpoint": {
+    "sourceRevision": "00d58e0e8c65321cc759d575eafaba801c1e8253",
+    "savedPlanSHA256": "c56a85845bc415daff55ff1302ee7aab9b52dcd5c0da50f59021b1e47e955b6c",
+    "status": "exact-publication-metadata-state-refresh-passed",
+    "observedAtUtc": "2026-10-23T22:59:34.964517+00:00",
+    "applyExitCode": 0,
+    "managedResources": 9,
+    "oldSerial": 11,
+    "newSerial": 12,
+    "changedFields": [
+      "labels",
+      "update_time"
+    ],
+    "labelsBefore": null,
+    "labelsAfter": {},
+    "providerManagedLabelUnchanged": true,
+    "oldUpdateTime": "2026-10-23T22:17:27.541917Z",
+    "newUpdateTime": "2026-10-23T22:42:43.012721Z",
+    "cloudResourcesMutated": false,
+    "iamModified": false,
+    "apisModified": false,
+    "runtimeCreated": false,
+    "retryAttempted": false,
+    "privateStateBackupsAndAttestationRetained": true,
+    "fullStateHashesOrLineagePublished": false
+  },
+  "verifiedSourceTransition": {
+    "fromRevision": "00d58e0e8c65321cc759d575eafaba801c1e8253",
+    "toRevision": "3dd63c805b625fb3b378ac977d51c6959d599f0c",
+    "stateUnchanged": true,
+    "providerLockUnchanged": true,
+    "gitignoreUnchanged": true,
+    "servicesAndConfigTreesUnchanged": true
+  },
+  "preparedExecutionHelpers": {
+    "apply": {
+      "path": "scripts/apply_personal_gcp_private_inference_plan.py",
+      "sha256": "b4b3a00db6c849e4b154c93975df86c88454c78d101207f03ce693f249130c99"
+    },
+    "http": {
+      "path": "scripts/verify_personal_gcp_private_inference_http.py",
+      "sha256": "3381dba71cdbe3fa377800c6f14d694cc2ba032e4e3f92d7026d73c41169f282"
+    },
+    "newActualUserApprovalRequired": true,
+    "automaticGoogleManagedAccessToInclude": "roles/run.serviceAgent on this project for the Cloud Run service agent",
+    "startupComputeToInclude": true,
+    "proposedBoundedHttpChecks": [
+      "anonymous GET /healthz",
+      "operator-authenticated GET /healthz",
+      "authenticated POST /v1/warmup"
+    ],
+    "httpChecksExecuted": false,
+    "coldWarmupArtifactFiles": 15,
+    "coldWarmupArtifactBytes": 2229943281
+  },
+  "applyExecuted": false,
+  "applyAuthorized": false,
+  "runtimeCreated": false,
+  "cloudInferenceVerified": false,
+  "crossCloudTokenExchangeVerified": false,
+  "fullAssignmentAcceptanceVerified": false,
+  "awsFoundation": {
+    "managedResources": 55,
+    "runtimePaused": true,
+    "unchangedByThisPlanPreparation": true
+  },
+  "privateDeliveryDestination": "https://github.com/xihan-u/aussie-ecoguard-fit3184-a2-private",
+  "fundingBoundary": {
+    "additionalOutOfPocketBudgetAUD": 0,
+    "existingEligibleCreditReverifiedPositive": true,
+    "creditUiReloadObservedAtUtc": "2026-10-23T23:01:35Z",
+    "creditExpiry": "2026-10-28",
+    "cleanupDeadlineMelbourne": "2026-10-27",
+    "hardSpendingCapGuaranteed": false,
+    "automaticCleanupClaimed": false,
+    "balanceBillingIdentifierOrCredentialPublished": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "recordType": "local-infrastructure-repair-checks",
+  "scope": "Remove unsupported ECR Resource member only; new strict56-to59 native-plan gate",
+  "offlineInfrastructureTestsPassed": 70,
+  "offlineLogSHA256": "4a958232c1423fd36548876418a19eae78e549981490cc03f361e7a876e9b1b6",
+  "testNetwork": "none",
+  "testRepositoryMount": "read-only",
+  "terraformFormatCheckPassed": true,
+  "independentStaticReviewPassed": true,
+  "originalNativePlan4JSONLocallyAvailable": false,
+  "fullNativeRepairPlanReviewed": false,
+  "actualRepairApplied": false,
+  "policyCompatibilityVerified": false,
+  "futureExecutionRequiresNewSavedPlanAndActionTimeApproval": true,
+  "filesSHA256": {
+    "infra/aws/ecr-pull-policy.tf": "fad596b365fdc850d7d2ce2d4edeedee82c511ed7b9050fcb2694f84900760e4",
+    "infra/aws/environments/personal/check_wiring_repair_plan.py": "318e8dab9141af91143d567fa718e2b7567887180a2a5330aaf3fe4dde3f29ac",
+    "infra/aws/tests/test_wiring_repair_plan.py": "23c84f5519cbda46fca62ab3b00c453047e2d51628d87125806f7fec60cfc84f"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "recordType": "local-source-overlay-asgi-checks",
+  "cloudValidated": false,
+  "modelsExecuted": false,
+  "networkMode": "none",
+  "imageUsed": "sha256:0e274acc0dff67b2f233ebd5914235ea328147b8505044de23cfc135217e5c91",
+  "candidateAuthSHA256": "2671dfa577705ca4856a47374203561bea526fb80f681c478ac4f06511e92531",
+  "originalFullRun": {
+    "testsRun": 5,
+    "passed": 4,
+    "failures": 1,
+    "failure": "valid synthetic Cognito case unexpectedly returned401; preserved and not attributed to a proven cause"
+  },
+  "singleCaseObserverRun": {
+    "testsRun": 1,
+    "failures": 0,
+    "errors": 0
+  },
+  "fullSuiteObserverRun": {
+    "testsRun": 5,
+    "failures": 0,
+    "errors": 0,
+    "signatureAndClaimValidationUnchanged": true
+  },
+  "newBuiltImageVerificationPending": true,
+  "retainedLogSHA256": {
+    "inference-private-iam-adapter-asgi-20261024-3.log": "0359b72c473a17b088cd6a26f6609dbe764d76454aa5e92cc765df74ddd7bf65",
+    "inference-iam-cognito-fixture-debug-20261024-1.log": "86fc3cd5babf8cdaff0bffdaf5444510a91dffc22414f14a7b1efb490e1a1056",
+    "inference-iam-cognito-full-debug-20261024-2.log": "89d041986fe23ffe0bdf1bb86ce573595eba0f6a18702120066a8f3544ab0fd0"
+  }
+}

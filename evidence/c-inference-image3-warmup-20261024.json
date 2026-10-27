@@ -1,0 +1,81 @@
+{
+  "recordType": "selected-actual-image3-authenticated-model-warmup",
+  "selectionMethod": "Manually selected from the parent agent's actual official CloudShell/UI observation; not a byte copy of the raw summary or an independent live check",
+  "project": "ecoguard-fit3184-a2-2026",
+  "projectNumber": "995070689587",
+  "region": "us-central1",
+  "sourceRevision": "ac7757717486b3db2da8c955ebffcc01f6807724",
+  "observedAtUtc": "2026-10-24T01:31:50.273912+00:00",
+  "observedStatus": "single-image3-authenticated-model-warmup-verified",
+  "modelWarmupVerified": true,
+  "request": {
+    "method": "POST",
+    "path": "/v1/warmup",
+    "authenticated": true,
+    "attempt": 1,
+    "timeoutSeconds": 270,
+    "httpStatus": 200,
+    "responseBytes": 237,
+    "elapsedSeconds": 87.694
+  },
+  "models": {
+    "ready": true,
+    "loadedModels": [
+      "detector",
+      "embedding"
+    ],
+    "manifestVersion": "ecoguard-models-2026-10-08-v3",
+    "featureVersion": "siglip2-base-256-animal-crop-v3:3f9f96cb90da5dbc758b01813f2f6f1aee24c1ab:rgb-exif-animal-crop-text64-lowercase-v3"
+  },
+  "imageUri": "us-central1-docker.pkg.dev/ecoguard-fit3184-a2-2026/ecoguard/inference@sha256:f0b3dd5289159f84454afd9e0466e6151464fc8e5cb49a063102938437549a17",
+  "configDigest": "sha256:7380118bbf7ee389b5a881ea6bda40a195dbae744e9713fa9483f43d03bb886c",
+  "url": "https://ecoguard-inference-adlnb7yumq-uc.a.run.app",
+  "readyRevision": "ecoguard-inference-00003-jwb",
+  "stateSerial": 21,
+  "stateSHA256": "8fceea80600b2b02caea3402951d8f7954c975845b3503522be69b69f2881358",
+  "stateSourceIAMUnchanged": true,
+  "newHTTPRequests": 1,
+  "totalHTTPRequestsAcrossRetainedBatches": 5,
+  "newWarmupPOSTAttempts": 1,
+  "totalWarmupPOSTAttemptsAcrossRetainedBatches": 2,
+  "priorFailurePreserved": {
+    "image2WarmupHTTPStatus": 401,
+    "image2WarmupResponseBytes": 97,
+    "image2HTTPSummarySHA256": "089f36206bced20d7419828be6afea37bec8f419ca098490e536d37a12c255cf",
+    "originalAnonymousHealthz404Preserved": true
+  },
+  "getRequestsInThisOperation": 0,
+  "anonymousRequestsInThisOperation": 0,
+  "retryAttempted": false,
+  "tokenPersisted": false,
+  "iamChangesByThisOperation": 0,
+  "apiChangesByThisOperation": 0,
+  "awsActionsByThisOperation": 0,
+  "cloudInferenceVerified": false,
+  "crossCloudVerified": false,
+  "evidenceSHA256": {
+    "warmupSummary": "3bfcd99e4f8cc61bf77a45136405d1089a06acc8fd53b134dcb95f4875ffb425",
+    "warmupInputManifest": "62c5b097fe89154413e76c137bae77b6869695fecd949ccdaa73ffc9c9bd1ae2",
+    "warmupHelper": "1c291e27a24edd15c83ff505fe713da2d07b8bf5509deff3c17fe251a7772f6c",
+    "taskAuthorization": "848c612672378d3f87507a7779e6711a567cc7f6db202abbd9a84c80c27877ae",
+    "currentFundingObservation": "40794300f6c594004d81b220855e31a006dbd7c92fddfd6a5d956be2ea138ab3",
+    "image3ApplySummary": "2d7847731aa7b265e6b293fc1e9aff51826a04b5c729c0c577509ba54941693a",
+    "image3PostVerificationDetail": "247c9ffaed655fb33338f72ddfd0c67110e4090cef253677d10f3b484f9415f2"
+  },
+  "privateEvidenceCustody": {
+    "baseDirectory": "~/ecoguard-c-personal-20261023",
+    "resultDirectoryRelativeToBase": "private-inference-image3-warmup-20261024-1",
+    "rawStatePlansPoliciesLogsTokensAndAuthorizationQuotesExcludedFromThisRecord": true
+  },
+  "authorizationBasis": "existing-user-finish-C-and-default-consent",
+  "newHumanApprovalClaimed": false,
+  "additionalPersonalSpendLimitAUD": 0,
+  "creditExpiryDate": "2026-10-28",
+  "cleanupReviewByMelbourneDate": "2026-10-27",
+  "automaticCleanupConfigured": false,
+  "acceptanceLimits": [
+    "The successful authenticated warmup loaded both locked model adapters and reported readiness",
+    "No image inference result, cloud retrieval result or cross-cloud processing was tested by this operation",
+    "Earlier HTTP failures remain evidence of their own attempts and are not replaced by this success"
+  ]
+}

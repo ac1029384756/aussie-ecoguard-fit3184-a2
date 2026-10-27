@@ -5,6 +5,11 @@
 
 ## 最新交付与运行状态
 
+**当前云厂商选择：** C 的个人部署路线是 AWS + GCP Cloud Run。作业 Spec 第2页允许自行选择厂商并要求至少两家云，Rubric 第7页明确列举 AWS + GCP；Oracle 不是必选厂商。Oracle 模板和未部署主机的记录属于较早路线。厂商选择符合要求，不等于实际跨云处理或整份作业已经验收通过。
+
+**C 部分个人环境最新记录（2026-10-25）：** AWS 当前60项资源，应用已恢复暂停；GCP私有推理环境13项资源。第3次单图尝试仅一次应用保存计划94c，exit0并通过激活验证；随后源对象不存在检查的 HeadObject 返回254，完整意图账本无业务种子或图片PUT。八项控制在 T0+262.019秒读回暂停，满足原600秒目标。后续10轮、547.989秒观察中，两轮S3桶读取超时，因此连续安全观察和fixture drain仍未通过；最后fallback再次读回全部8项暂停和边界有效。真实跨云图片／Lambda WIF媒体成功次数仍为 **0**。
+详见[三次实际尝试、恢复证据与剩余事项](docs/c-runtime-attempt-and-recovery-20261025.md)和[精选状态记录](evidence/c-runtime-attempts-status-20261025.json)。[默认停用源码快照](tools/c-runtime-controller/README.md)保留HeadObject严格JSON错误解析及安全诊断，并更新V15的正常计划证据链；8项fixture与9项启动注入测试属于本地验证，ARMFalse、60个实际pin待绑定，没有新的云端媒体尝试。官方固定2.38.1 formatter已本地重现旧正则的格式兼容问题，但原生失败未保存stderr，不能断言这就是本次唯一根因。随后同一refresh-only保存计划完成一次零资源动作的状态同步，当前serial95；新normal保存计划a927通过0创建/8更新/52不变审核，尚未apply。[checkpoint52源码与证据审核](docs/c-runtime-checkpoint52-review-20261025.md)保留V15的ARMFalse、60个待填pin及未绑定当前证明；pool2三组只读实测不代表540秒连续验收。不得写回旧serial94/85状态。GCP13的41项只读元数据检查通过，没有HTTP推理请求。个人报告尚未定稿，当前不宣称完成百分比。下面的核心交接测试记录来自10月8日。
+
 **核心实现已完成本轮交接；云端运行和访问已暂停，数据与配置保留。**
 AWS 的定时任务、队列处理、七个 Lambda 和 API 已停用；媒体桶也拒绝包括旧签名链接在内的数据读写。
 `infra/aws/deployment.auto.tfvars` 持久保存 `runtime_enabled=false`，普通 plan 不会默默恢复运行。
@@ -20,8 +25,8 @@ AWS 的定时任务、队列处理、七个 Lambda 和 API 已停用；媒体桶
 这是品种／物种语义候选基线，**不是宠物个体身份准确率或所有入侵物种精度验收**。
 [模型报告](services/inference/evidence/model-quality-v3-20261008.json)保留原失败和后续验证的边界。
 
-完整成品仍需接通现有 Oracle HTTPS 主机、AWS ingest 镜像工作器和正式应用 Lex，并以独立同宠／干扰宠物数据完成验收。
-目前没有可用 Oracle 主机，正式 Lex Bot/Alias 未接线；不能把本轮核心交付描述为全作业完成。
+完整成品仍需完成实际双云自动处理、正式应用 Lex 和独立同宠／干扰宠物数据验收。
+当前个人路线使用已部署的 AWS ingest 与 GCP 私有推理服务，实际处理结果仍须以运行证据确认。Oracle 未部署不是这条路线的厂商合规缺口；不能把本轮核心交付描述为全作业完成。
 此前[续验收失败记录](docs/acceptance-continuation-20261008.md)与[前轮云检查](docs/environment-acceptance-20261008.md)原样保留。
 
 ## 核心能力
@@ -89,21 +94,26 @@ Grounding DINO 提供候选框，SigLIP2 在同一裁剪上统一比较物种，
 
 ## 云环境与费用
 
+下表区分10月8日历史环境与当前 C 个人 AWS + GCP 环境。当前资源与验收边界见[10月25日实际运行记录](docs/c-runtime-attempt-and-recovery-20261025.md)；[10月24日个人部署交接](docs/c-personal-operations-handover-20261024.md)和[只读检查记录](docs/c-readonly-integration-checkpoint-20261024.md)保留当时状态，不能据其旧资源数或旧表推断当前环境。
+
 | 云 | 当前项目状态 |
 |---|---|
-| AWS 课程账号 `360493183467` / `default` / us-east-1 | Cognito、私有 S3、5 张按请求计费 DynamoDB 表、4 个 SQS 工作队列及 DLQ、ECR、7 个 Lambda、HTTP API 保留；运行和访问暂停 |
-| AWS 个人账号 `011154879765` / `ecoguard-personal` | Toolkit/MCP 已验证；Sydney/us-east-1 无 Lex Bot；当前项目无新部署 |
-| Google `ecoguard-fit3184-jlii0474` | IAM/WIF 身份接线，账单未绑定，无计算部署 |
-| Oracle | 既有服务器部署模板已准备；当前未找到可用主机，未部署应用 |
+| AWS 课程账号 `360493183467` / `default` / us-east-1 | 10月8日历史记录：Cognito、私有 S3、5 张按请求计费 DynamoDB 表、4 个 SQS 工作队列及 DLQ、ECR、7 个 Lambda、HTTP API 保留；运行和访问暂停 |
+| AWS 个人账号 `011154879765` / `ecoguard-personal` | 10月25日：us-east-1个人环境60项资源，serial 95；应用暂停，实际跨云图片成功0，见[最新记录](docs/c-runtime-attempt-and-recovery-20261025.md) |
+| Google `ecoguard-fit3184-jlii0474` | 10月8日历史记录：IAM/WIF 身份接线，账单未绑定，无计算部署 |
+| Google `ecoguard-fit3184-a2-2026` | 个人验证环境13项资源，私有Cloud Run及模型warmup已验证；实际Lambda角色调用尚未验证 |
+| Oracle | 较早路线的既有服务器模板；当时未找到可用主机、未部署应用。当前采用AWS + GCP，Oracle不是必选项 |
+
+历史交接中的“59项资源已部署并暂停”保留在10月24日记录；首次保存计划实际应用后成为60项，不能将旧59项状态覆盖到当前serial 95。
 
 课程 API `https://i4zicvj5s2.execute-api.us-east-1.amazonaws.com/api/v1` 当前关闭。
 Cognito pool 为 `us-east-1_9nR2hwyVJ`，client 为 `6io5inllom6a5l43038uhbluvi`；
 这些是公开配置，不是凭证。AWS LabRole→Google WIF 和令牌验签曾实际通过；
-Oracle 接收端、完整自动入库和正式 Lex 仍待验收。SNS 确认及唯一授权测试邮件已实际实收，本轮没有再发邮件。
+该轮 Oracle 路线没有完成接收端或自动入库验收，正式 Lex 亦待验收；这些历史结果不否定当前 AWS + GCP 路线。SNS 确认及唯一授权测试邮件已实际实收，本轮没有再发邮件。
 
 用户选择保留云端数据和配置，并接受少量存储额度消耗。**暂停不保证账单为零**：
 S3、DynamoDB、日志等保留数据仍可能占用额度；队列消息、TTL 和日志保留期仍继续。
-不创建新 VM、负载均衡或 Google 计算，不启动已停止服务器，不处理其他项目。
+10月8日当时的操作边界为“不创建新 VM、负载均衡或 Google 计算，不启动已停止服务器，不处理其他项目”；这不是后来获准的个人GCP私有推理部署的当前资源描述。新的运行或权限变更须按当前具体范围核验，不能重放已消耗的尝试许可。
 [停用、检查及恢复说明](infra/aws/SHUTDOWN.md)。密钥、登录缓存、`.env`、原图／向量、Terraform state 均不入 Git。
 
 ## 代码与队友接管
@@ -117,7 +127,7 @@ S3、DynamoDB、日志等保留数据仍可能占用额度；队列消息、TTL 
 | `infra/aws` / `infra/gcp` / `infra/oracle` | 原 Terraform 基础设施、IAM/WIF、既有 Oracle 主机模板 |
 | `config` / `scripts` | 固定模型与校准、可复算评估、本地和停用检查器 |
 
-B 接管界面与用户体验；C 接管既有 Oracle、ingest 镜像和云部署；D 接管正式 Lex、邮件、独立数据、完整验收、演示与报告。
+B 接管界面与用户体验；C 接管当前 AWS + GCP 身份、ingest 镜像和云部署；D 接管正式 Lex、邮件、独立数据、完整验收、演示与报告。
 A 的核心交接详见[最新记录](docs/core-completion-20261008.md)，完整验收与贡献边界仍按[四人计划](docs/product-and-implementation-plan.md)。
 
 [部署流程](docs/deployment-runbook.md) · [22 项验收矩阵](docs/acceptance-matrix.md) ·

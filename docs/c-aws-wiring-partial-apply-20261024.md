@@ -1,0 +1,21 @@
+# Paused AWS wiring partial apply
+
+The approved saved wiring plan ran once and failed at the ECR repository policy. The actual current checkpoint contains 56 managed resources, rather than the planned 59. A subsequent independent read-only inspection passed all 34 existing control checks and confirmed that application processing remains paused. No apply retry, policy expansion, media upload or inference request followed the failure.
+
+The [selected actual evidence](../evidence/c-aws-wiring-partial-apply-20261024.json) records the failed apply at 03:24:13 UTC and the successful paused-state follow-up at 03:26:06 UTC on 24 October 2026. Full state, logs and saved binaries remain private in the original AWS CloudShell state-owning checkout. The [original saved-plan review](c-aws-paused-wiring-saved-plan-review-20261024.md) remains a historical review of the intended operation.
+
+## Actual outcome
+
+Terraform created the ingest log group, added its single log-stream ARN to the existing runtime role policy, and updated the seven ZIP functions' two private inference bindings. ECR then rejected `SetRepositoryPolicy` with HTTP400 and `InvalidParameterException`. The ECR policy, ingest Image Lambda and ingest mapping were not created. State advanced from serial61 to serial72, with SHA256 `ad411dc4f52a7f510cc19518ff9e60f25948999dccb8b8d363a6ed19da401f95` and the same lineage.
+
+Readback confirmed all seven existing functions have reserved concurrency0, all three existing queue mappings are disabled, both schedules are disabled, the API endpoint is disabled, public signup is restricted, and the exact paused S3 data denial and empty notification configuration remain. ECR has no repository policy and the ingest function is absent. This is a verified paused partial deployment, not an ingest runtime or cross-cloud acceptance result.
+
+## Narrow repair under preparation
+
+The rejected repository policy includes a `Resource` member. AWS's [official CDK implementation](https://github.com/aws/aws-cdk/blob/main/packages/aws-cdk-lib/aws-ecr/lib/repository.ts#L818-L827) explicitly warns that ECR policies fail when that member is present. The [ECR guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html) explains that a repository policy is scoped to its attached repository. The proposed repair therefore removes only `Resource`, retaining the sole repository attachment, Lambda service principal, the two pull actions, and the exact ingest `SourceArn` and account conditions. This is supported diagnosis and an unapplied proposal; endpoint acceptance still requires the separately reviewed repair run.
+
+Some AWS documentation examples contain a `Resource` member, so the actual endpoint failure and official implementation warning are retained together. Do not remove the source conditions or grant a broader execution role merely to make image retrieval work. A new full refreshed plan must use the actual 56-resource state, preserve all existing resources and outputs, and propose only the remaining three creations. Its execution needs a new concrete action-time confirmation. The consumed saved plan must not be replayed.
+
+The local repair implementation now passes 70 offline infrastructure tests in the locked ingest container with networking disabled and the repository mounted read-only. Terraform formatting also passed. Its new pure checker requires the complete actual56 prior to remain unchanged, exactly three creations, all11 outputs unchanged, and each new configured value and unknown mask to match its own original native plan4 representation except the policy omission. These [local checks](../evidence/c-aws-wiring-repair-local-checks-20261024.json) do not establish a successful real repair plan or endpoint acceptance.
+
+Update at 04:38 UTC: a new normal refreshed native plan proposes three creates and 56 no-ops. The original strict review blocked on two provider read observations. A separate [independent review of the same saved binary](c-aws-wiring-repair-saved-plan-review-20261024.md) now passes after checking those two exact fields and the actual caller-data representation; both blocked results remain unchanged. Physical state remains 56/serial72 and endpoint acceptance is still untested. Execution awaits a new specific confirmation.

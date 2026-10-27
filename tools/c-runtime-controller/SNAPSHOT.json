@@ -1,0 +1,158 @@
+{
+  "recordType": "repository-inert-V15-paused95-normal-plan-review",
+  "sourceVersion": "V15-proof-chain-V13-lifecycle-Head-JSON-pool2",
+  "preparedForPrivateCheckpoint": 52,
+  "cloudRelease": false,
+  "armReviewed": false,
+  "activationPreparerPin": null,
+  "currentPausedAPIReceiptPin": null,
+  "actualPinsPendingCount": 60,
+  "productOrTerraformChanged": false,
+  "rawPrivateEvidenceIncluded": false,
+  "screenshotsIncluded": false,
+  "actualCurrentFixtureIdentifiersIncluded": false,
+  "upstream": {
+    "inertDriverSHA256": "cabf4cb23e2c9df4ed679bdd40acfab1852dacb61cdbe8257598e722032a6ecd",
+    "localFiveProvenanceTestReceiptSHA256": "60be44f97daf1e4acd2881f9f5ae98aa8865e3ce3c88b611cda6ebef779361cb",
+    "independentStaticReviewSHA256": "7bec26e14394e1c83f0a7ed1279ca184d35155fed89440861be6ad9b0779fc50",
+    "historicalV13": {
+      "inertDriverSHA256": "2af12a878542915f64c7d0bec0b041d4dcc5039aad17fe2d0dfe6b58a409ebef",
+      "localNineTestReceiptSHA256": "890cf4e4fbcf0b4f5ebd1cf3276368f09b8079d7de6a98ddf5f8b940a3c1a743",
+      "independentStaticReviewSHA256": "84dc9a88b3471c625f9320319953e242c1e81f4b62a9f9b8859ccc5a36044d1f",
+      "originalTestFileSHA256": "6c1c399ae9500fe8ab536c8429bd99052fbe8b780454438d6df86d8194710796",
+      "fixtureJSONFixSHA256": "8aa156b52a5a0979a08544d770809d7e069dc1d82aba8f283118cc566329ccf1",
+      "fixtureFixEightInjectedTestReceiptSHA256": "b725a5a583729d3b51edb97393cea18b1a192cfc87a06d74c2ffa15a18b1864b"
+    }
+  },
+  "packaging": {
+    "driverExactUpstreamBytes": true,
+    "currentChangedSourceFiles": [
+      "controller_driver.py",
+      "aws_runtime.py",
+      "credential_route.py",
+      "private_runtime.py",
+      "processing_adopted60_reviewer.py"
+    ],
+    "otherCandidateSourceAndPendingTemplateBytesUnchanged": true,
+    "driverChange": "Four proof functions and route-path literal plus exact reviewed dependency/evidence pins; all other V14 function/class AST identical",
+    "dependencyChange": "Exact reviewed pool2 88bd, same-boot guard c742/private31168 and pure paused95 gate880f; fixture8aa unchanged from checkpoint51",
+    "testOnlyPort": "Original17 test methods retained; existing static test checks exact reviewed V15 SHA/dependency/function overrides while preserving V12 baseline and all other guards",
+    "referenceHelperOriginalSHA256": "9c7dd4d4772456b5fb62d5385bdde5b5a626f90e0c2d6c37a233eee067c5b966",
+    "referenceHelperRuntimePathSatisfied": false,
+    "independentReviewOfThisPackagingClaimed": false,
+    "tests": {
+      "methodsPassed": 17,
+      "fixtureMethods": 8,
+      "startupMethods": 9,
+      "elapsedSeconds": 0.155,
+      "CLIOrSDKOrProcessesOrThreadsOrSignalsOrCloudUsed": false
+    },
+    "workOnlyProvenanceTests": {
+      "methodsPassed": 5,
+      "privateOriginalsOrTestFileIncluded": false,
+      "linuxExternalTools": "recorded-hash stubs, not current availability proof"
+    }
+  },
+  "files": [
+    {
+      "path": "BINDING-PENDING.json",
+      "bytes": 4880,
+      "sha256": "ae2a494d789cfdff512f2e51cfb1379ebed992b55097e306ee20072ee97b538b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4412,
+      "sha256": "ad28ad298169a5c66ffe45cfaf989c857c6a65393a49f091c8f407cdeed9e608"
+    },
+    {
+      "path": "aws_runtime.py",
+      "bytes": 44296,
+      "sha256": "88bd456dce12d44f6a1724a7c6831f0324e0b999aa31adbaf150f57e6e66ef53"
+    },
+    {
+      "path": "bounded_controller_lowquota.py",
+      "bytes": 25593,
+      "sha256": "bb203938157d1fc2a2a8965f4e3e8b29e6c2371496912086b22c279ad06f1af5"
+    },
+    {
+      "path": "controller_driver.py",
+      "bytes": 69130,
+      "sha256": "cabf4cb23e2c9df4ed679bdd40acfab1852dacb61cdbe8257598e722032a6ecd"
+    },
+    {
+      "path": "credential_route.py",
+      "bytes": 5948,
+      "sha256": "c742bd1cb2a2cc28989fcc606c540c6a8bd0e2cce574678c95cc1f675e094d35"
+    },
+    {
+      "path": "drain_session.py",
+      "bytes": 10657,
+      "sha256": "9e7552b16e31a69ba407ef0559a8c9582703e4e5dddf2381f0bb77da4ae45f76"
+    },
+    {
+      "path": "fixture_runtime.py",
+      "bytes": 24571,
+      "sha256": "8aa156b52a5a0979a08544d770809d7e069dc1d82aba8f283118cc566329ccf1"
+    },
+    {
+      "path": "private_runtime.py",
+      "bytes": 29755,
+      "sha256": "31168c5ad1871250f1e0fa45abd1170561344d74302e5792108427c1f01094e6"
+    },
+    {
+      "path": "processing_adopted60_reviewer.py",
+      "bytes": 13742,
+      "sha256": "880f42268fa66c90285d03a89d8cc10c549a248abb3b9351a2290573bb13f9ba"
+    },
+    {
+      "path": "reference/automatic_fixture_DRAFT.py",
+      "bytes": 22133,
+      "sha256": "9c7dd4d4772456b5fb62d5385bdde5b5a626f90e0c2d6c37a233eee067c5b966"
+    },
+    {
+      "path": "sdk_batch.py",
+      "bytes": 19254,
+      "sha256": "aaedd932c2870fcb3031f1749b5f2e9b72dd4d5abfd47a173eb2dd6d2a78eec0"
+    },
+    {
+      "path": "sdk_worker.py",
+      "bytes": 7963,
+      "sha256": "92647337b7cec2a9a27e57100b6a15e93c488e735a3ee25966110b0b52efcb0d"
+    },
+    {
+      "path": "tests/__init__.py",
+      "bytes": 78,
+      "sha256": "2e93870c98809433f3fdec111ca2c764845b32bdfb5b20f5e85b3423b7a6725b"
+    },
+    {
+      "path": "tests/fixtures/cli2381-head-error-examples.json",
+      "bytes": 939,
+      "sha256": "2b39eddd3461bd3b0e07e43b2fba4dfddf7deedb6dd9b1b4c5dba0ca86131a2c"
+    },
+    {
+      "path": "tests/fixtures/fixture-runtime-before-json-error-fix.json",
+      "bytes": 1429,
+      "sha256": "42dfabf9a1e56fd34b65a42f9ff4d24d869fd25542d305b56639e8e0cf5c0a79"
+    },
+    {
+      "path": "tests/fixtures/v12-static-baseline.json",
+      "bytes": 6555,
+      "sha256": "61b0acd5425cbe21a1c6588a137a9690a2ea8ce1756eee38579759063df54bd6"
+    },
+    {
+      "path": "tests/fixtures/v15-reviewed-snapshot.json",
+      "bytes": 1859,
+      "sha256": "06bdb803bdfb3206d4df56367c2f40dc73304c1f7d135dcfe677e853c62dde5e"
+    },
+    {
+      "path": "tests/test_fixture_cli_json_error.py",
+      "bytes": 15216,
+      "sha256": "519a005e7efe5ab4c353ea8fc0303573caad8f8da7e69558d8244a2ea47cdfa4"
+    },
+    {
+      "path": "tests/test_startup_lifecycle.py",
+      "bytes": 12144,
+      "sha256": "7af7d8181225861d12ef516f0a10bc0e98739068a5687122bfbdccc106514a3b"
+    }
+  ]
+}

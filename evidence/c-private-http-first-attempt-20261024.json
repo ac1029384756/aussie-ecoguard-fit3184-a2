@@ -1,0 +1,36 @@
+{
+  "recordType": "actual-first-private-http-attempt",
+  "project": "ecoguard-fit3184-a2-2026",
+  "sourceRevision": "3dd63c805b625fb3b378ac977d51c6959d599f0c",
+  "serviceUrl": "https://ecoguard-inference-adlnb7yumq-uc.a.run.app",
+  "revision": "ecoguard-inference-00001-bwg",
+  "status": "blocked",
+  "observedAtUtc": "2026-10-23T23:32:07.146983+00:00",
+  "httpRequests": [
+    {
+      "method": "GET",
+      "path": "/healthz",
+      "authenticated": false,
+      "httpStatus": 404,
+      "responseBytes": 1568,
+      "elapsedSeconds": 0.045
+    }
+  ],
+  "requestCount": 1,
+  "authenticatedRequests": 0,
+  "warmupRequests": 0,
+  "tokenPersisted": false,
+  "stateSourceIAMUnchanged": true,
+  "anonymousIamDenialVerified": false,
+  "modelWarmupVerified": false,
+  "cloudInferenceVerified": false,
+  "crossCloudVerified": false,
+  "retryAttempted": false,
+  "awsActivated": false,
+  "failedSummaryPreserved": true,
+  "requestLogQueryRecordCount": 0,
+  "policyLogQueryRecordCount": 0,
+  "diagnosis": "Potential reserved ending-z URL conflict; consistent with official documentation, not a proven sole root cause",
+  "primarySource": "https://docs.cloud.google.com/run/docs/known-issues",
+  "nonZAliasFixDeployedByThisRecord": false
+}

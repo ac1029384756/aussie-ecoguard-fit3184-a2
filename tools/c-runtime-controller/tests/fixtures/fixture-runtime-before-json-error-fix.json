@@ -1,0 +1,21 @@
+{
+  "recordType": "V14-fixture-runtime-static-baseline-before-json-error-fix",
+  "originalModuleSHA256": "4445d6b36157e90b02af073c78919d95bb40b1578dde5050535a88d178ad108f",
+  "functionASTSHA256": {
+    "require": "92cb7b9d6fb2ab44cee277dd41f41b555392ba2877bf56493ba438e794966061",
+    "stamp": "1247252c24d1c2072e3822f94cc184031676595176044e9658e933b5724f2372",
+    "sha": "8338d79863a23fe07bcc7f5a504ae2c2fbbbd692ab6cba14a879b9126dd2cd13",
+    "file_record": "b2c84b07e6d275ef1fb599d39495e923f1541c0792edeaa61b461f57962fa8a0",
+    "sole_binding": "3b21340b7c67623b90be2bc25d65736e4b1c6d1ec414229bfeac6b252048707f",
+    "exact": "ae0bff8647648901e6afd4276da6e61e273173845cdddbef8c32af14a779c479",
+    "gcp_fresh": "dd731811f00ed401435ab877e95c037ea9e5591ed5f7b223194729484287f41c"
+  },
+  "transportMethodASTSHA256": {
+    "__init__": "022f3ddcc79406203a7f3bde2a48745c1ddc8a5dd1bbe09401c6bbe3d7229844",
+    "owned": "22ac4762086e70b6657a3448f04eb1a336f117840cc3ec30d76db70940448593",
+    "allowed": "207bfd38bdc3ae09333bbeb598315702c1e04d1428b52830e202e02cb0468b8a",
+    "__call__": "945c88c921e00f6db66050f195b92f3f5987bff8024b443e5b4a0d38e83dd2ed"
+  },
+  "reviewedFixtureJSONFixSHA256": "8aa156b52a5a0979a08544d770809d7e069dc1d82aba8f283118cc566329ccf1",
+  "canonicalASTAlgorithm": "AST node type and every nonempty field/literal, bytes as typed hex; omit only None/empty-list optional fields for Python-version portability."
+}

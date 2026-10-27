@@ -1,0 +1,54 @@
+{
+  "recordType": "selected-actual-readonly-integration-checkpoint",
+  "cloudSourceRevision": "40b5d5f603ef362b50ebe4c317772a53f9b24631",
+  "aws": {
+    "observedAtUtc": "2026-10-24T11:42:46.709471+00:00",
+    "status": "readonly-binding-inputs-collected",
+    "summarySHA256": "c8ce2baf224ac8a6b5b17cc9eedc6f86ae608aa7d137196fcf9ebf03f30d8dc9",
+    "managedResources": 59,
+    "stateSerial": 76,
+    "initialSuccessfulReads": 50,
+    "criticalPausedChecksPassed": 34,
+    "controlGroupsPassed": 8,
+    "boundaryReads": 27,
+    "backlogReads": 13,
+    "boundaryElapsedSeconds": 4.553535893,
+    "backlogElapsedSeconds": 2.184805744,
+    "totalElapsedSeconds": 84.443025211,
+    "sourceAndStateUnchanged": true,
+    "cloudMutationInvoked": false,
+    "controllerArmed": false,
+    "fixtureSubmitted": false
+  },
+  "gcp": {
+    "observedAtUtc": "2026-10-24T11:40:51.577617+00:00",
+    "status": "gcp-exact-baseline-readonly-observation-passed",
+    "summarySHA256": "ebfa89891c79d4f56a4b87fc42b64d48565b3a7c5eb63281ed764c497255c5af",
+    "observationSHA256": "ec0fcd9e74972eff7f8f03ee528280dc20de1ab71da4b793bc26133724455c54",
+    "managedResources": 13,
+    "stateSerial": 21,
+    "metadataReadCommands": 41,
+    "fullRawBaselineMatched": true,
+    "httpOrModelInvoked": false,
+    "tokenRequested": false,
+    "iamOrAPIMutationsInvoked": false
+  },
+  "localSupervisor": {
+    "originalProbeStatus": "blocked",
+    "originalProbeSummarySHA256": "a984ebb17408429e340dce1faac85977d8bbcfacd1331eb0d7180fc368970fed",
+    "separateCloseoutStatus": "two-child-local-capabilities-and-readonly-closeout-verified",
+    "closeoutObservedAtUtc": "2026-10-24T11:48:45.031569+00:00",
+    "closeoutSummarySHA256": "23ce412a03777f80ef248211836ad9d62c7180e969bfec70689e36f0221be994",
+    "originalProbePassClaimed": false,
+    "noOwnedLiveProcessObserved": true,
+    "actualProcessingWindowTested": false
+  },
+  "remaining": {
+    "awsApplicationPaused": true,
+    "runtimeActivationApproved": false,
+    "actualLambdaWIFOrAutomaticMediaVerified": false,
+    "pauseRestoreAcceptanceCompleted": false,
+    "fullAssignmentAcceptanceCompleted": false,
+    "personalReportFinal": false
+  }
+}

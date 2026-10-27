@@ -1,0 +1,57 @@
+{
+  "recordType": "manually-selected-evidence",
+  "selectionSource": "Actual official CloudShell terminal output; not the private raw summary",
+  "status": "blocked",
+  "observedAtUtc": "2026-10-24T00:26:53.250425+00:00",
+  "project": "ecoguard-fit3184-a2-2026",
+  "sourceRevision": "9b16f12872c067163f41de5c3d29d01e78cebbdd",
+  "readyRevision": "ecoguard-inference-00002-vmh",
+  "privateSummaryRelativePath": "private-inference-http-20261024-2/summary.json",
+  "privateSummarySHA256": "089f36206bced20d7419828be6afea37bec8f419ca098490e536d37a12c255cf",
+  "frozenHelperSHA256": "1fd869e4390701cf2bb4fd9c02510a02352428c0b6f8a8a2233e1c6c09c9ac59",
+  "httpRequests": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "authenticated": false,
+      "httpStatus": 403,
+      "responseBytes": 301,
+      "elapsedSeconds": 0.357
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "authenticated": true,
+      "httpStatus": 200,
+      "responseBytes": 149,
+      "elapsedSeconds": 1.314,
+      "modelsConfigured": true,
+      "manifestVersion": "ecoguard-models-2026-10-08-v3"
+    },
+    {
+      "method": "POST",
+      "path": "/v1/warmup",
+      "authenticated": true,
+      "httpStatus": 401,
+      "responseBytes": 97,
+      "elapsedSeconds": 1.279,
+      "clientTimeoutSeconds": 270
+    }
+  ],
+  "newHTTPRequests": 3,
+  "priorHTTPRequests": 1,
+  "totalHTTPRequestsAcrossBatches": 4,
+  "warmupPostAttemptsAcrossBatches": 1,
+  "automaticRetry": false,
+  "stateSourceIAMUnchanged": true,
+  "iamModified": false,
+  "apisModified": false,
+  "tokenPersisted": false,
+  "awsActivated": false,
+  "modelWarmupVerified": false,
+  "cloudInferenceVerified": false,
+  "crossCloudVerified": false,
+  "original404FailurePreserved": true,
+  "authorizationBasis": "existing-user-finish-C-and-default-consent",
+  "newHumanApprovalClaimed": false
+}

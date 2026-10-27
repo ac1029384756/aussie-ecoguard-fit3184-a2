@@ -1,0 +1,20 @@
+# Target: CPython 3.12, linux/amd64, Debian slim (glibc/manylinux wheels).
+# RIC 4.2.2's exact runtime dependencies:
+# https://github.com/aws/aws-lambda-python-runtime-interface-client/blob/4.2.2/requirements/base.txt
+# All three wheel SHA-256 values below come from the official PyPI file details.
+# No source distributions are permitted by the Dockerfile's --only-binary option.
+
+# cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64
+# https://pypi.org/project/awslambdaric/4.2.2/#files
+awslambdaric==4.2.2 \
+    --hash=sha256:f04e362be24ae21f34beb9ad4847f94ebb915ccd5120925a227f721af20a411d
+
+# cp312-cp312-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64
+# https://pypi.org/project/simplejson/3.20.2/#files
+simplejson==3.20.2 \
+    --hash=sha256:979ce23ea663895ae39106946ef3d78527822d918a136dbc77b9e2b7f006237e
+
+# py3-none-any; this package and simplejson have no runtime dependencies.
+# https://pypi.org/project/snapshot-restore-py/1.0.0/#files
+snapshot-restore-py==1.0.0 \
+    --hash=sha256:38f99e696793790f54658e71c68c7a8a40cea877c81232b5052383b1301aceba

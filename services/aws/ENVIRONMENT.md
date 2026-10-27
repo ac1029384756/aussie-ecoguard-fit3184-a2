@@ -5,6 +5,56 @@ the same image with a different Lambda image command per handler. Production han
 reject `ECO_MODE=local`. The Python import roots for local development are
 `packages/domain` and `services/aws`.
 
+## Container build preparation
+
+From the repository root, print the `linux/amd64` build command with the Python
+standard-library helper. Explicitly select the committed **awslambdaric 4.2.2**
+lock; there is deliberately no default:
+
+```sh
+python3 scripts/build_containers.py aws-ingest --image ecoguard-ingest:20261023-1 --aws-lambda-ric-version 4.2.2 --dry-run
+```
+
+Use `python` on Windows. Missing/mismatched versions, ranges, wildcards and
+implicit/explicit `latest` image tags are rejected. The helper passes
+`--build-arg AWS_LAMBDA_RIC_VERSION=4.2.2`; both the helper and Dockerfile require
+agreement with `requirements-ric.lock.txt`. For release, also pass `--base-image`
+with a reviewed official Python 3.12 slim digest; replace the digest placeholder in
+this print-only example:
+
+```sh
+python3 scripts/build_containers.py aws-ingest --image ecoguard-ingest:20261023-1 --aws-lambda-ric-version 4.2.2 --base-image 'python:3.12-slim-bookworm@sha256:REPLACE_WITH_VERIFIED_64_HEX_DIGEST' --dry-run
+```
+
+The separate [RIC lock](requirements-ric.lock.txt) fixes RIC 4.2.2, simplejson
+3.20.2 and snapshot-restore-py 1.0.0 to official PyPI wheel SHA-256s for CPython
+3.12 / Linux amd64. RIC's [4.2.2 dependency declaration](https://github.com/aws/aws-lambda-python-runtime-interface-client/blob/4.2.2/requirements/base.txt)
+requires those two runtime libraries. The Dockerfile resolves this lock together
+with the unchanged business lock in one `pip install --require-hashes`, restricts
+the three RIC packages to wheels and finishes with `pip check`. A missing compatible
+locked wheel stops installation. Version upgrades
+must review the full dependency closure, official hashes and any overlap with the
+business lock together; incompatible pins stop installation. The 2026-10-23
+local Linux amd64 build and offline import/tool checks passed; see the
+[local build record](../../docs/c-local-build-20261023.md). These checks do not
+establish a deployed ingest pipeline or cloud acceptance.
+
+Only `python:3.12-slim[-bookworm]@sha256:<64 hex characters>` is accepted; a bare
+tag is rejected. The helper passes `--build-arg BASE_IMAGE=...` without resolving
+or verifying the digest. Omitting this option retains the Dockerfile's development
+default. The command includes `--provenance=false`, as required
+by the [Lambda Python image guide](https://docs.aws.amazon.com/lambda/latest/dg/python-image.html),
+and `--load` to keep the image in the selected Docker engine rather than push it.
+
+The default is print-only and requires no Docker. Replace `--dry-run` with
+`--build` to check the Linux Docker engine and Buildx before building. Select the
+intended engine/builder yourself; the script does not install/start Docker,
+log in, push images, start containers or change cloud resources. Apple Silicon
+builds require working amd64 emulation and may download images/dependencies.
+This builds the shared AWS handler image; configure the ingest Lambda image
+command as `ecoguard_aws.handlers.ingest` (the Dockerfile default remains API).
+A printed command or local build is not cloud or ingest acceptance.
+
 ## Handlers
 
 | Function | Image command | Trigger |

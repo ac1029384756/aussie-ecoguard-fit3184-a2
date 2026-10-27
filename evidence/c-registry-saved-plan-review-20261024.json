@@ -1,0 +1,112 @@
+{
+  "status": "offline-increment-plan-passed",
+  "project": "ecoguard-fit3184-a2-2026",
+  "projectNumber": "995070689587",
+  "sourceRevision": "00d58e0e8c65321cc759d575eafaba801c1e8253",
+  "helperSourceRevision": "5dd4ec3fcc626a241ce5b2dafad203f674fee159",
+  "helperSha256": "9c953070f479ebccca4305a0bc14067df6d0270c1e9a54814c6621e76b66486f",
+  "savedPlanSHA256": "0f62543fe74a7b0fc71e9e8c2b1930de853448d1ab4c257b9d215399c9d5ba86",
+  "creates": 2,
+  "noops": 7,
+  "otherChanges": [],
+  "gateChecksPassed": 12,
+  "gateChecksTotal": 12,
+  "failedChecks": [],
+  "textCreateHeaders": [
+    "module.ecoguard.google_artifact_registry_repository.images[0]",
+    "module.ecoguard.google_project_service.required[\"artifactregistry.googleapis.com\"]"
+  ],
+  "textWarnings": false,
+  "stateFileUnchanged": true,
+  "resourceDriftEntries": 0,
+  "observedAtUtc": "2026-10-23T22:08:10.153087+00:00",
+  "preparationReturnCode": 0,
+  "applyExecuted": false,
+  "recordType": "actual-saved-plan-review-before-apply",
+  "liveBeforeApply": {
+    "billingLinkVerified": true,
+    "projectPublicBindings": 0,
+    "ancestorPoliciesRead": [
+      {
+        "type": "organization",
+        "publicBindings": 0
+      }
+    ],
+    "artifactRegistryEnabled": false,
+    "scanningApisEnabled": [],
+    "expectedServiceAgentBindingPresent": false,
+    "repositoryPlanned": {
+      "project": "ecoguard-fit3184-a2-2026",
+      "location": "us-central1",
+      "repository_id": "ecoguard",
+      "format": "DOCKER",
+      "mode": "STANDARD_REPOSITORY",
+      "kms_key_name": null,
+      "cleanup_policies": [],
+      "docker_config": []
+    },
+    "observedAtUtc": "2026-10-23T22:11:41.318907+00:00"
+  },
+  "funding": {
+    "existingCreditReverified": true,
+    "creditExpiry": "2026-10-28",
+    "additionalOutOfPocketBudgetAUD": 0,
+    "cleanupDeadlineMelbourne": "2026-10-27",
+    "balanceOrCreditIdentifierPublished": false,
+    "billingUpgradeAuthorized": false,
+    "zeroFutureBillGuaranteed": false
+  },
+  "automaticGoogleManagedAccess": {
+    "member": "serviceAccount:service-995070689587@gcp-sa-artifactregistry.iam.gserviceaccount.com",
+    "role": "roles/artifactregistry.serviceAgent",
+    "scope": "this project",
+    "source": "https://docs.cloud.google.com/artifact-registry/docs/ar-service-account"
+  },
+  "imageExport": {
+    "recordType": "actual-local-image-export",
+    "createdAtUtc": "2026-10-23T22:09:23.559601+00:00",
+    "imageId": "sha256:7e481399309c8a90276c864e9765545657e44c00e9061ee668b4e56db4f22fdb",
+    "platform": "linux/amd64",
+    "imageSizeBytes": 375657304,
+    "archive": "inference-amd64-20261024-1.tar.gz",
+    "archiveBytes": 373265304,
+    "archiveSHA256": "41ef8c5f4e1c0d0b9b6d3e8d1d814a0e7c5d1889082f1ab77882a122db6d94aa",
+    "tarBytes": 375672320,
+    "archiveManifestDigestMatchesImageId": true,
+    "imageConfigDigest": "sha256:3633f5354e5af61775e661925c9fc39ef96a243f1b23aa712e6fdd210c858643",
+    "savedTag": "ecoguard-inference:c-20261023-3",
+    "rootFsDiffIds": [
+      "sha256:9b35de7893378218e365c34c2c735fb0032a859112fb7345ca8ea73f9aa1db70",
+      "sha256:535ecd2088497f5955e24fd33c534fc9ba37fb717a33a841315a358dd4ff8b35",
+      "sha256:536ebec0f9d8119e620ed0e261faa2cfdeab88621f35924fb0ec74f646b5c53b",
+      "sha256:b8a5c0b25a3657c3b43a3a4cf1815f27fd7ca6c8bc3ffd36164f90731ca83db4",
+      "sha256:da8c08e28c0a6c61f86f385343a731e0450bc3461c2d216798facbd11921f606",
+      "sha256:39d1fdfa08be1bb1e4773c6152f3a45aaeffc619347b0f65dd669f378920d4dd",
+      "sha256:5d57a0c04203e8704c2d9317212e7f75040b267d46afb74c1a40d079bdabc64d",
+      "sha256:7e517c0ed54044bb9b934b401c07f21f9ce41f7fd11454b24c6fd8ab1bf56d1b",
+      "sha256:4c1dd7b032cc1f6c749d2b8f107e94d4763e3cd773c7979d254a03143a9a1dae",
+      "sha256:3c55acc2791c21d3062e77a41d72ea8cfa731e399c0bd998b69d747c018b8e6e"
+    ],
+    "configAndRootFsVerified": true,
+    "initialExportAttempt": "Stopped before compression because local containerd Id is OCI manifest digest, not config digest; no upload or corruption",
+    "imageUser": "10001:10001",
+    "registryDigest": null,
+    "registryPublished": false,
+    "cloudUploaded": false,
+    "modelCacheIncluded": false,
+    "hostCredentialsIncluded": false,
+    "cloudResourcesModified": false
+  },
+  "independentArchiveAudit": {
+    "passed": true,
+    "layerCount": 10,
+    "pathsScanned": 39560,
+    "applicationConfigLockFilesMatched": 20,
+    "expandedLayerTarBytes": 1310668800,
+    "hostCredentialPathsFound": false,
+    "modelCachePathsFound": false,
+    "dockerOrCloudOperationsUsed": false
+  },
+  "applyAuthorized": false,
+  "cloudResourcesCreatedByThisReview": 0
+}

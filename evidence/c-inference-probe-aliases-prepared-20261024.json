@@ -1,0 +1,30 @@
+{
+  "recordType": "actual-offline-probe-alias-regression",
+  "codeChanges": "Add non-z health/readiness aliases; preserve legacy routes",
+  "containerImage": "ecoguard-inference:c-20261023-3",
+  "platform": "linux/amd64",
+  "networkEnabled": false,
+  "readOnlyRootFilesystem": true,
+  "capabilitiesDropped": true,
+  "nonRootUser": true,
+  "changedAppMountedReadOnly": true,
+  "actualRegressionFunction": "test_probe_aliases_preserve_model_readiness_without_authorizing_work",
+  "readinessStatesChecked": [
+    false,
+    true
+  ],
+  "legacyAndCanonicalResponsesEqual": true,
+  "unauthorizedWarmupRejected": true,
+  "modelWorkExecuted": false,
+  "heavyModelLibrariesImported": false,
+  "publicDocsRemainDisabled": true,
+  "fullGeneratedOpenApiMatchesCheckedInContract": true,
+  "contractCorrection": "Detection.source adds grounding-dino+siglip2, already present in production schema",
+  "cloudAliasDeploymentVerified": false,
+  "sha256": {
+    "services/inference/app/main.py": "2fd591804602f77be154dfc15f71898802b0615d1337b070c1a1d74cdb4f2a8d",
+    "services/inference/tests/test_auth.py": "7eced492f2a0282e4c16fe7ae6c380bd2e5b82846acfeb1edc635bc604d464fe",
+    "services/inference/contract.openapi.json": "0b1259565c09b743021445fe488ff6e895647520ed495b304c0a00f87ad761a8",
+    "services/inference/ENVIRONMENT.md": "f3f7cb0fe166b51c83ac965d054153cef8fca5b3191d65fc82eafaec61f61609"
+  }
+}

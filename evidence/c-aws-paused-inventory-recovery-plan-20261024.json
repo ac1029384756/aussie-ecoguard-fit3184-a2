@@ -1,0 +1,43 @@
+{
+  "status": "prepared-requires-explicit-per-action-user-confirmation",
+  "action": "replace one existing paused S3 bucket policy to exempt only the exact root user from the ListBucket deny",
+  "account": "011154879765",
+  "region": "us-east-1",
+  "bucket": "ecoguard3184-personal-011154879765-media",
+  "callerArn": "arn:aws:iam::011154879765:root",
+  "sourceCommit": "ac7757717486b3db2da8c955ebffcc01f6807724",
+  "sourceTransitionRecordSHA256": "6b13e2723a6a8b2241596cbc0a70068ebbdb7e98c5d111255ab5314535358f76",
+  "stateSHA256": "644e48c482187a7f782f65750059c8e84f084c68e5c400567c67c79fe4d4a26d",
+  "stateSerial": 60,
+  "stateLineage": "58808681-d69a-1fe0-b562-796a24a58fdc",
+  "physicalManagedResources": 55,
+  "diagnosticSHA256": "02ef277f79c9d6801f9a1c13e5dadedaf17522bdc2b8c99208c86fc54e4a9860",
+  "parsedBeforePolicySHA256": "04ba66fbc1bfc6fe3e9c18a2113f3f067fd20ada5065001af388dc0331d33c06",
+  "rawBeforePolicyResponseSHA256": "bc351b75149ca45c21c219c0e7feb9ec27c4b05b4ce05d3fdecc3d5b74f7200e",
+  "afterPolicySHA256": "80f724f068e7a03c369a9e3aa54fd3a89a4dde55551b70b1b164c5787ec8918b",
+  "maximumForwardPutBucketPolicyCalls": 1,
+  "maximumRollbackPutBucketPolicyCalls": 1,
+  "rollbackOnlyAfterPostcheckFailure": true,
+  "rollbackRequiresCurrentPolicyToMatchProposedAfter": true,
+  "rootObjectNameInventoryPermissionExpansion": true,
+  "noAllowStatementAdded": true,
+  "tlsAndOtherEightPausedDeniesUnchanged": true,
+  "runtimeActivation": false,
+  "lambdaCalls": false,
+  "objectListingOrObjectOperations": false,
+  "terraformOrStateWrite": false,
+  "otherResourceOrIAMChange": false,
+  "successRequires": [
+    "fresh exact root caller, clean source and unchanged physical55 state",
+    "HeadBucket HTTP200 with expected bucket owner",
+    "full proposed policy semantic equality",
+    "IsPublic=false and exact unchanged public blocks/ownership/encryption/CORS/notifications"
+  ],
+  "failureHandling": "No blind retry. If postchecks fail, rollback is attempted at most once only after rereading the exact proposed policy and rechecking identity/source/state. An unknown/different current policy is preserved for manual review. Rollback success is independently checked and never reported as recovery success.",
+  "nativeMockValidation": {
+    "focusedCasesPassed": 3,
+    "focusedCasesFailed": 0,
+    "rootLogSHA256": "b764b237882913495835d2e18a0b7fab02ae33b6172d160ae577283c1f1c3406"
+  },
+  "approval": "Separate explicit user confirmation must authorize this concrete plan SHA and optional bounded rollback; standing finish-C consent does not authorize execution."
+}

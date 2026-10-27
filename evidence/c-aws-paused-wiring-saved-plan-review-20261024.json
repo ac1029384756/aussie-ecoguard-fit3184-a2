@@ -1,0 +1,72 @@
+{
+  "recordType": "selected-actual-paused-aws-wiring-plan4-review",
+  "sourceObservation": "Selected facts transcribed from official AWS CloudShell native terminal output; original saved binary/JSON/review remain private",
+  "status": "paused-aws-wiring-saved-plan-review-passed",
+  "observedAtUtc": "2026-10-24T02:50:24.914623+00:00",
+  "sourceRevision": "ec151b22a6fb47b21d003f268065b068376f586a",
+  "account": "011154879765",
+  "region": "us-east-1",
+  "priorManagedResources": 55,
+  "managedResources": 59,
+  "creates": 4,
+  "updates": 8,
+  "noops": 47,
+  "physicalPriorFullyEqual": true,
+  "resourceDriftEntries": 0,
+  "allFunctionsReservedZero": true,
+  "rootInventoryWhilePausedReviewed": true,
+  "fullIncrementGatePassed": true,
+  "stateSourceAndEvidenceUnchanged": true,
+  "inputProvenanceHashBound": true,
+  "applyExecuted": false,
+  "iamModified": false,
+  "runtimeActivated": false,
+  "stateSHA256": "49ec3ea76e0257068098ddb425156d156c08b3900dab37287ef93bdd8f546b6d",
+  "serial": 61,
+  "evidenceSHA256": {
+    "savedPlan": "32d2cb7f5f24f1673b72fc3dfa49461e0503c18972122740e15ed4afb02c9a5f",
+    "planJSON": "b3c576af9355747d1ebb8d37c4170bcbb5cbdcda93fff24420ea958746158ce3",
+    "reviewSummary": "a904acf42009b3a3cee36934142e803264264907a948f98c6b507bc86430f80e",
+    "planStarted": "b720ec76fd65d74093cac2e2853004b9c6fe0f1f9db9f0afd52ead584644b8b4",
+    "inputManifest": "d751053634a7c75bc0ab5974536591ca8ea1f84d3574948abb7b63943587acab",
+    "physicalValues": "7122a330ed3adca151501a37d2e279acaeed99f6653c6add29f1e022d1819361",
+    "sourceTransition8": "e128b71724b36e4078429831be9f72c2774b6a631601f84ba14090d0f21d89de"
+  },
+  "newAccess": {
+    "ecrPrincipal": {
+      "Service": "lambda.amazonaws.com"
+    },
+    "ecrActions": [
+      "ecr:BatchGetImage",
+      "ecr:GetDownloadUrlForLayer"
+    ],
+    "ecrResource": "arn:aws:ecr:us-east-1:011154879765:repository/ecoguard3184-personal-worker",
+    "conditions": {
+      "ArnEquals": {
+        "aws:SourceArn": "arn:aws:lambda:us-east-1:011154879765:function:ecoguard3184-personal-ingest"
+      },
+      "StringEquals": {
+        "aws:SourceAccount": "011154879765"
+      }
+    },
+    "runtimeRole": "arn:aws:iam::011154879765:role/ecoguard3184-personal-lambda",
+    "addedLogResource": "arn:aws:logs:us-east-1:011154879765:log-group:/aws/lambda/ecoguard3184-personal-ingest:log-stream:*",
+    "logActions": [
+      "logs:CreateLogStream",
+      "logs:PutLogEvents"
+    ]
+  },
+  "workerImageUri": "011154879765.dkr.ecr.us-east-1.amazonaws.com/ecoguard3184-personal-worker@sha256:2fca6cdfe47846d8f7ce53723fcc0bf47750141290d8c1bcfe93c07795df3dc6",
+  "boundedApplyPolicy": {
+    "maximumApplyAttempts": 1,
+    "replanDuringApply": false,
+    "automaticIAMBroadening": false,
+    "applicationInvocation": false,
+    "mediaUpload": false,
+    "enableConsumersOrSchedules": false,
+    "additionalOutOfPocketLimitAUD": 0,
+    "freshEligibleExistingCreditsRequired": true
+  },
+  "actionTimePermissionReceived": false,
+  "acceptanceLimit": "This is a verified saved deployment plan, not an applied runtime or a cross-cloud processing test. Original blocked plans1/2/3 remain blocked."
+}

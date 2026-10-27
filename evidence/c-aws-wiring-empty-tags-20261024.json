@@ -1,0 +1,88 @@
+{
+  "recordType": "selected-actual-paused-wiring-plan3-blocked-and-local-empty-tags-repair",
+  "sourceObservation": "root-selected-official-CloudShell-observation",
+  "sourceRevision": "cadd67adc30b2c1f1f84e263ef3e2ba1406262d7",
+  "sourceTransition7": {
+    "status": "controlled-source-transition-passed",
+    "observedAtUtc": "2026-10-24T02:39:35.935726+00:00",
+    "helperSHA256": "56024fd2d8d5f465ba530c6a091876ca7df07a4c9e45856eb5afc06b83ef1ad5",
+    "receiptSHA256": "ebd82a86702f0241bd67493996b5914e1a530033acc235ab7d2c9f151d2df94e",
+    "stateSHA256": "49ec3ea76e0257068098ddb425156d156c08b3900dab37287ef93bdd8f546b6d",
+    "stateSerial": 61,
+    "managedResources": 55,
+    "exactPrivateInventoryUnchanged": true,
+    "retainedGitMetadataUnchanged": true,
+    "runtimeActivated": false,
+    "cloudAPIsCalled": false
+  },
+  "wiringPlan3": {
+    "status": "blocked",
+    "planExecuted": true,
+    "planExitCode": 0,
+    "applyExecuted": false,
+    "stateModified": false,
+    "iamModified": false,
+    "error": "New log profile differs beyond its exact name",
+    "stateSourceAndEvidenceUnchanged": true,
+    "observedAtUtc": "2026-10-24T02:40:19.587140+00:00",
+    "filesSHA256": {
+      "paused-wiring.tfplan": "3bb25d06c79442821332442b087a382a6811a332fa70fefe4f3a6b408dd94199",
+      "paused-wiring-plan-private.json": "97823546c5ef5206a97aebd05953aacd7c6e806354cdb3a519f84a77e82291ff",
+      "review-summary.json": "e14febc8d9e820e11b1688d1a77beec06c3ee2e76b92bc63d6b4a8509f561790",
+      "plan-started.json": "639d9a16764934b9fdeb14322c2c335aae3f1f8a41d0a73e56c12912d0beeca5",
+      "input-evidence-sha256-private.json": "9d1612b4ac99c523922d70825416f7f84683ccf617f7b97b68d832b9b4c594fd",
+      "physical55-values-private.json": "7122a330ed3adca151501a37d2e279acaeed99f6653c6add29f1e022d1819361"
+    }
+  },
+  "readonlyDiagnostic": {
+    "logKnownDifferences": {
+      "kms_key_id": {
+        "old": "",
+        "new": null
+      },
+      "name": {
+        "old": "/aws/lambda/ecoguard3184-personal-api",
+        "new": "/aws/lambda/ecoguard3184-personal-ingest"
+      },
+      "tags": {
+        "old": {},
+        "new": null,
+        "oldPresent": true,
+        "newPresent": true
+      }
+    },
+    "newImageAndSqsTagsDifference": {
+      "old": {},
+      "new": null,
+      "oldPresent": true,
+      "newPresent": true
+    },
+    "fullExisting55PriorComparisonPassedBeforeNewLogProfileBlock": true
+  },
+  "localRepair": {
+    "resources": [
+      "new ingest log group",
+      "new Image ingest function",
+      "new disabled ingest SQS mapping"
+    ],
+    "field": "tags",
+    "plannedKeyRequired": true,
+    "knownPlannedValuesOnly": [
+      null,
+      {}
+    ],
+    "physicalTemplateMustBeEmptyDictionary": true,
+    "unknownTagsPermitted": false,
+    "existing55OrECRPolicyModifiedByGateRepair": false,
+    "fullOfflineInfrastructureTestsPassed": 65,
+    "localTestLogSHA256": "d3e38528230f4870d3837093bf8dc49662693fbd77f51e1685991bb7c3231620",
+    "testEnvironment": "Existing locked Linux amd64 ingest image, no network, read-only repository and two bounded tmpfs mounts",
+    "independentStaticReviewPassed": true,
+    "previousTestEnvironmentErrorRetained": true
+  },
+  "newSavedPlanVerified": false,
+  "newIAMPermissionApproved": false,
+  "wiringApplyExecuted": false,
+  "runtimeActivated": false,
+  "claimLimit": "Local gate repair and actual blocked plan3. A fresh reviewed source and saved plan are required before any wiring apply."
+}
