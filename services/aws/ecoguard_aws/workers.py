@@ -360,7 +360,24 @@ class Workers:
             raise RuntimeError("SNS is not configured")
         recipients = {}
         for subscription in self.repo.all("subscriptions"):
-            if subscription["status"] != "ACTIVE" or not set(subscription["tags"]) & set(media["tags"]):
+            if not set(subscription["tags"]) & set(media["tags"]):
+                continue
+            if subscription["status"] == "PENDING_CONFIRMATION":
+                # Email confirmation happens outside the application. Refresh it
+                # here as well as on the subscriptions page so delivery does not
+                # depend on the user returning to the UI and pressing Refresh.
+                status = self.s.notifier.confirmation(subscription["topicArn"], subscription["email"])
+                if status == "ACTIVE":
+                    updated = dict(subscription, status="ACTIVE", confirmationStatus="CONFIRMED")
+                    try:
+                        self.repo.transact([Write("subscriptions", updated, subscription["_rev"])])
+                        subscription = updated
+                    except Conflict:
+                        subscription = self.repo.get("subscriptions", {
+                            "ownerSub": subscription["ownerSub"],
+                            "subscriptionId": subscription["subscriptionId"],
+                        }) or subscription
+            if subscription["status"] != "ACTIVE":
                 continue
             principal = Principal(subscription["ownerSub"])
             if can_read(principal, media):
@@ -377,11 +394,16 @@ class Workers:
             # Recheck current ACL immediately before publishing delayed notifications.
             current = self.repo.get("media", {"mediaId": media["mediaId"]})
             current_sub = self.repo.get("subscriptions", {"ownerSub": sub, "subscriptionId": subscription["subscriptionId"]})
-            if not current or not current_sub or current_sub["status"] != "ACTIVE" or not can_read(Principal(sub), current) or current["status"] != "READY":
+            matching_tags = sorted(set(current_sub.get("tags", [])) & set(current.get("tags", []))) if current and current_sub else []
+            if (not current or not current_sub or current_sub["status"] != "ACTIVE" or
+                    not can_read(Principal(sub), current) or current["status"] != "READY" or
+                    current.get("generation") != media["generation"] or
+                    current.get("recordVersion") != media["recordVersion"] or not matching_tags):
                 state, message_id = "SKIPPED", None
             else:
                 try:
-                    message_id = self.s.notifier.publish(subscription["topicArn"], f"A matching sighting is available in Aussie EcoGuard.\nSign in to view it: {self.s.config.web_url.rstrip('/')}/media/{media['mediaId']}\n\nManage notifications in your subscription settings.")
+                    labels = ", ".join(tag.replace("_", " ") for tag in matching_tags)
+                    message_id = self.s.notifier.publish(current_sub["topicArn"], f"A new or updated sighting matches your monitored tags: {labels}.\nSign in to view it: {self.s.config.web_url.rstrip('/')}/media/{media['mediaId']}\n\nManage notifications in your subscription settings.")
                     state = "SENT"
                 except Exception:
                     state, message_id = "UNKNOWN", None
