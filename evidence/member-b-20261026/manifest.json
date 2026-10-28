@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-26",
+  "scope": "Member B frontend and Cognito integration",
+  "environment": "Loopback Vite + project in-memory API; explicitly labelled local identities; no cloud acceptance",
+  "automatedChecks": {
+    "testFiles": 9,
+    "lockfile": "Original package-lock.json installed with npm ci",
+    "productionBuild": "passed",
+    "typescript": "passed",
+    "testsPassed": 48
+  },
+  "cognitoSdkTests": "SDK substitutes only; real signup, mailbox confirmation, login and temporary-password challenge still require deployed environment and account holder",
+  "fixture": "Generated solid-colour PNG, 320x240; no animal or identity claim",
+  "screenshots": [
+    {
+      "file": "01-signin-desktop.png",
+      "sha256": "f3bc98a4c385ccd6f595c99361a403bdcb9feb6389087573c9e5501a5f3b923e",
+      "bytes": 49723
+    },
+    {
+      "file": "02-signup-desktop.png",
+      "sha256": "8e98f42990a1cd427959391abff7185b47ec09a8ec87075ccf1411c2d468c825",
+      "bytes": 38139
+    },
+    {
+      "file": "03-signup-mobile.png",
+      "sha256": "a872c381e9a879c85038d49d86e03024ca1f7c811b846f9898f7beff22ab3632",
+      "bytes": 35422
+    },
+    {
+      "file": "04-verify-mobile.png",
+      "sha256": "ae053e4a08700694ce62bc181db51338a8385d705b353d8ade36305c85f0ddb2",
+      "bytes": 30161
+    },
+    {
+      "file": "05-library-mobile.png",
+      "sha256": "af7af614c43414c723a1a0161a8204b8d24ac6adcfcece27c538bae7613b72c0",
+      "bytes": 32627
+    },
+    {
+      "file": "06-upload-mobile.png",
+      "sha256": "5a1b1b2f4d7461f08b215c64f5d3349fc91af93876790a1894c4838996d69162",
+      "bytes": 31083
+    },
+    {
+      "file": "07-search-empty-mobile.png",
+      "sha256": "cfcb01a7c362372f21863ad5ba17e9e843d1da6e70099ea812259b2f62466ecc",
+      "bytes": 47041
+    },
+    {
+      "file": "08-pet-error-mobile.png",
+      "sha256": "6c6002a373e3a3f2e3dcbd95ac132f0ee4bb5ec8ce7c2720aaf1735c77772288",
+      "bytes": 47979
+    },
+    {
+      "file": "09-chat-error-mobile.png",
+      "sha256": "dea947258bf4649f44df19d4b49785bc357c684ab32d443c75db2ce793fe7238",
+      "bytes": 48707
+    },
+    {
+      "file": "10-alert-error-mobile.png",
+      "sha256": "7100245b35c11565b53e994ba63296abf45fc2d7803550e7abf705710953aea2",
+      "bytes": 45816
+    },
+    {
+      "file": "11-library-management-desktop.png",
+      "sha256": "c791e0e611d052e5fc5a86b9429df9292dd6aab105421ab77718ebcd2d81be93",
+      "bytes": 61027
+    },
+    {
+      "file": "12-delete-confirm-desktop.png",
+      "sha256": "b0ddcce650e0db10905717776431850cc1a5798c6e874948bd86b92dfa4ededd",
+      "bytes": 38681
+    },
+    {
+      "file": "13-processing-error-desktop.png",
+      "sha256": "de0a0686e0cc92fdc777a7a3f4a7de4567e21f4343e726994368fe00ee4a2705",
+      "bytes": 75697
+    },
+    {
+      "file": "14-duplicate-upload-desktop.png",
+      "sha256": "a7da50cd368a1ee1ed1ec5e3c48a9dd1e5b390eaba6360e11147c86e77e94e00",
+      "bytes": 44172
+    },
+    {
+      "file": "15-user-isolation-desktop.png",
+      "sha256": "34f7a44e6b129f33202d81ee46c357d9ab09ba5efbc98f55e88d91e49e43becc",
+      "bytes": 54913
+    },
+    {
+      "file": "16-library-320px.png",
+      "sha256": "389184ba5586c9bdae3829f5d141f67bd2c742167c002f4b9d343a1ff3e67262",
+      "bytes": 27200
+    },
+    {
+      "file": "17-protected-route-signed-out.png",
+      "sha256": "8e39be0988e6d3baea63e1a44a462911838e2a2cfa4ea6045402941138ef8508",
+      "bytes": 48276
+    }
+  ]
+}

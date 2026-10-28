@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { fetchUserAttributes, getCurrentUser, signOut } from 'aws-amplify/auth';
 import { AuthProvider, useAuth } from '../auth/AuthProvider';
@@ -50,4 +50,29 @@ it('keeps a valid SDK session when the account attributes load', async () => {
   );
   await waitFor(() => expect(screen.getByText('Authenticated')).toBeVisible());
   expect(signOut).not.toHaveBeenCalled();
+});
+
+it('does not restore a pending identity after the API expires the session', async () => {
+  let finish!: (attributes: Awaited<ReturnType<typeof fetchUserAttributes>>) => void;
+  vi.mocked(getCurrentUser).mockResolvedValue({ userId: 'active-user', username: 'test-user' });
+  vi.mocked(fetchUserAttributes).mockReturnValue(
+    new Promise((resolve) => {
+      finish = resolve;
+    }),
+  );
+  render(
+    <AuthProvider>
+      <AuthState />
+    </AuthProvider>,
+  );
+  await waitFor(() => expect(fetchUserAttributes).toHaveBeenCalledOnce());
+  await act(async () => {
+    window.dispatchEvent(new Event('ecoguard:unauthorized'));
+  });
+  expect(screen.getByText('Signed out')).toBeVisible();
+  expect(signOut).toHaveBeenCalledOnce();
+  await act(async () => {
+    finish({ email: 'test@example.invalid' });
+  });
+  expect(screen.getByText('Signed out')).toBeVisible();
 });

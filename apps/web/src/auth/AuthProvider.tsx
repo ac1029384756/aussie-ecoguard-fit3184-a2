@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useLayoutEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { Amplify } from 'aws-amplify';
 import { fetchAuthSession, fetchUserAttributes, getCurrentUser, signOut } from 'aws-amplify/auth';
@@ -30,7 +30,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [expired, setExpired] = useState(false);
+  const sessionVersion = useRef(0);
   async function refresh() {
+    const version = ++sessionVersion.current;
     if (!authConfigured) {
       setLoading(false);
       return;
@@ -38,6 +40,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const current = await getCurrentUser();
       const attributes = await fetchUserAttributes();
+      if (version !== sessionVersion.current) return;
       setUser({
         id: current.userId,
         email: attributes.email || current.username,
@@ -46,15 +49,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
       setExpired(false);
     } catch {
+      if (version !== sessionVersion.current) return;
       // An invalid or deleted account must not leave a cached SDK session blocking sign-in.
       await signOut().catch(() => undefined);
-      setUser(null);
+      if (version === sessionVersion.current) setUser(null);
     } finally {
-      setLoading(false);
+      if (version === sessionVersion.current) setLoading(false);
     }
   }
   function enterLocal(id: string) {
     if (!config.devMode || !['alice', 'bob'].includes(id)) return;
+    sessionVersion.current++;
     sessionStorage.setItem('ecoguard.localUser', id);
     setUser({
       id,
@@ -70,10 +75,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       enterLocal(local);
       setLoading(false);
     } else void refresh();
-    const expiredListener = () => {
+    const expiredListener = async () => {
+      const version = ++sessionVersion.current;
       setUser(null);
+      setLoading(true);
       setExpired(true);
       sessionStorage.removeItem('ecoguard.localUser');
+      try {
+        if (authConfigured) await signOut();
+      } catch {
+        // The application stays signed out even if the SDK cannot clear its session.
+      } finally {
+        if (version === sessionVersion.current) setLoading(false);
+      }
     };
     window.addEventListener('ecoguard:unauthorized', expiredListener);
     return () => window.removeEventListener('ecoguard:unauthorized', expiredListener);
@@ -95,8 +109,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [user]);
   async function logout() {
     if (!user?.local && authConfigured) await signOut();
+    sessionVersion.current++;
     sessionStorage.removeItem('ecoguard.localUser');
     setUser(null);
+    setExpired(false);
   }
   return (
     <AuthContext.Provider value={{ user, loading, expired, refresh, logout, enterLocal }}>

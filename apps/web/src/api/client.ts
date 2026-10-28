@@ -47,6 +47,8 @@ export async function request<T>(path: string, init: RequestInit = {}): Promise<
       true,
     );
   }
+  // Gateways can return an empty or HTML 401; expiry must not depend on JSON parsing.
+  if (response.status === 401) window.dispatchEvent(new Event('ecoguard:unauthorized'));
   const text = await response.text();
   let body: any;
   try {
@@ -60,7 +62,6 @@ export async function request<T>(path: string, init: RequestInit = {}): Promise<
   }
   if (!response.ok) {
     const error = body.error || body;
-    if (response.status === 401) window.dispatchEvent(new Event('ecoguard:unauthorized'));
     throw new ApiError(
       error.message || `Request failed (${response.status}).`,
       error.code || 'REQUEST_FAILED',

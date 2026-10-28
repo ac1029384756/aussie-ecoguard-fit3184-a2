@@ -1155,6 +1155,137 @@ progress::-moz-progress-bar {
   font-size: 11px;
   padding: 7px;
 }
+.date-field {
+  position: relative;
+  min-width: 0;
+}
+.date-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.date-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: white;
+  color: var(--ink);
+  font-size: 12px;
+  text-align: left;
+}
+.date-trigger svg {
+  flex-shrink: 0;
+}
+.date-calendar {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 6px;
+  width: 290px;
+  max-width: calc(100vw - 64px);
+  padding: 12px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 12px 36px #173d2926;
+  z-index: 25;
+}
+.date-calendar.above {
+  top: auto;
+  bottom: calc(100% - 20px);
+  margin-top: 0;
+}
+.modal .date-calendar,
+.modal .date-calendar.above {
+  position: static;
+  width: 100%;
+  max-width: none;
+  margin-top: 6px;
+}
+@media (max-width: 640px) {
+  .search-options .date-field,
+  .upload-options .date-field {
+    grid-column: 1 / -1;
+  }
+  .date-calendar,
+  .date-calendar.above {
+    position: static;
+    width: 100%;
+    max-width: none;
+    margin-top: 6px;
+  }
+}
+.date-month-row {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) 66px 26px;
+  gap: 3px;
+  align-items: center;
+}
+.date-month-row select,
+.date-time-row select {
+  width: 100%;
+  min-width: 0;
+  padding: 7px 3px;
+  font-size: 12px;
+}
+.date-month-row .icon-button {
+  width: 26px;
+  height: 32px;
+  padding: 0;
+}
+.date-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 2px;
+  margin: 10px 0;
+}
+.date-weekday {
+  text-align: center;
+  font-size: 10px;
+  color: var(--muted);
+  padding: 6px 0;
+}
+.date-days button {
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink);
+  min-height: 32px;
+  padding: 4px;
+  font-size: 12px;
+}
+.date-days button:hover:not(:disabled) {
+  background: #edf3e7;
+}
+.date-days button.selected,
+.date-days button.selected:hover {
+  background: var(--green);
+  color: white;
+}
+.date-days button[aria-current='date'] {
+  box-shadow: inset 0 0 0 1px var(--green);
+}
+.date-time-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px 5px 44px;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+}
+.date-actions {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  margin-top: 10px;
+}
 .query-preview {
   height: 108px;
   width: 150px;

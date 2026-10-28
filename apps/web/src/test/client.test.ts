@@ -47,4 +47,17 @@ describe('authenticated API transport', () => {
     const [, init] = vi.mocked(fetch).mock.calls[0];
     expect(new Headers(init?.headers).get('Idempotency-Key')).toBeTruthy();
   });
+  it('invalidates the session even when a gateway returns a non-JSON 401', async () => {
+    const listener = vi.fn();
+    window.addEventListener('ecoguard:unauthorized', listener);
+    try {
+      vi.mocked(fetch).mockResolvedValue(
+        new Response('<html>Unauthorized</html>', { status: 401 }),
+      );
+      await expect(request('/media')).rejects.toMatchObject({ status: 401 });
+      expect(listener).toHaveBeenCalledOnce();
+    } finally {
+      window.removeEventListener('ecoguard:unauthorized', listener);
+    }
+  });
 });

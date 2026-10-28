@@ -6,6 +6,7 @@ import { checksum, validateFile, videoDuration } from '../api/media';
 import type { UploadAuthorization } from '../api/types';
 import { ErrorNotice, Modal } from './ui';
 import { JobStatus } from './JobStatus';
+import { DatePicker } from './DatePicker';
 type Row = {
   id: string;
   file: File;
@@ -48,6 +49,14 @@ export function UploadPanel({ onClose }: { onClose: () => void }) {
     setRows((current) => current.map((row) => (row.id === id ? { ...row, ...update } : row)));
   }
   async function send() {
+    if (
+      observedAt &&
+      (!Number.isFinite(new Date(observedAt).getTime()) ||
+        new Date(observedAt).getTime() > Date.now())
+    ) {
+      setError(new Error('Choose an observation time that is not in the future.'));
+      return;
+    }
     setWorking(true);
     setError(undefined);
     const abort = new AbortController();
@@ -171,18 +180,16 @@ export function UploadPanel({ onClose }: { onClose: () => void }) {
             <option value="public">Public sighting — signed-in community</option>
           </select>
         </label>
-        <label>
-          When did you see it? <small>(optional, your local time)</small>
-          <input
-            type="datetime-local"
-            value={observedAt}
-            onChange={(e) => setObservedAt(e.target.value)}
-            max={new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-              .toISOString()
-              .slice(0, 16)}
-            disabled={working}
-          />
-        </label>
+        <DatePicker
+          label="When did you see it? (optional, local time)"
+          value={observedAt}
+          onChange={setObservedAt}
+          withTime
+          disabled={working}
+          max={new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+            .toISOString()
+            .slice(0, 16)}
+        />
       </div>
       {rows.length > 0 && (
         <ul className="upload-list">

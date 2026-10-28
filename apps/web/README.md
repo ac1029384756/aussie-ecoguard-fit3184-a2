@@ -2,6 +2,10 @@
 
 React / TypeScript / Vite interface for the `/api/v1` service. No cloud resources are created by this package.
 
+See [the user guide](USER_GUIDE.md) for the complete web workflow and
+[member B's verification record](../../docs/member-b-handoff-20261026.md) for local
+browser evidence, authentication fixes, and outstanding cloud acceptance.
+
 ```powershell
 npm ci
 Copy-Item .env.example .env.local

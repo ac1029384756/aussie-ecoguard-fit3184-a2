@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { Search, Upload, X, ShieldCheck } from 'lucide-react';
@@ -13,6 +13,7 @@ export function QueryUpload({ pet = false }: { pet?: boolean }) {
   const { user } = useAuth();
   const key = `ecoguard.query.${user?.id}.${pet ? 'pet' : 'file'}`;
   const [file, setFile] = useState<File | null>(null);
+  const fileInput = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState('');
   const [description, setDescription] = useState('');
   const [days, setDays] = useState('30');
@@ -185,7 +186,7 @@ export function QueryUpload({ pet = false }: { pet?: boolean }) {
     <>
       <form className={`panel query-form ${pet ? 'pet-query' : ''}`} onSubmit={search}>
         <div className="query-upload-area">
-          <label className="query-file-picker">
+          <div className="query-file-picker">
             {preview ? (
               <img
                 className="query-preview"
@@ -206,6 +207,9 @@ export function QueryUpload({ pet = false }: { pet?: boolean }) {
                 : 'Find sightings containing all species detected in your file'}
             </span>
             <input
+              ref={fileInput}
+              hidden
+              aria-label={pet ? 'Pet photo file' : 'Search media file'}
               type="file"
               accept={
                 pet
@@ -216,9 +220,18 @@ export function QueryUpload({ pet = false }: { pet?: boolean }) {
               onChange={(e) => {
                 setFile(e.target.files?.[0] || null);
                 setError(undefined);
+                e.target.value = '';
               }}
             />
-          </label>
+            <button
+              type="button"
+              className="button secondary"
+              disabled={busy || active}
+              onClick={() => fileInput.current?.click()}
+            >
+              {file ? 'Choose another file' : 'Choose file'}
+            </button>
+          </div>
           {file && (
             <button
               type="button"

@@ -36,6 +36,7 @@ export function AuthPage() {
   const [error, setError] = useState<unknown>();
   const [message, setMessage] = useState('');
   function changeMode(next: Mode) {
+    if (busy) return;
     setMode(next);
     setError(undefined);
     setMessage('');
@@ -44,11 +45,13 @@ export function AuthPage() {
   }
   async function submit(event: FormEvent) {
     event.preventDefault();
+    if (busy) return;
     setBusy(true);
     setError(undefined);
     setMessage('');
     try {
       if (mode === 'signup') {
+        if (!first.trim() || !last.trim()) throw new Error('Enter your first and last name.');
         const result = await signUp({
           username: email.trim(),
           password,
@@ -227,7 +230,7 @@ export function AuthPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                disabled={busy}
+                disabled={busy || mode === 'newPassword' || mode === 'otp'}
               />
             </label>
             {['signup', 'newPassword'].includes(mode) && (
@@ -237,6 +240,7 @@ export function AuthPage() {
                   <input
                     autoComplete="given-name"
                     required
+                    disabled={busy}
                     value={first}
                     onChange={(e) => setFirst(e.target.value)}
                   />
@@ -246,6 +250,7 @@ export function AuthPage() {
                   <input
                     autoComplete="family-name"
                     required
+                    disabled={busy}
                     value={last}
                     onChange={(e) => setLast(e.target.value)}
                   />
@@ -257,6 +262,10 @@ export function AuthPage() {
                 {mode === 'newPassword' || mode === 'reset' ? 'New password' : 'Password'}
                 <input
                   type="password"
+                  aria-label={
+                    mode === 'newPassword' || mode === 'reset' ? 'New password' : 'Password'
+                  }
+                  aria-describedby={mode === 'signin' ? undefined : 'password-policy'}
                   required
                   minLength={mode === 'signin' ? undefined : 8}
                   autoComplete={mode === 'signin' ? 'current-password' : 'new-password'}
@@ -265,7 +274,7 @@ export function AuthPage() {
                   disabled={busy}
                 />
                 {mode !== 'signin' && (
-                  <small>
+                  <small id="password-policy">
                     Use at least 8 characters. Your account’s password policy also applies.
                   </small>
                 )}
@@ -278,6 +287,7 @@ export function AuthPage() {
                   autoComplete="one-time-code"
                   inputMode="numeric"
                   required
+                  disabled={busy}
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
                 />
@@ -305,22 +315,38 @@ export function AuthPage() {
           <div className="auth-links">
             {mode === 'signin' ? (
               <>
-                <button className="text-button" onClick={() => changeMode('forgot')}>
+                <button
+                  className="text-button"
+                  disabled={busy}
+                  onClick={() => changeMode('forgot')}
+                >
                   Forgot password?
                 </button>
                 <p>
                   New to EcoGuard?{' '}
-                  <button className="text-button" onClick={() => changeMode('signup')}>
+                  <button
+                    className="text-button"
+                    disabled={busy}
+                    onClick={() => changeMode('signup')}
+                  >
                     Create an account
                   </button>
                 </p>
-                <button className="text-button muted" onClick={() => changeMode('verify')}>
+                <button
+                  className="text-button muted"
+                  disabled={busy}
+                  onClick={() => changeMode('verify')}
+                >
                   Verify an existing account
                 </button>
               </>
             ) : (
               <>
-                <button className="text-button" onClick={() => changeMode('signin')}>
+                <button
+                  className="text-button"
+                  disabled={busy}
+                  onClick={() => changeMode('signin')}
+                >
                   Back to sign in
                 </button>
                 {mode === 'verify' && (

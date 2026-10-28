@@ -7,6 +7,7 @@ import type { Access, Media, MediaList } from '../api/types';
 import { PageHeader, ErrorNotice, EmptyState, Spinner } from '../components/ui';
 import { MediaGrid } from '../components/MediaGrid';
 import { QueryUpload } from '../components/QueryUpload';
+import { DatePicker } from '../components/DatePicker';
 export function SearchPage() {
   const [mode, setMode] = useState('tags');
   const [rows, setRows] = useState([{ species: '', count: '1' }]);
@@ -211,14 +212,8 @@ export function SearchPage() {
                   <option value="video">Videos</option>
                 </select>
               </label>
-              <label>
-                Observed from
-                <input type="date" value={from} onChange={(e) => setFrom(e.target.value)} />
-              </label>
-              <label>
-                Observed to
-                <input type="date" value={to} min={from} onChange={(e) => setTo(e.target.value)} />
-              </label>
+              <DatePicker label="Observed from" value={from} onChange={setFrom} />
+              <DatePicker label="Observed to" value={to} min={from} onChange={setTo} />
             </div>
             <button className="button primary" type="submit" disabled={busy}>
               <Search size={18} />
