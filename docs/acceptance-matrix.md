@@ -1,5 +1,10 @@
 # 评分验收矩阵：2026 年 10 月 8 日
 
+> 2026-10-27 D 工作包补充：Lex/邮件本地正反例、50 项独立素材模板和演示证据步骤见
+> [D 交接记录](d-part-handover-20261027.md)、[D 演示脚本](d-demo-runbook.md)及
+> [`evidence/d-acceptance-dataset-manifest.csv`](../evidence/d-acceptance-dataset-manifest.csv)。
+> 新增本地测试不改变下表的云端判定；只有正式 Lex/SNS 证据完成后才更新验收状态。
+
 保留原作业 22 项、100 分范围。此表表示证据覆盖，不是成绩预测；“部分”不能
 作为满分签核。“本地”包括明确的适配器/fixture，完整验收要求真实部署。
 
