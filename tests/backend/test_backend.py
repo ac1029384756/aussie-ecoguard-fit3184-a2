@@ -22,6 +22,7 @@ from ecoguard_aws.repository import MemoryRepository, Write, Conflict
 from ecoguard_aws.storage import MemoryStorage
 from ecoguard_aws.service import Service
 from ecoguard_aws.workers import Workers
+from ecoguard_aws.lex_fulfillment import fulfill as fulfill_lex
 
 
 class FixtureInference:
@@ -71,12 +72,14 @@ class RecordingQueue:
 class RecordingNotifier:
     def __init__(self):
         self.messages, self.error = [], None
+        self.subscribe_status = "ACTIVE"
+        self.confirmation_status = "ACTIVE"
 
     def subscribe(self, sub, email):
-        return "topic-"+sub, "ACTIVE"
+        return "topic-"+sub, self.subscribe_status
 
     def confirmation(self, topic, email):
-        return "ACTIVE"
+        return self.confirmation_status
 
     def publish(self, topic, message):
         self.messages.append((topic, message))
@@ -592,6 +595,44 @@ class BackendTest(unittest.TestCase):
         next_message = max((e for e in self.repo.all("outbox") if e["kind"] == "NOTIFY"), key=lambda e: e["payload"]["recordVersion"])
         self.workers.notify(next_message)
         self.assertEqual(len(self.notifier.messages), 3)
+        self.assertIn("fox", self.notifier.messages[-1][1])
+        self.assertIn(f"/media/{row['mediaId']}", self.notifier.messages[-1][1])
+
+    def test_notification_confirmation_refresh_does_not_depend_on_ui(self):
+        self.notifier.subscribe_status = "PENDING_CONFIRMATION"
+        subscription = self.service.subscribe(self.alice, {"tags": ["fox"]})
+        self.assertEqual(subscription["status"], "PENDING_CONFIRMATION")
+        row = self.ready()
+        message = next(e for e in self.repo.all("outbox") if e["kind"] == "NOTIFY")
+
+        # The recipient confirmed through SNS before this matching event is
+        # consumed, but did not return to the application to refresh status.
+        self.notifier.confirmation_status = "ACTIVE"
+        self.workers.notify(message)
+        self.assertEqual(len(self.notifier.messages), 1)
+        stored = self.repo.get("subscriptions", {
+            "ownerSub": "alice", "subscriptionId": subscription["subscriptionId"],
+        })
+        self.assertEqual((stored["status"], stored["confirmationStatus"]), ("ACTIVE", "CONFIRMED"))
+        self.assertIn(f"/media/{row['mediaId']}", self.notifier.messages[0][1])
+
+    def test_notification_pending_confirmation_does_not_publish(self):
+        self.notifier.subscribe_status = "PENDING_CONFIRMATION"
+        self.notifier.confirmation_status = "PENDING_CONFIRMATION"
+        self.service.subscribe(self.alice, {"tags": ["fox"]})
+        self.ready()
+        message = next(e for e in self.repo.all("outbox") if e["kind"] == "NOTIFY")
+        self.workers.notify(message)
+        self.assertEqual(self.notifier.messages, [])
+
+    def test_notification_negative_cases_do_not_publish(self):
+        cancelled = self.service.subscribe(self.alice, {"tags": ["fox"]})
+        self.service.unsubscribe(self.alice, cancelled["subscriptionId"])
+        self.service.subscribe(self.bob, {"tags": ["cane_toad"]})
+        self.ready()
+        message = next(e for e in self.repo.all("outbox") if e["kind"] == "NOTIFY")
+        self.workers.notify(message)
+        self.assertEqual(self.notifier.messages, [])
 
     def test_unknown_notification_outcome_is_not_blindly_republished(self):
         self.service.subscribe(self.alice, {"tags": ["fox"]})
@@ -625,6 +666,50 @@ class BackendTest(unittest.TestCase):
         with self.assertRaises(DomainError) as caught:
             self.service.chat_message(self.bob, {"sessionId": session["sessionId"], "text": "foxes"})
         self.assertEqual(caught.exception.status, 404)
+
+    @staticmethod
+    def lex_slot(value):
+        return {"value": {"interpretedValue": value, "resolvedValues": [value]}}
+
+    def lex_event(self, session_id, intent="SearchAnimals", **slots):
+        return {
+            "sessionId": session_id,
+            "sessionState": {"intent": {
+                "name": intent,
+                "state": "ReadyForFulfillment",
+                "slots": {name: self.lex_slot(value) if value is not None else None for name, value in slots.items()},
+            }},
+        }
+
+    def test_lex_elicits_species_and_returns_clickable_authorized_results(self):
+        row = self.ready()
+        session = self.service.chat_session(self.alice)
+        prompt = fulfill_lex(self.lex_event(session["sessionId"], species=None), self.service)
+        self.assertEqual(prompt["sessionState"]["dialogAction"], {"type": "ElicitSlot", "slotToElicit": "species"})
+        self.assertEqual(prompt["sessionState"]["intent"]["state"], "InProgress")
+
+        response = fulfill_lex(self.lex_event(session["sessionId"], species="fox", count="2"), self.service)
+        self.assertEqual(response["sessionState"]["intent"]["state"], "Fulfilled")
+        self.assertIn(f"/media/{row['mediaId']}", response["messages"][0]["content"])
+        binding = self.service.operation(f"CHAT#{session['sessionId']}")
+        self.assertEqual(binding["resultIds"], [row["mediaId"]])
+
+    def test_lex_lost_pet_search_excludes_private_sightings(self):
+        private = self.ready(data=b"private fox")
+        public = self.ready(data=b"public fox")
+        self.service.patch_media(self.alice, public["mediaId"], {"visibility": "public"})
+        session = self.service.chat_session(self.alice)
+        response = fulfill_lex(self.lex_event(session["sessionId"], intent="FindPet", species="fox"), self.service)
+        binding = self.service.operation(f"CHAT#{session['sessionId']}")
+        self.assertIn(public["mediaId"], binding["resultIds"])
+        self.assertNotIn(private["mediaId"], binding["resultIds"])
+        self.assertIn("possible matches", response["messages"][0]["content"])
+
+    def test_lex_invalid_count_fails_safely(self):
+        session = self.service.chat_session(self.alice)
+        response = fulfill_lex(self.lex_event(session["sessionId"], species="fox", count="many"), self.service)
+        self.assertEqual(response["sessionState"]["intent"]["state"], "Failed")
+        self.assertIn("valid animal count", response["messages"][0]["content"])
 
 
 if __name__ == "__main__":
