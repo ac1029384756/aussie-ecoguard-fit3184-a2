@@ -1,0 +1,186 @@
+{
+  "recordType": "C-B-local-and-readonly-preflight",
+  "recordedAtUtc": "2026-10-27T11:56:32.596601+00:00",
+  "sourceHeadBeforeDocumentation": "e966290f379b15296d333055e5bf2e106b9ed218",
+  "upstream": {
+    "repository": "https://github.com/Jerry2003826/aussie-ecoguard-fit3184-a2",
+    "defaultBranch": "Jiarui/main",
+    "head": "f9a9e7a7fba7dae1b4534820527d132b6fb3a985",
+    "lastPushedAtUtc": "2026-10-13T07:48:02Z",
+    "frontendTreeMatchesLocal": true,
+    "frontendTree": "e346eb49fca3272f9234c11c1ff0988fe2cd4bc4",
+    "branchCount": 1,
+    "onlyOpenPullRequestNumber": 1,
+    "publicForkDiscovery": {
+      "Jerry2003826/aussie-ecoguard-fit3184-a2": [
+        {
+          "default_branch": "Jiarui/main",
+          "full_name": "xihan-u/aussie-ecoguard-fit3184-a2",
+          "html_url": "https://github.com/xihan-u/aussie-ecoguard-fit3184-a2",
+          "pushed_at": "2026-10-27T11:40:23Z"
+        }
+      ],
+      "xihan-u/aussie-ecoguard-fit3184-a2": []
+    },
+    "limit": "No newer B version was visible in these repositories; this does not inspect unpushed work, private repositories or separately named repositories.",
+    "initialObservationAtUtc": "2026-10-27T11:45:04.522011+00:00",
+    "initialObservationSupersededByMerge": true
+  },
+  "frontend": {
+    "tests": {
+      "passed": 39,
+      "skipped": 0,
+      "filesPassed": 8,
+      "localOnly": true
+    },
+    "productionBuildPassed": true,
+    "node": "v22.23.4",
+    "pythonForContractFixture": "Python 3.14.7",
+    "dependencyLockUnchanged": true,
+    "initialRunFailure": "Missing root .venv/bin/python caused five contract cases to be skipped and one suite to fail. It was preserved and resolved by creating an ignored standard-library-only venv; source was unchanged.",
+    "builtFiles": [
+      {
+        "path": "assets/auth-CuDu8F7z.js",
+        "bytes": 138891,
+        "sha256": "9c4255c4dee39a9b4a7ea5b4e92ac82df232c11a4e2831ad0ace7816a2904643"
+      },
+      {
+        "path": "assets/index-B3InnRWE.css",
+        "bytes": 31097,
+        "sha256": "04dd42218ec2cb99e7eedfff000228790f034230a951700074b8bb924690ff2f"
+      },
+      {
+        "path": "assets/index-C0MhNnRv.js",
+        "bytes": 281004,
+        "sha256": "5fb885de7cdabe3133b453bd4408f755a94139520dd6c898e5f02206c55469ff"
+      },
+      {
+        "path": "assets/react-BFPr2JCT.js",
+        "bytes": 84822,
+        "sha256": "e8cda863ef11a81e5ff3f2d38189a243ba53e293866b9d040649cc476a87029a"
+      },
+      {
+        "path": "favicon.svg",
+        "bytes": 274,
+        "sha256": "580346ea7dfb88dd54d464195ff522b272b63cfbe92ddd0b3f8cf8ef6543d621"
+      },
+      {
+        "path": "index.html",
+        "bytes": 835,
+        "sha256": "bdf3f14cce2b5114352351dc69743d38609740a43753ee1b0d00a5fd58b520fd"
+      }
+    ],
+    "publicConfigurationEmbedded": true,
+    "devModeBuildValue": false,
+    "deployedHTTPSFrontend": false,
+    "limits": "Existing upstream frontend only. No browser login, registration, email receipt, live API request or media inference acceptance."
+  },
+  "awsReadonly": {
+    "observedAtUtc": "2026-10-27T11:50:57.438625+00:00",
+    "observationSource": "Selected JSON printed by AWS CloudShell; read back through visible terminal DOM. Original raw command output files were not downloaded in this checkpoint.",
+    "expectedAccountMatched": true,
+    "region": "us-east-1",
+    "readOperations": [
+      "sts:GetCallerIdentity",
+      "apigatewayv2:GetApi",
+      "cognito-idp:DescribeUserPool",
+      "cognito-idp:DescribeUserPoolClient",
+      "apigatewayv2:GetAuthorizers",
+      "apigatewayv2:GetRoutes"
+    ],
+    "allInvokedReadsSucceeded": true,
+    "api": {
+      "id": "0gbw8hhmo9",
+      "baseUrl": "https://0gbw8hhmo9.execute-api.us-east-1.amazonaws.com/api/v1",
+      "disableExecuteApiEndpoint": true,
+      "corsAllowedOrigins": [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173"
+      ],
+      "corsAllowCredentials": false
+    },
+    "cognito": {
+      "userPoolId": "us-east-1_Sog8ekMM1",
+      "appClientId": "5gu7g1rgkmabdd551h5k3350f6",
+      "selfSignupBlocked": true,
+      "autoVerifiedAttributes": [
+        "email"
+      ],
+      "clientSecretPresent": false,
+      "explicitAuthFlows": [
+        "ALLOW_REFRESH_TOKEN_AUTH",
+        "ALLOW_USER_PASSWORD_AUTH",
+        "ALLOW_USER_SRP_AUTH"
+      ]
+    },
+    "jwt": {
+      "name": "CognitoAccessToken",
+      "identitySource": [
+        "$request.header.Authorization"
+      ],
+      "issuer": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_Sog8ekMM1",
+      "audience": [
+        "5gu7g1rgkmabdd551h5k3350f6"
+      ],
+      "routes": [
+        {
+          "routeKey": "ANY /api/v1/{proxy+}",
+          "authorizationType": "JWT"
+        },
+        {
+          "routeKey": "OPTIONS /api/v1/{proxy+}",
+          "authorizationType": "NONE"
+        }
+      ]
+    },
+    "mutationsInvoked": false,
+    "modelOrMediaInvoked": false,
+    "emailSent": false
+  },
+  "gcpFunding": {
+    "observedDateMelbourne": "2026-10-27",
+    "source": "Existing GCP Billing credits page reloaded and its rendered table read; no financial amounts included.",
+    "creditName": "Free Trial",
+    "displayedEndDate": "October 28, 2026",
+    "displayedStatus": "Expiring in 0 days",
+    "positiveRemainingCreditObserved": true,
+    "exactExpiryInstantNotEstablished": true,
+    "billingOrCreditPlanChanged": false,
+    "additionalPersonalSpendLimitAUD": 0
+  },
+  "remaining": [
+    "Deploy the reviewed frontend at an HTTPS origin and include that exact origin in CORS.",
+    "Review current pause, resource, funding and recovery proofs before any activation.",
+    "Use a new concrete approval for any temporary data-access or runtime scope requiring browser confirmation.",
+    "Perform approved browser signup/email/login and two-user API checks with B.",
+    "Complete actual AWS-role media/WIF processing and continuous pause/drain acceptance."
+  ],
+  "newCloudResourceActions": false,
+  "realMediaSuccessCountUnchanged": 0,
+  "laterUpstreamReadback": {
+    "observedAtUtc": "2026-10-27T12:01:15.321020+00:00",
+    "pr1": {
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "mergedAt": "2026-10-27T11:50:03Z",
+      "closedAt": "2026-10-27T11:50:03Z",
+      "mergedBy": "Jerry2003826",
+      "head": "e966290f379b15296d333055e5bf2e106b9ed218",
+      "mergeCommitSha": "00fd4ee1742113176abc88f21bd492e9ac50920f",
+      "base": "Jiarui/main"
+    },
+    "upstream": {
+      "defaultBranch": "Jiarui/main",
+      "head": "00fd4ee1742113176abc88f21bd492e9ac50920f",
+      "pushedAt": "2026-10-27T11:50:02Z",
+      "branches": [
+        {
+          "name": "Jiarui/main",
+          "head": "00fd4ee1742113176abc88f21bd492e9ac50920f"
+        }
+      ]
+    },
+    "upstreamFrontendTree": "e346eb49fca3272f9234c11c1ff0988fe2cd4bc4"
+  }
+}

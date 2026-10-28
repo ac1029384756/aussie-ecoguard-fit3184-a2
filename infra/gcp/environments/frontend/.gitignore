@@ -1,0 +1,7 @@
+.terraform/
+state/
+private/
+*.tfplan
+*.tfplan.json
+terraform.tfvars
+crash.log

@@ -1,0 +1,83 @@
+{
+  "recordType": "static-frontend-local-preparation",
+  "sessionDate": "2026-10-27",
+  "sourceBaseCommit": "4f93620f83f0e8cec722889066bb2c0d5c9f9572",
+  "frontendApplicationSourceChanged": false,
+  "earlierFrontendUnitTestsPassed": 39,
+  "productionBuildPassed": true,
+  "image": {
+    "uri": "us-central1-docker.pkg.dev/ecoguard-fit3184-a2-2026/ecoguard/frontend@sha256:d12130aa3869398d68bf60d580db256e6abd99e7a6ffe2f5c71950d82709d458",
+    "manifestDigest": "sha256:d12130aa3869398d68bf60d580db256e6abd99e7a6ffe2f5c71950d82709d458",
+    "configDigest": "sha256:f1d16b45e7f7f4a54743810696e1635c16ff1a7a7327906e7ad45462b0751f34",
+    "base": "nginx@sha256:47928bf67eb62a1863cb08d9ecb52d3e704304ba614eaee17884204677702951",
+    "platform": "linux/amd64",
+    "user": "101:101",
+    "ociArchiveBytes": 26241536,
+    "ociArchiveSHA256": "038183681ad267fcb16d8180487e694522c8e52e61d9fcb6283aae35a6c49354",
+    "allOCIBlobHashesVerified": true,
+    "buildWarningsInFinalBuild": 0,
+    "publishedToRegistry": false
+  },
+  "localContainerChecks": {
+    "passed": 17,
+    "failed": 0,
+    "health": true,
+    "indexBytesMatchBuild": true,
+    "securityHeaders": true,
+    "indexCacheRevalidation": true,
+    "spaPathsPassed": ["/media", "/media/local-contract-fixture", "/pets", "/search", "/subscriptions"],
+    "immutableAssetsChecked": 4,
+    "missingAssetReturns404": true,
+    "apiPathReturns404": true,
+    "staticPostRejected": true,
+    "nonRootReadOnlyAndCapabilitiesDropped": true,
+    "loopbackOnly": true,
+    "previewStoppedAndVerifiedAfterBrowserQA": true
+  },
+  "browserObservation": {
+    "signInPageRendered": true,
+    "deepLinkPetsRenderedAfterNavigation": true,
+    "credentialEntered": false,
+    "cloudLoginOrSignupTested": false,
+    "screenshotDisplayedInline": true,
+    "screenshotSavedToFilesystem": false,
+    "filesystemScreenshotFailure": "CoreGraphics window metadata unavailable; no capture"
+  },
+  "terraform": {
+    "version": "1.17.0",
+    "googleProviderVersion": "7.46.1",
+    "providerSignatureVerifiedByTerraformInit": true,
+    "nativeValidationPassed": true,
+    "validationErrors": 0,
+    "validationWarnings": 0,
+    "mockTestsPassed": 5,
+    "mockTests": ["bounded_static_frontend", "reject_mutable_image", "reject_inference_image", "reject_other_project_image", "reject_wrong_project_identity"],
+    "intendedInitialManagedCreates": 3,
+    "actualSavedCloudPlanPrepared": false,
+    "applyPerformed": false,
+    "independentStatePath": "state/frontend.tfstate",
+    "existingInferenceStateMigrated": false
+  },
+  "scope": {
+    "project": "ecoguard-fit3184-a2-2026",
+    "region": "us-central1",
+    "proposedPublicService": "ecoguard-web",
+    "proposedRuntimeAccount": "ecoguard-frontend",
+    "proposedPublicBinding": "roles/run.invoker on ecoguard-web only",
+    "serviceAndRevisionMinimumInstances": 0,
+    "serviceAndRevisionMaximumInstances": 1,
+    "cpu": "1",
+    "memory": "256Mi",
+    "requestTimeoutSeconds": 30,
+    "privateInferenceManagedByThisRoot": false,
+    "projectIAMManagedByThisRoot": false,
+    "awsActivationPerformed": false,
+    "modelOrMediaRequestPerformed": false,
+    "projectResourcesChanged": false
+  },
+  "limits": [
+    "Local build, mock plans and browser rendering do not establish deployed HTTPS or cloud authentication acceptance.",
+    "The new Cloud Shell session had no credentialed account; native cloud planning stopped before project reads.",
+    "Image publication, a native saved-plan review, fresh eligible funding and action-time public-access approval remain required."
+  ]
+}

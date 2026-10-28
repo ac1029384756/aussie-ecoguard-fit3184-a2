@@ -14,6 +14,12 @@ npm run build
 npm test
 ```
 
+The frontend contract tests also invoke the repository-root `.venv` Python
+environment to obtain the real backend response shape. Set up that environment
+first using the project bootstrap; `npm ci` alone does not create it. A missing
+`.venv/bin/python` (or `.venv/Scripts/python.exe` on Windows) is a local setup
+failure, not an application or cloud authentication result.
+
 Set `VITE_API_BASE_URL` (defaults to `/api/v1`), `VITE_COGNITO_USER_POOL_ID` and `VITE_COGNITO_CLIENT_ID`. The browser app client must not have a client secret. AWS Amplify handles sign-up, email confirmation, temporary-password challenges, reset and session refresh. Requests use the **access token**, not ID tokens. See [official Amplify sign-in documentation](https://docs.amplify.aws/nextjs/frontend/auth/sign-in/).
 
 The development server proxies `/api` to `http://127.0.0.1:8000`. Set `VITE_DEV_MODE=true` only for the explicitly labelled local adapter. It is ignored outside localhost/127.0.0.1/::1. Choose Alice or Bob in the local test panel; requests carry `X-Ecoguard-Dev-User`. The server must independently require local mode. Local mode supplies no AI detections, email delivery or Lex responses and cannot establish cloud acceptance.
